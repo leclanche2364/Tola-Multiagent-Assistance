@@ -28,7 +28,7 @@ These decisions are fixed for V1 unless implementation or testing proves one tec
 9. **Delegation uses explicit `sessions_spawn` with named `agentId`.**
 10. **Shared organisational truth lives in the Blackboard, not chat transcripts.**
 11. **Supabase is authoritative Blackboard state.**
-12. **SQLite is local cache + low-risk outbox + operational state.**
+12. **Supabase is the only persistence layer.** No local cache/outbox database in V1 (amended 2026-09-26); reads may use short-lived in-memory caches only.
 13. **OpenClaw native agent memory is separate from Blackboard organisational state.**
 14. **Agents never receive generic SQL access or raw database credentials.**
 15. **Agents use narrow typed tools.**
@@ -112,10 +112,10 @@ Before implementation, re-check the installed OpenClaw version against official 
                                 |
                                 v
                      BlackboardRepository
-                         /             \
-                        /               \
-                  SQLite              Supabase
-               cache/outbox          authority
+                                |
+                                v
+                            Supabase
+                          (authority)
 
                                 |
                                 v
@@ -689,10 +689,9 @@ Semantic escalation remains a Tola decision and must be logged.
 
 ```text
 Supabase = authoritative organisational state
-SQLite   = cache + low-risk outbox + local operational state
 ```
 
-SQLite never becomes competing truth.
+No local database exists in V1. Reads go straight to Supabase, optionally through short-lived in-memory caches (§9.6). There is no second store, so competing truth is impossible by construction.
 
 ## 9.2 Supabase tables
 
@@ -774,22 +773,13 @@ Suggested fields:
 - `notes`
 - `created_at`
 
-## 9.5 SQLite tables
+## 9.5 Local cache/outbox (removed, amendment 2026-09-26)
 
-Keep local DB intentionally small:
-- `cache_projects`
-- `cache_goals`
-- `cache_tasks`
-- `cache_schedule_constraints`
-- `outbox`
-- `local_agent_events`
-- `sync_state`
-
-Skill definitions remain version-controlled rather than primarily stored in SQLite.
+Amendment 2026-09-26: the SQLite cache/outbox layer is removed from V1. Supabase is the single persistence layer. Rationale: Supabase outages are not the operator's actual failure mode, and the outbox was a distributed-systems surface with nine dedicated test cases that paid for itself only under sustained Supabase unavailability. Revisit only if real outage data justifies it.
 
 ## 9.6 Read policy
 
-Initial cache policy:
+Initial in-memory read-cache policy (no local database; caches live in process memory only):
 - active tasks: about 60 seconds;
 - project/goal metadata: about 5 minutes;
 - schedule constraints: about 60 seconds during active planning, otherwise up to 5 minutes;
@@ -812,50 +802,19 @@ generate operation/idempotency ID
 write Supabase authority
    |
    v
-update SQLite cache
-   |
-   v
 append audit event
 ```
 
-If Supabase is unavailable, only low-risk operations may queue locally.
+If Supabase is unavailable, the operation fails explicitly. Nothing queues automatically in V1 (amendment 2026-09-26). Return `BLOCKED: AUTHORITATIVE_STORE_UNAVAILABLE` and let the operator or the retrying agent re-issue the operation; idempotency keys make retries safe (§9.8).
 
-Allowed to queue:
-- own task-status update;
-- low-risk internal task;
-- agent event/log;
-- non-authoritative metric snapshot.
+## 9.8 Replay and conflict protection
 
-Never queue automatically:
-- approval decisions;
-- permission changes;
-- skill activation/modification;
-- strategic priority changes;
-- destructive operations.
-
-Return `BLOCKED: AUTHORITATIVE_STORE_UNAVAILABLE` where necessary.
-
-## 9.8 Outbox replay and conflict protection
-
-Each outbox entry stores:
-- stable `operation_id`;
-- `entity_id`;
-- operation type;
-- payload;
-- expected version;
-- created time;
-- retry count;
-- last error;
-- status.
-
-On replay:
+Operation semantics unchanged (no outbox, amendment 2026-09-26):
 - creates use stable client-generated IDs;
 - updates use optimistic concurrency;
 - duplicate operation IDs are idempotent;
 - stale writes become explicit conflicts;
-- SQLite never silently overrides Supabase.
-
-No separate sync daemon in V1. Flush opportunistically during relevant repository operations and through a deterministic maintenance command if needed.
+- a retried write can never produce a duplicate authoritative effect.
 
 ---
 
@@ -946,13 +905,10 @@ openclaw-personal-org/
         repository/
         adapters/
           supabase.ts
-          sqlite.ts
-        sync/
         schemas/
       tests/
       migrations/
         supabase/
-        sqlite/
     myrhythm-tools/
       src/
       tests/
@@ -1064,14 +1020,14 @@ Create the implementation workspace without touching live agent behaviour.
 3. Add lint/test/build scripts.
 4. Define secret handling for Supabase, My Rhythm, IntenSIQ, GA4/Search Console.
 5. OpenRouter remains managed by OpenClaw.
-6. Ensure `.env*`, credential JSON and SQLite files are gitignored.
-7. Create local test SQLite DB outside production state.
+6. Ensure `.env*` and credential JSON are gitignored.
+7. Point test/staging at the development Supabase target only.
 8. Create development/staging Supabase target if practical.
 
 ## Tests
 **T1.1 Clean build** - clean checkout builds/tests with declared dependencies only.  
 **T1.2 Secret scan** - no credentials tracked.  
-**T1.3 `.gitignore` test** - dummy `.env` and SQLite do not become trackable.  
+**T1.3 `.gitignore` test** - dummy `.env` does not become trackable.  
 **T1.4 Environment separation** - test write appears only in development Blackboard.
 
 ### Failure injection
@@ -1170,10 +1126,10 @@ Clean database can be recreated with identical structure.
 
 ---
 
-# Batch 4 - SQLite Cache/Outbox and BlackboardRepository
+# Batch 4 - BlackboardRepository (Supabase direct)
 
 ## Objective
-Build hybrid persistence independently of OpenClaw.
+Build typed persistence over Supabase directly, independently of OpenClaw.
 
 ## Work
 Implement repository methods including:
@@ -1187,46 +1143,27 @@ Implement repository methods including:
 - record agent event.
 
 Adapters:
-- Supabase authoritative adapter;
-- SQLite cache/outbox adapter.
-
-SQLite tables:
-- cached projects/goals/tasks/schedule constraints;
-- outbox;
-- local events;
-- sync state.
-
-Enable WAL.
+- Supabase authoritative adapter (the only adapter).
 
 Implement:
-- read-through cache;
-- TTLs;
 - stable IDs/idempotency;
 - optimistic version checks;
-- low-risk offline queue;
-- explicit `CONFLICT`;
-- best-effort outbox flush on repository activity.
-
-No background distributed sync daemon in V1.
+- explicit `CONFLICT` on stale writes.
 
 ## Tests
 **T4.1 Online read-through cache**  
-**T4.2 Fresh-cache read**  
-**T4.3 Cache expiry and refresh**  
-**T4.4 Online write: Supabase first, cache second, audit event**  
-**T4.5 Offline low-risk queue: pending/queued, not false remote success**  
-**T4.6 Offline high-risk block**  
-**T4.7 Double replay -> one authoritative effect**  
-**T4.8 Stale-version conflict -> no overwrite**  
-**T4.9 SQLite restart/WAL consistency**
+**T4.2 Online write: Supabase write succeeds + audit event**  
+**T4.3 Duplicate operation id -> one authoritative effect**  
+**T4.4 Stale-version conflict -> explicit CONFLICT, no overwrite**  
+**T4.5 Approved skill without source/revision/hash metadata -> rejected by repository validation**  
+**T4.6 Malformed Supabase response -> no false success**
 
 ### Failure injection
 - timeout midway through Supabase operation;
-- malformed Supabase response;
-- temporary SQLite unavailability.
+- malformed Supabase response.
 
 ## Gate
-No undetected state divergence and no duplicate authoritative effect.
+No undetected failure and no duplicate authoritative effect.
 
 ---
 

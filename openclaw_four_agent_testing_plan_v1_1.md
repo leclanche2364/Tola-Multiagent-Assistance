@@ -41,7 +41,7 @@ The V1.1 testing plan adds four important controls that were not explicit enough
 
 ### 2.3 Shared state
 - Supabase = authoritative Blackboard state.
-- SQLite = local cache, low-risk outbox and local operational state.
+- No local cache/outbox database in V1 (amendment 2026-09-26): Supabase is the only persistence layer; in-process memory caches only.
 - OpenClaw native memory = per-agent working knowledge, not organisational truth.
 
 ### 2.4 Skill policy
@@ -149,7 +149,7 @@ Do not rerun only the single failed test after a fix.
 **Tests**
 - T1.1 Clean build/test skeleton — clean checkout must build without undeclared local packages.
 - T1.2 Secret scan — search Git index/worktree for known secret patterns and exact development credentials. Pass: none tracked.
-- T1.3 Gitignore test — create dummy .env and SQLite file in expected paths. Pass: neither appears as trackable changes.
+- T1.3 Gitignore test — create dummy .env in expected paths. Pass: it does not appear as trackable changes.
 - T1.4 Environment separation — write a test Blackboard record through dev configuration. Pass: appears only in development/staging.
 - T1.5 Skill repository separation — create dummy quarantined skill. Pass: it is not discoverable by production agents merely because it exists in the implementation repository.
 
@@ -192,22 +192,18 @@ Do not rerun only the single failed test after a fix.
 
 **Rollback trigger:** Schema cannot be recreated or stale writes silently overwrite newer state.
 
-## 8. Batch 4 Test Plan - SQLite Cache/Outbox and Blackboard Repository
+## 8. Batch 4 Test Plan - BlackboardRepository (Supabase direct)
 
-**Goal:** Prove hybrid state under online, offline and conflict conditions.
+**Goal:** Prove typed persistence over Supabase under normal and conflict conditions.
 
 **Tests**
-- T4.1 Online read-through cache — empty cache -> Supabase -> SQLite populated.
-- T4.2 Fresh cache read — within TTL -> correct cached result.
-- T4.3 Cache expiry — authoritative record changes -> expired cache refreshes.
-- T4.4 Online write — Supabase succeeds first -> cache updates -> audit exists.
-- T4.5 Offline low-risk queue — allowed mutation queues exactly once and reports pending/queued.
-- T4.6 Offline high-risk block — approval, skill activation, security or strategic mutation must not become locally authoritative.
-- T4.7 Outbox replay idempotency — replay same operation twice. Pass: one authoritative effect.
-- T4.8 Stale conflict — queued version N meets authoritative N+1. Pass: conflict surfaced, no overwrite.
-- T4.9 SQLite restart/WAL — close/reopen. Pass: committed cache/outbox consistent.
+- T4.1 Online write — write through the repository. Pass: Supabase record exists, agent_events audit row exists, no false success.
+- T4.2 Duplicate operation id — replay the same create twice with one stable idempotency key. Pass: one authoritative effect.
+- T4.3 Stale conflict — update with version N against authoritative N+1. Pass: explicit conflict surfaced, no overwrite.
+- T4.4 Approved-skill metadata gate — request promotion of a skill without required source/revision/hash metadata. Pass: repository validation rejects it.
+- T4.5 Malformed Supabase response — malformed/unreachable response. Pass: no false success, error surfaced.
 
-**Failure injection:** network timeout during Supabase write; malformed Supabase response; SQLite temporarily unavailable. Expected: no false success and no double write.
+**Failure injection:** network timeout during Supabase write; malformed Supabase response. Expected: no false success and no double write.
 
 **Rollback trigger:** Any undetected authority divergence or duplicate replay.
 
