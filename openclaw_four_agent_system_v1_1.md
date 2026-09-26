@@ -1590,15 +1590,13 @@ Prove controlled failure rather than optimistic failure.
 
 ## Inject
 - Supabase outage;
-- SQLite outage;
 - My Rhythm API failure;
 - IntenSIQ API failure;
 - GA4/Search Console partial outage;
 - model/provider timeout;
 - malformed specialist result;
 - Gateway restart between task creation and result;
-- stale SQLite cache conflict;
-- duplicate outbox replay;
+- duplicate replay;
 - invalid Skill proposal;
 - staged skill-directory tampering;
 - external-post approval denial.
@@ -1609,10 +1607,6 @@ Prove controlled failure rather than optimistic failure.
 - cache only within freshness policy;
 - low-risk queue only;
 - authoritative/high-risk state blocked.
-
-### SQLite unavailable
-- Supabase remains authority where possible;
-- local cache/outbox failure visible.
 
 ### My Rhythm unavailable
 - Rhythm may propose a plan;
@@ -1719,7 +1713,7 @@ Calculate:
 8. Is self-learning producing useful proposals or noise?
 9. Are model routes economical and reliable?
 10. Are approvals concentrated at the right boundaries?
-11. Is Supabase + SQLite worth the added sync complexity?
+11. (Removed 2026-09-26 — SQLite sync layer is gone; single-store Supabase Blackboard.)
 12. What measured bottleneck would a fifth agent solve?
 
 ## Release criteria
@@ -1981,7 +1975,7 @@ Stop and fix before moving forward if any of these occurs:
 # 21. What Codex/OpenClaw must not improvise
 
 During implementation, do not silently:
-- replace hybrid Blackboard with SQLite-only or Supabase-only;
+- replace the Supabase-only Blackboard with a hybrid store;
 - add MCP servers;
 - add Redis/Kafka/custom message bus;
 - add free-form agent-to-agent messaging;
@@ -2090,7 +2084,6 @@ Conceptually:
 | Failure | Expected behaviour |
 |---|---|
 | Supabase offline | Cache only within freshness policy; low-risk queue; high-risk/authoritative changes blocked |
-| SQLite unavailable | Supabase remains authority where possible; local cache/outbox failure visible |
 | My Rhythm 500/timeout | Rhythm may propose but cannot claim write |
 | IntenSIQ 500/timeout | Scholar returns partial/blocked; no saved claim |
 | Search Console down | Growth labels partial data and does not invent SEO metrics |
@@ -2135,9 +2128,10 @@ Conceptually:
                          Blackboard Tools
                                   |
                          BlackboardRepository
-                           /              \
-                      SQLite             Supabase
-                   cache/outbox          authority
+                                |
+                                v
+                            Supabase
+                          (authority)
 
                    OpenClaw Native Memory
                          per-agent only
@@ -2189,7 +2183,7 @@ The next agent is chosen from evidence, not the original wishlist.
 - [ ] Model allowlist contains only approved V1 models.
 - [ ] No free endpoint is a production dependency.
 - [ ] Blackboard migration tests pass.
-- [ ] SQLite/outbox tests pass.
+- [ ] Replay idempotency and conflict tests pass.
 - [ ] Duplicate replay is idempotent.
 - [ ] Stale-version conflict is detected.
 - [ ] My Rhythm failures never produce false success.
