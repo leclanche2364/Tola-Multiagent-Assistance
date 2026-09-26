@@ -37,6 +37,7 @@ The V1.1 testing plan adds four important controls that were not explicit enough
 - R2 - Nemotron 3.5 Lightning paid.
 - R3 - DeepSeek V4 Flash 0731.
 - R4 - GLM-5.3 Flash.
+- Route classification (which route a task takes) is slated to move to `typesafe/jev-router` (TypeSafe structured decision model). Amendment dated 2026-09-26, see system doc §10.4. Until the routing batch's accuracy gate passes, R4/GLM makes routing decisions as originally specified. Routing-batch tests must include: Jev route assignments match the Tola baseline on a recorded task set; fallback to R4 on low confidence/unavailability; every Jev decision logged in `model_runs` with `model_id = typesafe/jev-router`.
 
 ### 2.3 Shared state
 - Supabase = authoritative Blackboard state.

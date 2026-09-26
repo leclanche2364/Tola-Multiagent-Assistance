@@ -893,6 +893,19 @@ No separate sync daemon in V1. Flush opportunistically during relevant repositor
 - Semantic escalation maximum: two route steps before Tola reports the task blocked/failed.
 - Deep/agentic run concurrency is bounded by Tola's child limits.
 
+## 10.4 Routing decision model (amendment, 2026-09-26): Jev Router
+
+Route classification moves from Tola's conversational judgement to **`typesafe/jev-router`** (TypeSafe structured decision model, served via OpenRouter). Jev receives the task's application state plus a typed question (`route: R0|R1|R2|R3|R4`) and returns a typed choice with probabilities. Tola (R4 GLM) remains the fallback decision-maker.
+
+Rules for the Jev amendment:
+
+- Jev classifies routes only; it never executes tasks or touches the Blackboard write path.
+- Fallback order: Jev -> R4 (GLM) decides as today. Low Jev confidence or unavailable model falls back to R4.
+- Every Jev decision is recorded in `model_runs` with `model_route` set to the decided route and `model_id = typesafe/jev-router` (no new schema needed).
+- Confidence threshold and retry policy are set during the routing batch and pinned before activation.
+- Jev becomes the default router only after the routing batch's accuracy gate passes: on a recorded task set, Jev's route assignments must match Tola's manual baseline, with discrepancies reviewed before promotion.
+- Until that gate passes, R4 makes routing decisions exactly as specified in 10.2/10.3.
+
 ## 10.4 Proposed route timeouts
 
 | Route | Proposed timeout |
