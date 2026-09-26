@@ -1,0 +1,27 @@
+# Secrets / credentials
+secrets/
+.env
+*.env.local
+
+# Build / cache artifacts
+*.pyc
+__pycache__/
+node_modules/
+/dist/
+/build/
+
+# IDE
+.idea/
+.vscode/
+
+# Temp
+/tmp/
+*.tmp
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Memory files we don't version
+memory/*.enc.*
+HEARTBEAT.md
