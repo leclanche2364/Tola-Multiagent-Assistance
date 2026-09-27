@@ -1,0 +1,7 @@
+{
+  "name": "@tola/coordinator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 7 — Chief-of-Staff spawn policy (allowlist, explicit agentId, depth/children caps)"
+}
