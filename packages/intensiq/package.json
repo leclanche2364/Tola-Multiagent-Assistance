@@ -1,0 +1,13 @@
+{
+  "name": "@tola/intensiq",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 12 — IntenSIQ: typed learning client with pluggable transport and InMemory mock",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/intensiq.test.ts"
+  },
+  "dependencies": {
+    "@tola/blackboard-tools": "file:../blackboard-tools"
+  }
+}

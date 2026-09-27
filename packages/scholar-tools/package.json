@@ -1,0 +1,14 @@
+{
+  "name": "@tola/scholar-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 12 — Scholar Tools: deterministic helper functions for weak-topic ranking and session scheduling metadata",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/scholar-tools.test.ts"
+  },
+  "dependencies": {
+    "@tola/intensiq": "file:../intensiq",
+    "@tola/blackboard-tools": "file:../blackboard-tools"
+  }
+}
