@@ -26,3 +26,6 @@ Thumbs.db
 memory/*.enc.*
 HEARTBEAT.md
 .build/
+*.js
+!*.test.js
+packages/automations/src/*.js
