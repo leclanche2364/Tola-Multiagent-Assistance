@@ -1,0 +1,13 @@
+{
+  "name": "@tola/skill-governance",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 9 — Skill Governance: manifest schema, quarantine intake, policy enforcement",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/skill-governance.test.ts"
+  },
+  "dependencies": {
+    "@tola/blackboard-tools": "file:../blackboard-tools"
+  }
+}
