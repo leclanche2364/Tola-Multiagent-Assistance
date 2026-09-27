@@ -54,6 +54,35 @@ export interface TaskRow {
   version: number;
 }
 
+export interface TaskRunRow {
+  run_id: string;
+  task_id: string;
+  idempotency_key: string;
+  attempt: number;
+  status: "running" | "success" | "partial" | "blocked" | "needs_approval" | "failed";
+  summary: string | null;
+  outputs: unknown[];
+  evidence_refs: unknown[];
+  tool_actions: unknown[];
+  blockers: unknown[];
+  verification: Record<string, unknown>;
+  started_at: string;
+  finished_at: string | null;
+}
+
+export interface ModelRunRow {
+  model_run_id: string;
+  task_run_id: string | null;
+  model_route: "R0" | "R1" | "R2" | "R3" | "R4";
+  model_id: string | null;
+  input_tokens: number | null;
+  output_tokens: number | null;
+  cost_usd: number | null;
+  latency_ms: number | null;
+  status: "completed" | "failed" | "timeout";
+  created_at: string;
+}
+
 export interface DecisionRow {
   decision_id: string;
   task_id: string | null;
@@ -494,6 +523,115 @@ export class BlackboardRepository {
   async listAgentEventsForTask(taskId: string): Promise<AgentEventRow[]> {
     const { rows } = await this.db.request<AgentEventRow>("GET", "agent_events", {
       query: { task_id: `eq.${taskId}`, select: "*", order: "created_at.asc" },
+    });
+    return rows;
+  }
+
+  // ---------- task runs (Batch 6) ----------
+
+  async startTaskRun(input: {
+    task_id: string;
+    idempotency_key: string;
+    attempt?: number;
+    summary?: string | null;
+  }): Promise<TaskRunRow> {
+    if (!isUuid(input.task_id)) {
+      throw new BlackboardError("VALIDATION", "task_id must be a uuid");
+    }
+    if (!isUuid(input.idempotency_key)) {
+      throw new BlackboardError("VALIDATION", "idempotency_key must be a uuid");
+    }
+    const attempt = input.attempt ?? 1;
+    if (!Number.isInteger(attempt) || attempt < 1) {
+      throw new BlackboardError("VALIDATION", "attempt must be a positive integer");
+    }
+    const res = await this.db.request<TaskRunRow>("POST", "task_runs", {
+      body: {
+        task_id: input.task_id,
+        idempotency_key: input.idempotency_key,
+        attempt,
+        summary: input.summary ?? null,
+      },
+      prefer: "return=representation",
+    });
+    return this.expectOne(res, "task_runs");
+  }
+
+  async completeTaskRun(input: {
+    run_id: string;
+    status: TaskRunRow["status"];
+    summary?: string | null;
+  }): Promise<TaskRunRow> {
+    if (!isUuid(input.run_id)) {
+      throw new BlackboardError("VALIDATION", "run_id must be a uuid");
+    }
+    const allowed: TaskRunRow["status"][] = ["running", "success", "partial", "blocked", "needs_approval", "failed"];
+    if (!allowed.includes(input.status)) {
+      throw new BlackboardError("VALIDATION", "invalid task run status");
+    }
+    const res = await this.db.request<TaskRunRow>("PATCH", "task_runs", {
+      searchParams: new URLSearchParams({ run_id: `eq.${input.run_id}` }),
+      body: {
+        status: input.status,
+        summary: input.summary ?? null,
+        finished_at: new Date().toISOString(),
+      },
+      prefer: "return=representation",
+    });
+    return this.expectOne(res, "task_runs");
+  }
+
+  async listTaskRunsForTask(taskId: string): Promise<TaskRunRow[]> {
+    if (!isUuid(taskId)) {
+      throw new BlackboardError("VALIDATION", "task_id must be a uuid");
+    }
+    const { rows } = await this.db.request<TaskRunRow>("GET", "task_runs", {
+      query: { task_id: `eq.${taskId}`, select: "*", order: "started_at.asc" },
+    });
+    return rows;
+  }
+
+  async recordModelRun(input: {
+    task_run_id?: string | null;
+    model_route: "R0" | "R1" | "R2" | "R3" | "R4";
+    model_id?: string | null;
+    input_tokens?: number | null;
+    output_tokens?: number | null;
+    cost_usd?: number | null;
+    latency_ms?: number | null;
+    status?: "completed" | "failed" | "timeout";
+  }): Promise<ModelRunRow> {
+    if (!/^(R0|R1|R2|R3|R4)$/.test(input.model_route)) {
+      throw new BlackboardError("VALIDATION", "model_route must be R0|R1|R2|R3|R4");
+    }
+    if (input.task_run_id !== undefined && input.task_run_id !== null && !isUuid(input.task_run_id)) {
+      throw new BlackboardError("VALIDATION", "task_run_id must be a uuid");
+    }
+    if (input.status !== undefined && !["completed", "failed", "timeout"].includes(input.status)) {
+      throw new BlackboardError("VALIDATION", "status must be completed|failed|timeout");
+    }
+    const res = await this.db.request<ModelRunRow>("POST", "model_runs", {
+      body: {
+        task_run_id: input.task_run_id ?? null,
+        model_route: input.model_route,
+        model_id: input.model_id ?? null,
+        input_tokens: input.input_tokens ?? null,
+        output_tokens: input.output_tokens ?? null,
+        cost_usd: input.cost_usd ?? null,
+        latency_ms: input.latency_ms ?? null,
+        status: input.status ?? "completed",
+      },
+      prefer: "return=representation",
+    });
+    return this.expectOne(res, "model_runs");
+  }
+
+  async listModelRunsForTaskRun(taskRunId: string): Promise<ModelRunRow[]> {
+    if (!isUuid(taskRunId)) {
+      throw new BlackboardError("VALIDATION", "task_run_id must be a uuid");
+    }
+    const { rows } = await this.db.request<ModelRunRow>("GET", "model_runs", {
+      query: { task_run_id: `eq.${taskRunId}`, select: "*", order: "created_at.asc" },
     });
     return rows;
   }

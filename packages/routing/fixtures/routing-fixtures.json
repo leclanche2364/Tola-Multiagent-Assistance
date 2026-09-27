@@ -1,0 +1,366 @@
+{
+  "description": "Batch 6 routing fixtures — 40 labelled tasks (10 R0, 10 R1, 8 R2, 6 R3, 6 R4). Adversarial cases where prompt length does not correlate with complexity are flagged with adversarial: true. critical: true marks safety/complexity-critical cases requiring 100% correct routing (T6.1).",
+  "fixtures": [
+    {
+      "id": "r0-01",
+      "prompt": "Sum the invoice totals",
+      "signals": [
+        "arithmetic"
+      ],
+      "expected_route": "R0",
+      "critical": true
+    },
+    {
+      "id": "r0-02",
+      "prompt": "Convert these dates to Europe/London and sort ascending",
+      "signals": [
+        "date_logic",
+        "sorting"
+      ],
+      "expected_route": "R0"
+    },
+    {
+      "id": "r0-03",
+      "prompt": "Validate that each NMC revalidation hour entry has a date, a category and a reflection before import",
+      "signals": [
+        "validation"
+      ],
+      "expected_route": "R0",
+      "critical": true
+    },
+    {
+      "id": "r0-04",
+      "prompt": "Deduplicate this list of email addresses",
+      "signals": [
+        "deduplication"
+      ],
+      "expected_route": "R0"
+    },
+    {
+      "id": "r0-05",
+      "prompt": "Compare the two JSON exports and report which keys changed value",
+      "signals": [
+        "comparison"
+      ],
+      "expected_route": "R0"
+    },
+    {
+      "id": "r0-06",
+      "prompt": "Given this very long spreadsheet extract, compute the 30-day rolling average of signups. The sheet has 4000 rows with dates, campaign names, and counts.",
+      "signals": [
+        "arithmetic"
+      ],
+      "expected_route": "R0",
+      "adversarial": true,
+      "note": "long prompt but pure arithmetic"
+    },
+    {
+      "id": "r0-07",
+      "prompt": "Sort the shift log by timestamp and flag duplicate entries",
+      "signals": [
+        "sorting",
+        "deduplication"
+      ],
+      "expected_route": "R0"
+    },
+    {
+      "id": "r0-08",
+      "prompt": "Check the idempotency key is a UUIDv4",
+      "signals": [
+        "validation"
+      ],
+      "expected_route": "R0"
+    },
+    {
+      "id": "r0-09",
+      "prompt": "Compute days remaining until the revalidation deadline for each nurse in this list",
+      "signals": [
+        "date_logic",
+        "arithmetic"
+      ],
+      "expected_route": "R0"
+    },
+    {
+      "id": "r0-10",
+      "prompt": "Sanitise the markdown export: strip HTML tags and normalise whitespace, then compare against the previous export",
+      "signals": [
+        "deterministic",
+        "comparison"
+      ],
+      "expected_route": "R0"
+    },
+    {
+      "id": "r1-01",
+      "prompt": "Extract all medication names and doses from this discharge letter",
+      "signals": [
+        "extraction"
+      ],
+      "expected_route": "R1"
+    },
+    {
+      "id": "r1-02",
+      "prompt": "Summarise this 20-page NMC council paper into 5 bullets",
+      "signals": [
+        "summarisation"
+      ],
+      "expected_route": "R1"
+    },
+    {
+      "id": "r1-03",
+      "prompt": "Convert this CSV of CPD activities into the revalidation schema",
+      "signals": [
+        "transformation"
+      ],
+      "expected_route": "R1"
+    },
+    {
+      "id": "r1-04",
+      "prompt": "Hi",
+      "signals": [
+        "extraction"
+      ],
+      "expected_route": "R1",
+      "adversarial": true,
+      "note": "tiny prompt but R1-class extraction task"
+    },
+    {
+      "id": "r1-05",
+      "prompt": "Pull the author, publication date and key recommendations out of this guidance PDF",
+      "signals": [
+        "extraction"
+      ],
+      "expected_route": "R1"
+    },
+    {
+      "id": "r1-06",
+      "prompt": "Rewrite these bullet points into the reflective account template structure",
+      "signals": [
+        "transformation"
+      ],
+      "expected_route": "R1"
+    },
+    {
+      "id": "r1-07",
+      "prompt": "Summarise the last 30 agent_events rows into a one-paragraph shift handover note",
+      "signals": [
+        "summarisation"
+      ],
+      "expected_route": "R1"
+    },
+    {
+      "id": "r1-08",
+      "prompt": "Extract every external URL and its anchor text from this newsletter archive",
+      "signals": [
+        "extraction"
+      ],
+      "expected_route": "R1"
+    },
+    {
+      "id": "r1-09",
+      "prompt": "Normalise these UK postcode strings into the standard outward/inward format",
+      "signals": [
+        "transformation"
+      ],
+      "expected_route": "R1",
+      "adversarial": true,
+      "note": "borderline R0/R1; free-form text transformation, no deterministic signal declared"
+    },
+    {
+      "id": "r1-10",
+      "prompt": "Condense this meeting transcript into action items with owners",
+      "signals": [
+        "summarisation",
+        "extraction"
+      ],
+      "expected_route": "R1"
+    },
+    {
+      "id": "r2-01",
+      "prompt": "POST this webhook payload to the Supabase tasks endpoint and return the created row",
+      "signals": [
+        "api_call",
+        "structured_output"
+      ],
+      "expected_route": "R2"
+    },
+    {
+      "id": "r2-02",
+      "prompt": "Call the OpenClaw session_status tool and return the JSON",
+      "signals": [
+        "tool_op",
+        "single_step_tool"
+      ],
+      "expected_route": "R2"
+    },
+    {
+      "id": "r2-03",
+      "prompt": "Fetch the current version of the skill registry entry for product-shaping",
+      "signals": [
+        "tool_op"
+      ],
+      "expected_route": "R2"
+    },
+    {
+      "id": "r2-04",
+      "prompt": "Create the GitHub issue with exactly this title and body on the Revalidation-Website repo",
+      "signals": [
+        "api_call",
+        "structured_output"
+      ],
+      "expected_route": "R2",
+      "critical": true
+    },
+    {
+      "id": "r2-05",
+      "prompt": "Look up the current price of deepseek/deepseek-v4-flash-0731 on the OpenRouter models endpoint and return it as JSON",
+      "signals": [
+        "api_call",
+        "single_step_tool"
+      ],
+      "expected_route": "R2"
+    },
+    {
+      "id": "r2-06",
+      "prompt": "Please, when you get a moment and assuming the network is behaving, could you try running that one Notion CLI query we discussed to fetch the project database view",
+      "signals": [
+        "tool_op"
+      ],
+      "expected_route": "R2",
+      "adversarial": true,
+      "note": "long hedged prompt but single strict tool op"
+    },
+    {
+      "id": "r2-07",
+      "prompt": "Set the Telegram bot webhook URL to the gateway endpoint and confirm the 200 response",
+      "signals": [
+        "api_call"
+      ],
+      "expected_route": "R2"
+    },
+    {
+      "id": "r2-08",
+      "prompt": "Upload this file to the Supabase storage bucket with content-type application/pdf",
+      "signals": [
+        "tool_op",
+        "structured_output"
+      ],
+      "expected_route": "R2"
+    },
+    {
+      "id": "r3-01",
+      "prompt": "Investigate why the review page token flow fails for some users: reproduce, bisect the commits, and report the root cause",
+      "signals": [
+        "agentic",
+        "investigation",
+        "multi_step"
+      ],
+      "expected_route": "R3"
+    },
+    {
+      "id": "r3-02",
+      "prompt": "Crawl the NMC guidance site, extract the revalidation requirements pages, cross-check against our article, and iterate until all claims are sourced",
+      "signals": [
+        "agentic",
+        "tool_loop",
+        "iteration"
+      ],
+      "expected_route": "R3",
+      "critical": true
+    },
+    {
+      "id": "r3-03",
+      "prompt": "Migrate all blog articles into the new CMS: fetch each, transform, upload, verify, and retry failures once",
+      "signals": [
+        "multi_step",
+        "agentic",
+        "tool_op"
+      ],
+      "expected_route": "R3"
+    },
+    {
+      "id": "r3-04",
+      "prompt": "Debug the Supabase RLS policy by querying the dev project, reading the policies, and testing each role until you find the leak",
+      "signals": [
+        "investigation",
+        "iteration",
+        "multi_step"
+      ],
+      "expected_route": "R3"
+    },
+    {
+      "id": "r3-05",
+      "prompt": "Find every place in the repo that hard-codes a model id and produce a patch after verifying each occurrence compiles",
+      "signals": [
+        "agentic",
+        "multi_step",
+        "iteration"
+      ],
+      "expected_route": "R3"
+    },
+    {
+      "id": "r3-06",
+      "prompt": "Run the daily triage: pull overnight messages, classify each, draft task rows, and loop until the inbox is empty",
+      "signals": [
+        "tool_loop",
+        "multi_step"
+      ],
+      "expected_route": "R3"
+    },
+    {
+      "id": "r4-01",
+      "prompt": "Decide what the team should build next quarter given the conversion data, capacity and the revalidation deadline",
+      "signals": [
+        "planning",
+        "prioritisation"
+      ],
+      "expected_route": "R4",
+      "critical": true
+    },
+    {
+      "id": "r4-02",
+      "prompt": "Reconcile the conflicting feedback from the pilot users into a coherent product direction",
+      "signals": [
+        "synthesis",
+        "ambiguous"
+      ],
+      "expected_route": "R4"
+    },
+    {
+      "id": "r4-03",
+      "prompt": "Hmm, tricky one — we could do A or B, both seem defensible; what is actually the right call here, do you think?",
+      "signals": [
+        "ambiguous"
+      ],
+      "expected_route": "R4"
+    },
+    {
+      "id": "r4-04",
+      "prompt": "Plan the Batch 8 delegation protocol rollout including rollback triggers and gate criteria",
+      "signals": [
+        "planning",
+        "orchestration"
+      ],
+      "expected_route": "R4",
+      "critical": true
+    },
+    {
+      "id": "r4-05",
+      "prompt": "This project feels stuck. Look at everything and tell me what matters most this week.",
+      "signals": [
+        "prioritisation",
+        "ambiguous"
+      ],
+      "expected_route": "R4"
+    },
+    {
+      "id": "r4-06",
+      "prompt": "Synthesise the model usage, cost and routing data into a decision on whether Jev should become the default router",
+      "signals": [
+        "synthesis",
+        "orchestration"
+      ],
+      "expected_route": "R4",
+      "critical": true
+    }
+  ]
+}

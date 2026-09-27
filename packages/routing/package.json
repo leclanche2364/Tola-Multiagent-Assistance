@@ -1,0 +1,13 @@
+{
+  "name": "@tola/routing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 6 — model registry, route allowlist and baseline classifier",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/routing.test.ts"
+  },
+  "dependencies": {
+    "@tola/blackboard-tools": "file:../blackboard-tools"
+  }
+}
