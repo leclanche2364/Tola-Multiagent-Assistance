@@ -1,0 +1,13 @@
+{
+  "name": "@tola/growth-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 11 — Growth Agent: typed read-only adapters, deterministic aggregation, and quarantined skill manifests",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/growth-tools.test.ts"
+  },
+  "dependencies": {
+    "@tola/blackboard-tools": "file:../blackboard-tools"
+  }
+}
