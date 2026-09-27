@@ -25,3 +25,4 @@ Thumbs.db
 # Memory files we don't version
 memory/*.enc.*
 HEARTBEAT.md
+.build/
