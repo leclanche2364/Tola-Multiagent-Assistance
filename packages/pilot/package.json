@@ -1,0 +1,14 @@
+{
+  "name": "@tola/pilot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 16 — 14-Day Controlled Pilot scaffolding: daily reviews, weekly roll-ups, pilot questions, and release gate",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/pilot.test.ts"
+  },
+  "dependencies": {
+    "@tola/blackboard-tools": "file:../blackboard-tools",
+    "@tola/growth-tools": "file:../growth-tools"
+  }
+}
