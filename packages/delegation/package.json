@@ -1,0 +1,13 @@
+{
+  "name": "@tola/delegation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 8 — Delegation Protocol: envelope, result, and review logic",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/delegation.test.ts"
+  },
+  "dependencies": {
+    "@tola/blackboard-tools": "file:../blackboard-tools"
+  }
+}
