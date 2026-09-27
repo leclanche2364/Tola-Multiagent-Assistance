@@ -41,7 +41,7 @@ The V1.1 testing plan adds four important controls that were not explicit enough
 
 ### 2.3 Shared state
 - Supabase = authoritative Blackboard state.
-- No local cache/outbox database in V1 (amendment 2026-09-26): Supabase is the only persistence layer; in-process memory caches only.
+- No secondary persistence database in V1 (amendment 2026-09-26): Supabase is the only persistence layer; in-process memory caches only.
 - OpenClaw native memory = per-agent working knowledge, not organisational truth.
 
 ### 2.4 Skill policy

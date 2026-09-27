@@ -28,7 +28,7 @@ These decisions are fixed for V1 unless implementation or testing proves one tec
 9. **Delegation uses explicit `sessions_spawn` with named `agentId`.**
 10. **Shared organisational truth lives in the Blackboard, not chat transcripts.**
 11. **Supabase is authoritative Blackboard state.**
-12. **Supabase is the only persistence layer.** No local cache/outbox database in V1 (amended 2026-09-26); reads may use short-lived in-memory caches only.
+12. **Supabase is the only persistence layer.** No secondary persistence database in V1 (amended 2026-09-26); reads may use short-lived in-memory caches only.
 13. **OpenClaw native agent memory is separate from Blackboard organisational state.**
 14. **Agents never receive generic SQL access or raw database credentials.**
 15. **Agents use narrow typed tools.**
@@ -773,9 +773,9 @@ Suggested fields:
 - `notes`
 - `created_at`
 
-## 9.5 Local cache/outbox (removed, amendment 2026-09-26)
+## 9.5 Secondary local persistence layer (removed, amendment 2026-09-26)
 
-Amendment 2026-09-26: the SQLite cache/outbox layer is removed from V1. Supabase is the single persistence layer. Rationale: Supabase outages are not the operator's actual failure mode, and the outbox was a distributed-systems surface with nine dedicated test cases that paid for itself only under sustained Supabase unavailability. Revisit only if real outage data justifies it.
+Amendment 2026-09-26: the hybrid local cache layer is removed from V1. Supabase is the single persistence layer. Rationale: Supabase outages are not the operator's actual failure mode, and the local write-queue was a distributed-systems surface with nine dedicated test cases that paid for itself only under sustained Supabase unavailability. Revisit only if real outage data justifies it.
 
 ## 9.6 Read policy
 
@@ -809,7 +809,7 @@ If Supabase is unavailable, the operation fails explicitly. Nothing queues autom
 
 ## 9.8 Replay and conflict protection
 
-Operation semantics unchanged (no outbox, amendment 2026-09-26):
+Operation semantics unchanged (no local write-queue, amendment 2026-09-26):
 - creates use stable client-generated IDs;
 - updates use optimistic concurrency;
 - duplicate operation IDs are idempotent;
@@ -1713,7 +1713,7 @@ Calculate:
 8. Is self-learning producing useful proposals or noise?
 9. Are model routes economical and reliable?
 10. Are approvals concentrated at the right boundaries?
-11. (Removed 2026-09-26 — SQLite sync layer is gone; single-store Supabase Blackboard.)
+11. (Removed 2026-09-26 — hybrid sync layer is gone; single-store Supabase Blackboard.)
 12. What measured bottleneck would a fifth agent solve?
 
 ## Release criteria
@@ -2091,7 +2091,7 @@ Conceptually:
 | OpenRouter/model timeout | One bounded retry; no spawn loop |
 | Malformed child result | Reject/repair once; never auto-complete |
 | Gateway restart | Reconcile task/external evidence before retry |
-| Stale outbox update | Conflict, no overwrite |
+| Stale-version write | Conflict, no overwrite |
 | Duplicate operation replay | Idempotent one effect |
 | Skill proposal invalid | Remains quarantined/rejected |
 | Skill directory tampered | Hash/revision mismatch prevents trusted activation |
