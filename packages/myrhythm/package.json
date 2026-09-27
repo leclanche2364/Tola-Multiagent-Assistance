@@ -1,0 +1,13 @@
+{
+  "name": "@tola/myrhythm",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 10 — My Rhythm: typed client, pluggable transport, and shift-aware planner",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/myrhythm.test.ts"
+  },
+  "dependencies": {
+    "@tola/blackboard-tools": "file:../blackboard-tools"
+  }
+}

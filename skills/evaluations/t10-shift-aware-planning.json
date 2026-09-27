@@ -1,0 +1,36 @@
+{
+  "id": "eval-t10-1",
+  "test": "T10.1 Shift-aware planning",
+  "description": "High-cognitive task must not be placed in post-shift recovery window without explicit user instruction",
+  "input": {
+    "taskTitle": "Strategic analysis",
+    "taskDurationMinutes": 120,
+    "isHighCognitive": true,
+    "deadline": "2025-01-05T00:00:00.000Z",
+    "days": [
+      {
+        "date": "2025-01-02",
+        "dayType": "work-day",
+        "availableWindows": [
+          { "startsAt": "2025-01-02T09:00:00.000Z", "endsAt": "2025-01-02T12:00:00.000Z" },
+          { "startsAt": "2025-01-02T13:00:00.000Z", "endsAt": "2025-01-02T17:00:00.000Z" }
+        ]
+      }
+    ],
+    "shiftSchedule": {
+      "shiftStartsAt": "2025-01-02T06:00:00.000Z",
+      "shiftEndsAt": "2025-01-02T14:00:00.000Z",
+      "recoveryWindow": { "startsAt": "2025-01-02T07:00:00.000Z", "endsAt": "2025-01-02T09:00:00.000Z" }
+    },
+    "explicitOverrideRecovery": false
+  },
+  "expected": {
+    "infeasible": false,
+    "proposalsCount": ">0",
+    "recoveryWindowOverlap": false,
+    "allProposalsAvoidRecovery": true,
+    "reasoningContainsRecoveryAvoidance": true,
+    "noProjectPriorityChange": true,
+    "overloadDetected": false
+  }
+}

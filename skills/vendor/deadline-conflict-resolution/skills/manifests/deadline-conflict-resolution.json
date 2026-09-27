@@ -1,0 +1,25 @@
+{
+  "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+  "name": "deadline-conflict-resolution",
+  "version": "0.1.0",
+  "upstream": {
+    "repo": "https://github.com/example/deadline-conflict-resolution.git",
+    "commit": "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3",
+    "path": "skills/deadline-conflict-resolution"
+  },
+  "licence": "MIT",
+  "capabilities": {
+    "network": false,
+    "secrets": [],
+    "filesystem": ["read:schedule", "read:deadline-config"]
+  },
+  "review": {
+    "status": "quarantined",
+    "reviewedBy": null,
+    "reviewedAt": null
+  },
+  "activation": {
+    "enabled": false,
+    "approvedRevision": null
+  }
+}
