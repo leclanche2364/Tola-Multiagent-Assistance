@@ -17,9 +17,9 @@ SCHOLAR_ROOT = os.path.join(REPO_ROOT, "scholar")
 import sys
 sys.path.insert(0, SCHOLAR_ROOT)
 
-from intensiq import capability_registry
-from intensiq import contracts
-from intensiq import denials
+from scholar.intensiq import capability_registry
+from scholar.intensiq import contracts
+from scholar.intensiq import denials
 
 
 # ---------------------------------------------------------------------------
