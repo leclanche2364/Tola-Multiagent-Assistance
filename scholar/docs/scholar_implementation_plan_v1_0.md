@@ -48,8 +48,8 @@ Scholar must not become a second learning interface.
 ```text
 TOLA
 Portfolio priority / why the learning or research matters
-        │
-        ▼
+        -
+        -
 SCHOLAR
 What to learn
 What sequence
@@ -58,13 +58,13 @@ How much
 What gaps exist
 What evidence matters
 How progress should be interpreted
-        │
-        ├───────────────► RHYTHM
-        │                 When it fits
-        │                 Capacity
-        │                 Schedule execution
-        │
-        ▼
+        -
+        ----------------- RHYTHM
+        -                 When it fits
+        -                 Capacity
+        -                 Schedule execution
+        -
+        -
 INTENSIQ
 All actual studying:
 teaching
@@ -76,11 +76,11 @@ reasoning
 revision
 weekly tests
 study materials
-        │
-        ▼
+        -
+        -
 LEARNING EVIDENCE
-        │
-        ▼
+        -
+        -
 SCHOLAR
 Analyse -> adapt -> continue
 ```
@@ -155,13 +155,13 @@ Technical failure policy:
 
 ```text
 Ling call
-  ↓
+  -
 technical failure
-  ↓
+  -
 one retry
-  ↓
+  -
 still fails
-  ↓
+  -
 PARTIAL / BLOCKED / FAILED
 ```
 
@@ -185,9 +185,9 @@ Step 2 proficiencies
 Step 3 proficiencies
 Future course updates
 IntenSIQ course/topic structure
-        ↓
+        -
 CURRICULUM & PROFICIENCY REGISTRY
-        ↓
+        -
 SCHOLAR
 ```
 
@@ -266,33 +266,33 @@ Scholar loop:
 
 ```text
 GOAL
- ↓
+ -
 map curriculum/proficiencies
- ↓
+ -
 read IntenSIQ learner state
- ↓
+ -
 determine baseline
- ↓
+ -
 identify prerequisites/gaps
- ↓
+ -
 build strategy
- ↓
+ -
 calculate effort
- ↓
+ -
 ask Rhythm for capacity
- ↓
+ -
 adapt plan to feasible capacity
- ↓
+ -
 write versioned plan to IntenSIQ
- ↓
+ -
 user studies in IntenSIQ
- ↓
+ -
 receive evidence/events
- ↓
+ -
 recalculate mastery/gaps
- ↓
+ -
 adapt plan
- ↓
+ -
 repeat until goal achieved/stopped/superseded
 ```
 
@@ -423,9 +423,9 @@ Correct:
 
 ```text
 USER studies in IntenSIQ
-        ↓
+        -
 IntenSIQ records evidence
-        ↓
+        -
 Scholar interprets evidence
 ```
 
@@ -444,7 +444,7 @@ This boundary is a hard production gate.
 
 ---
 
-# 10. Scholar ↔ Rhythm Contract
+# 10. Scholar - Rhythm Contract
 
 Scholar owns:
 
@@ -486,7 +486,7 @@ Scholar must never specify exact calendar times as part of the learning plan.
 
 ---
 
-# 11. Scholar ↔ Tola Contract
+# 11. Scholar - Tola Contract
 
 Tola may send:
 
@@ -529,17 +529,17 @@ Pipeline:
 
 ```text
 DISCOVER
- ↓
+ -
 RELEVANT?
- ↓
+ -
 SOURCE QUALITY?
- ↓
+ -
 IMPORTANT?
- ↓
+ -
 CHANGES OR ADDS USEFUL KNOWLEDGE?
- ↓
+ -
 RELEVANT TO ACTIVE GOAL/PROFICIENCY?
- ↓
+ -
 INCORPORATE INTO LEARNING STRATEGY
 ```
 
@@ -553,25 +553,25 @@ Scholar should not become a generic ICU-news feed.
 
 ```text
 RESEARCH REQUEST
- ↓
+ -
 define question
- ↓
+ -
 decompose
- ↓
+ -
 search
- ↓
+ -
 source quality
- ↓
+ -
 evidence extraction
- ↓
+ -
 conflict analysis
- ↓
+ -
 claim verification
- ↓
+ -
 synthesis
- ↓
+ -
 uncertainty
- ↓
+ -
 TOLA
 ```
 
@@ -600,13 +600,13 @@ Scholar must not autonomously generate assessed submission content where the cou
 
 ```text
 Scholar detects gap
- ↓
+ -
 INTENSIQ_FEATURE_GAP
- ↓
+ -
 Tola
- ↓
+ -
 evaluate value / effort / priority / capacity
- ↓
+ -
 BUILD / DEFER / REJECT
 ```
 
@@ -871,67 +871,67 @@ Audit Ling-only routing, auth scopes, learner-state, versioning, event replay, c
 
 ```text
 S0  Baseline
- ↓
+ -
 S1  IntenSIQ capability contract
- ↓
+ -
 S2  Integration auth
- ↓
+ -
 S3  Learner state
- ↓
+ -
 S4  Versioned learning plan
- ↓
+ -
 S5  Event outbox
- ↓
+ -
 S6  Event consumer
- ↓
+ -
 S7  Curriculum registry
- ↓
+ -
 S8  Proficiency registry
- ↓
+ -
 S9  Learning goals
- ↓
+ -
 S10 Goal decomposition
- ↓
+ -
 S11 Learner-state analysis
- ↓
+ -
 S12 Mastery model
- ↓
+ -
 S13 Gap analysis
- ↓
+ -
 S14 Adaptive strategy
- ↓
+ -
 S15 Rhythm capacity
- ↓
+ -
 S16 IntenSIQ plan orchestration
- ↓
+ -
 S17 Feedback adaptation
- ↓
+ -
 S18 Proficiency readiness
- ↓
+ -
 S19 Literature discovery
- ↓
+ -
 S20 Evidence appraisal
- ↓
+ -
 S21 Evidence -> learning strategy
- ↓
+ -
 S22 Assessment integrity
- ↓
+ -
 S23 Project research intake
- ↓
+ -
 S24 Research decomposition
- ↓
+ -
 S25 Evidence synthesis
- ↓
+ -
 S26 Feature-gap detection
- ↓
+ -
 S27 Learning effectiveness
- ↓
+ -
 S28 Proactivity
- ↓
+ -
 S29 Cross-agent integration
- ↓
+ -
 S30 Controlled pilot
- ↓
+ -
 S31 Production freeze
 ```
 

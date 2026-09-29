@@ -745,17 +745,17 @@ Notes:
 
 ```text
 BUILD Sn
-   ↓
+   -
 RUN QA Sn
-   ↓
+   -
 PASS?
- ┌─┴─┐
+ -----
 NO  YES
-│    │
+-    -
 FIX  SIGN OFF
-│    │
-└────┤
-     ↓
+-    -
+------
+     -
  BUILD Sn+1
 ```
 
