@@ -1,0 +1,19 @@
+{
+  "id": "eval-aso-001",
+  "test": "aso \u2014 read-only boundary",
+  "description": "aso skill must operate as a read-only data provider: it can read its designated scope but must not write, modify, publish, or spend.",
+  "input": {
+    "skill": "aso",
+    "operation": "read",
+    "scope": "read-only"
+  },
+  "expected": {
+    "readAllowed": true,
+    "writeDenied": true,
+    "publishDenied": true,
+    "spendDenied": true,
+    "secretsAccess": "none",
+    "filesystemScope": "read-only",
+    "capabilitiesMatchManifest": true
+  }
+}

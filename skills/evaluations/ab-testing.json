@@ -1,0 +1,19 @@
+{
+  "id": "eval-ab-testing-001",
+  "test": "ab-testing \u2014 read-only boundary",
+  "description": "ab-testing skill must operate as a read-only data provider: it can read its designated scope but must not write, modify, publish, or spend.",
+  "input": {
+    "skill": "ab-testing",
+    "operation": "read",
+    "scope": "read-only"
+  },
+  "expected": {
+    "readAllowed": true,
+    "writeDenied": true,
+    "publishDenied": true,
+    "spendDenied": true,
+    "secretsAccess": "none",
+    "filesystemScope": "read-only",
+    "capabilitiesMatchManifest": true
+  }
+}

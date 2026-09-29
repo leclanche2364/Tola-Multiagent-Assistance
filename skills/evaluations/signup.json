@@ -1,0 +1,19 @@
+{
+  "id": "eval-signup-001",
+  "test": "signup \u2014 read-only boundary",
+  "description": "signup skill must operate as a read-only data provider: it can read its designated scope but must not write, modify, publish, or spend.",
+  "input": {
+    "skill": "signup",
+    "operation": "read",
+    "scope": "read-only"
+  },
+  "expected": {
+    "readAllowed": true,
+    "writeDenied": true,
+    "publishDenied": true,
+    "spendDenied": true,
+    "secretsAccess": "none",
+    "filesystemScope": "read-only",
+    "capabilitiesMatchManifest": true
+  }
+}

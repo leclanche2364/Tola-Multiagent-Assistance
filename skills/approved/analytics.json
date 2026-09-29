@@ -1,0 +1,27 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "analytics",
+  "version": "0.1.0",
+  "upstream": {
+    "repo": "https://github.com/coreyhaines/analytics.git",
+    "commit": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0",
+    "path": "skills/analytics"
+  },
+  "licence": "MIT",
+  "capabilities": {
+    "network": true,
+    "secrets": [],
+    "filesystem": [
+      "read:analytics"
+    ]
+  },
+  "review": {
+    "status": "approved",
+    "reviewedBy": "habeeb",
+    "reviewedAt": "2026-09-30T00:36:00.000Z"
+  },
+  "activation": {
+    "enabled": true,
+    "approvedRevision": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0"
+  }
+}
