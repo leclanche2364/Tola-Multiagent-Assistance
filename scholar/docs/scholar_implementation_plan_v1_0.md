@@ -82,7 +82,7 @@ LEARNING EVIDENCE
         │
         ▼
 SCHOLAR
-Analyse → adapt → continue
+Analyse -> adapt -> continue
 ```
 
 Core principle:
@@ -120,7 +120,7 @@ Scholar does **not** own:
 Scholar V1 uses one LLM only.
 
 ```text
-R0 — DETERMINISTIC CODE
+R0 -- DETERMINISTIC CODE
 
 schema validation
 event deduplication
@@ -132,7 +132,7 @@ plan validation
 idempotency
 freshness checks
 
-R1 — LING 3.0 FLASH
+R1 -- LING 3.0 FLASH
 
 all Scholar reasoning:
 learning goal decomposition
@@ -672,193 +672,193 @@ weekly-test-generation
 
 # 17. Batch-by-Batch Implementation
 
-## Batch S0 — Baseline, Backup and Boundary Freeze
+## Batch S0 -- Baseline, Backup and Boundary Freeze
 Create a restorable baseline; capture current OpenClaw config, four-agent architecture, Scholar stub/contract, IntenSIQ integration notes, agent boundaries and Ling-only routing. Create `/scholar/{contracts,curriculum,goals,learner_state,mastery,intensiq,research,evidence,literature,integrity,events,skills,tests,fixtures,docs}`.
 
 **Exit:** system restorable and Scholar role unambiguous.  
 **Hard gate:** QA S0.
 
-## Batch S1 — IntenSIQ Capability Contract
+## Batch S1 -- IntenSIQ Capability Contract
 Classify existing IntenSIQ routes as `READ_EXISTING`, `WRITE_EXISTING`, `NOT_FOR_SCHOLAR`, or `NEW_INTEGRATION_NEEDED`. Freeze the exact contracts for learner-state, learning-plan and events. Explicitly deny learner-evidence mutations.
 
 **Exit:** no Scholar implementation depends on invented IntenSIQ behaviour.  
 **Hard gate:** QA S1.
 
-## Batch S2 — Scholar Authentication and Scope
+## Batch S2 -- Scholar Authentication and Scope
 Create narrow integration credentials/scopes equivalent to `learner-state:read`, `learning-plan:read`, `learning-plan:write`, `events:read`. Deny progress/practice/assessment mutation, delete operations and user mutation.
 
 **Exit:** Scholar can access only its integration contract.  
 **Hard gate:** QA S2.
 
-## Batch S3 — Learner-State Endpoint
+## Batch S3 -- Learner-State Endpoint
 Implement the typed learner-state aggregate with schema/state version, timestamp, course, goals, proficiency context, topic progress, next actions, practice, assessments, recent study activity, reasoning/competency evidence and revision items.
 
 **Exit:** one read reconstructs current learner state.  
 **Hard gate:** QA S3.
 
-## Batch S4 — Versioned Learning Plan
+## Batch S4 -- Versioned Learning Plan
 Implement GET/PUT learning plan with optimistic concurrency through `expected_previous_version`. Reject calendar-time fields.
 
 **Exit:** Scholar can safely version strategy without scheduling.  
 **Hard gate:** QA S4.
 
-## Batch S5 — Durable Learning Event Outbox
+## Batch S5 -- Durable Learning Event Outbox
 Create stable immutable event IDs, schema versions, cursor pagination and replay-safe persistence.
 
 **Exit:** learning changes are durable and replayable.  
 **Hard gate:** QA S5.
 
-## Batch S6 — Scholar Event Consumer
+## Batch S6 -- Scholar Event Consumer
 Implement polling, deduplication, processing and cursor commit. Commit cursor only after safe processing.
 
 **Exit:** duplicate/replayed events produce one logical effect.  
 **Hard gate:** QA S6.
 
-## Batch S7 — Curriculum Registry
+## Batch S7 -- Curriculum Registry
 Create versioned curriculum sources, nodes, learning outcomes and topic links. Ingest course handbook, assignment guidance and IntenSIQ structure with provenance.
 
 **Exit:** course structure is source-grounded, not prompt hard-coded.  
 **Hard gate:** QA S7.
 
-## Batch S8 — Proficiency Registry and Future Ingestion
+## Batch S8 -- Proficiency Registry and Future Ingestion
 Create proficiency versions, topic links and evidence links. Implement ingest/map/supersede while preserving verbatim source wording.
 
 **Exit:** future Step 2/3 context can be added without redesign.  
 **Hard gate:** QA S8.
 
-## Batch S9 — Learning Goal Contract
+## Batch S9 -- Learning Goal Contract
 Create persistent `scholar_goals` supporting direct-user and Tola sources, with ACTIVE/PAUSED/COMPLETED/STOPPED/SUPERSEDED states.
 
 **Exit:** goals persist beyond chat sessions.  
 **Hard gate:** QA S9.
 
-## Batch S10 — Learning-Goal Decomposition
+## Batch S10 -- Learning-Goal Decomposition
 Build `learning-goal-decomposition`: map goals to curriculum nodes, proficiencies, prerequisites, mastery dimensions, time horizon and evidence requirements.
 
 **Exit:** representative goals produce valid target structures.  
 **Hard gate:** QA S10.
 
-## Batch S11 — Learner-State Analysis
+## Batch S11 -- Learner-State Analysis
 Build `learner-state-analysis` using deterministic summaries plus Ling. Separate observed evidence, interpretation and uncertainty.
 
 **Exit:** Scholar describes strengths/gaps without inventing evidence.  
 **Hard gate:** QA S11.
 
-## Batch S12 — Mastery Model
+## Batch S12 -- Mastery Model
 Track knowledge, rationale, application, critical analysis, recall, transfer, practical readiness and formal competence. Formal competence only changes from authoritative evidence.
 
 **Exit:** Scholar distinguishes learning from sign-off.  
 **Hard gate:** QA S12.
 
-## Batch S13 — Learning Gap Analysis
+## Batch S13 -- Learning Gap Analysis
 Build `learning-gap-analysis` for missing prerequisites, weak knowledge/application/recall, insufficient evidence/practice and uncovered proficiencies.
 
 **Exit:** every gap is traceable to evidence.  
 **Hard gate:** QA S13.
 
-## Batch S14 — Adaptive Learning Strategy
-Build `adaptive-learning-strategy`. Ordered items contain topic/proficiency, sequence, priority, target depth/mastery, recommended effort, outcomes and rationale—not learner-facing quizzes or teaching scripts.
+## Batch S14 -- Adaptive Learning Strategy
+Build `adaptive-learning-strategy`. Ordered items contain topic/proficiency, sequence, priority, target depth/mastery, recommended effort, outcomes and rationale--not learner-facing quizzes or teaching scripts.
 
 **Exit:** Scholar plans learning while IntenSIQ retains delivery control.  
 **Hard gate:** QA S14.
 
-## Batch S15 — Rhythm Capacity Protocol
+## Batch S15 -- Rhythm Capacity Protocol
 Send `STUDY_REQUIREMENT` containing required minutes, minimum block, cognitive load, priority, deadline and splitability. Adapt strategy when capacity is lower than requested.
 
 **Exit:** Scholar cannot assume unlimited study time.  
 **Hard gate:** QA S15.
 
-## Batch S16 — IntenSIQ Plan Orchestration
-Implement current-plan read → compare → validate → versioned PUT → verify. Never call progress/evidence mutation endpoints.
+## Batch S16 -- IntenSIQ Plan Orchestration
+Implement current-plan read -> compare -> validate -> versioned PUT -> verify. Never call progress/evidence mutation endpoints.
 
 **Exit:** plan updates are safe, idempotent and verified.  
 **Hard gate:** QA S16.
 
-## Batch S17 — Feedback Analysis and Plan Adaptation
+## Batch S17 -- Feedback Analysis and Plan Adaptation
 On relevant IntenSIQ events, update mastery/gaps and adapt only when evidence is material. Avoid plan churn.
 
 **Exit:** Scholar responds proportionately to evidence.  
 **Hard gate:** QA S17.
 
-## Batch S18 — Proficiency Readiness
+## Batch S18 -- Proficiency Readiness
 Implement states `NOT_STARTED`, `KNOWLEDGE_BUILDING`, `APPLICATION_BUILDING`, `PRACTICE_REQUIRED`, `EVIDENCE_REQUIRED`, `READY_FOR_CLINICAL_ASSESSMENT`, `ASSESSED_SIGNED_OFF`. Final state requires authoritative sign-off.
 
 **Exit:** Scholar never self-certifies competence.  
 **Hard gate:** QA S18.
 
-## Batch S19 — Literature Discovery
+## Batch S19 -- Literature Discovery
 Build goal/proficiency-driven evidence watchlists and literature searches. Avoid generic ICU-news behaviour.
 
 **Exit:** relevant important evidence is found with low noise.  
 **Hard gate:** QA S19.
 
-## Batch S20 — Evidence Appraisal
+## Batch S20 -- Evidence Appraisal
 Build source-quality assessment, evidence appraisal and claim verification. Evaluate study type, quality, relevance, recency, clinical importance, consistency and uncertainty.
 
 **Exit:** weak evidence cannot silently override stronger evidence.  
 **Hard gate:** QA S20.
 
-## Batch S21 — Evidence to Learning Strategy
+## Batch S21 -- Evidence to Learning Strategy
 Link important relevant evidence to curriculum/proficiency and update learning strategy where justified. Archive non-material evidence metadata.
 
 **Exit:** only justified evidence changes learning strategy.  
 **Hard gate:** QA S21.
 
-## Batch S22 — Assessment Integrity Gate
+## Batch S22 -- Assessment Integrity Gate
 Classify `GENERAL_LEARNING`, `ASSESSED_WORK`, `UNCLEAR`. Apply course-safe assistance rules.
 
 **Exit:** Scholar supports learning without completing prohibited assessed work.  
 **Hard gate:** QA S22.
 
-## Batch S23 — Project Research Intake
+## Batch S23 -- Project Research Intake
 Create structurally separate `research_requests` with project, question, purpose, required output, success criteria, deadline, risk and state.
 
 **Exit:** project research does not contaminate learner state.  
 **Hard gate:** QA S23.
 
-## Batch S24 — Research Question Decomposition
+## Batch S24 -- Research Question Decomposition
 Build `research-question-decomposition` with subquestions, evidence types, source hierarchy, unknowns and decision relevance.
 
 **Exit:** complex research is structured before investigation.  
 **Hard gate:** QA S24.
 
-## Batch S25 — Evidence Synthesis
+## Batch S25 -- Evidence Synthesis
 Build `evidence-synthesis` and `research-to-tola`. Separate FACT / INFERENCE / HYPOTHESIS / UNKNOWN; include quality, conflicts, uncertainty and practical implications.
 
 **Exit:** Tola receives traceable decision-ready research.  
 **Hard gate:** QA S25.
 
-## Batch S26 — IntenSIQ Feature-Gap Detection
+## Batch S26 -- IntenSIQ Feature-Gap Detection
 Build `intensiq-feature-gap-detection` and route `INTENSIQ_FEATURE_GAP` proposals to Tola with evidence, expected learning value and workaround state.
 
 **Exit:** Scholar proposes missing capability but cannot build/bypass it.  
 **Hard gate:** QA S26.
 
-## Batch S27 — Learning Effectiveness Review
+## Batch S27 -- Learning Effectiveness Review
 Track goal progress, mastery change, retention, repeated weakness, time spent versus gain, plan revisions, proficiency coverage and study completion.
 
 **Exit:** Scholar distinguishes effort from learning progress.  
 **Hard gate:** QA S27.
 
-## Batch S28 — Daily/Weekly Proactivity
+## Batch S28 -- Daily/Weekly Proactivity
 Event-driven response to learning evidence; lightweight daily checks for goal risk/unprocessed events/stale state/missed requirements; weekly review of mastery, proficiencies, capacity, literature and next requirements.
 
 **Exit:** Scholar remains current without noisy constant polling.  
 **Hard gate:** QA S28.
 
-## Batch S29 — Tola/Rhythm Cross-Agent Integration
-Prove complete learning and research flows: Tola goal → Scholar → Rhythm capacity → Scholar → IntenSIQ → evidence → Scholar → Tola, plus project research → Tola.
+## Batch S29 -- Tola/Rhythm Cross-Agent Integration
+Prove complete learning and research flows: Tola goal -> Scholar -> Rhythm capacity -> Scholar -> IntenSIQ -> evidence -> Scholar -> Tola, plus project research -> Tola.
 
 **Exit:** no authority boundary crossed.  
 **Hard gate:** QA S29.
 
-## Batch S30 — Controlled Pilot
+## Batch S30 -- Controlled Pilot
 Pilot one real critical-care learning goal plus real project research. Measure plan usefulness, mastery/gap accuracy, false readiness, event duplicates, plan churn, boundary violations, research quality, Ling failures, cost and latency.
 
 **Exit:** repeated operation with zero critical integrity/authority failures.  
 **Hard gate:** QA S30.
 
-## Batch S31 — Production Hardening and Freeze
+## Batch S31 -- Production Hardening and Freeze
 Audit Ling-only routing, auth scopes, learner-state, versioning, event replay, curriculum/proficiency registry, mastery, Rhythm/Tola boundaries, literature/research, academic integrity, feature-gap process, audit trail and resilience.
 
 **Deliverables:** final Scholar contract, IntenSIQ integration contract, auth map, schemas, Skill inventory, runbook and pilot report.
@@ -912,7 +912,7 @@ S19 Literature discovery
  ↓
 S20 Evidence appraisal
  ↓
-S21 Evidence → learning strategy
+S21 Evidence -> learning strategy
  ↓
 S22 Assessment integrity
  ↓

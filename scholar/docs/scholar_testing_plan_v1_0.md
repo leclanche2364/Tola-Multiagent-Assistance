@@ -138,7 +138,7 @@ Ling timeout
 
 # 5. Batch QA Gates
 
-## QA S0 — Baseline and Boundary Freeze
+## QA S0 -- Baseline and Boundary Freeze
 
 ### Tests
 - **S0-01 Restore:** baseline restores cleanly.
@@ -152,7 +152,7 @@ Architecture is restorable and authority boundaries are explicit.
 
 ---
 
-## QA S1 — IntenSIQ Capability Contract
+## QA S1 -- IntenSIQ Capability Contract
 
 ### Tests
 - **S1-01 Existing endpoints:** relevant IntenSIQ capabilities classified correctly.
@@ -165,7 +165,7 @@ Scholar builds against real IntenSIQ capabilities rather than assumptions.
 
 ---
 
-## QA S2 — Authentication and Scope
+## QA S2 -- Authentication and Scope
 
 ### Tests
 - **S2-01 Learner-state read:** allowed.
@@ -182,7 +182,7 @@ Scholar credentials express Scholar authority only.
 
 ---
 
-## QA S3 — Learner State
+## QA S3 -- Learner State
 
 ### Tests
 - **S3-01 Course:** correct.
@@ -200,7 +200,7 @@ One read reconstructs an accurate current learner snapshot.
 
 ---
 
-## QA S4 — Versioned Learning Plan
+## QA S4 -- Versioned Learning Plan
 
 ### Tests
 - **S4-01 Create:** new plan written.
@@ -216,7 +216,7 @@ Learning-plan writes are version-safe and schedule-free.
 
 ---
 
-## QA S5 — Durable Learning Events
+## QA S5 -- Durable Learning Events
 
 ### Tests
 - **S5-01 Event creation:** correct event emitted.
@@ -232,7 +232,7 @@ Event outbox is durable and replayable.
 
 ---
 
-## QA S6 — Scholar Event Consumer
+## QA S6 -- Scholar Event Consumer
 
 ### Tests
 - **S6-01 Single event:** processed once.
@@ -247,7 +247,7 @@ Event processing is idempotent and recoverable.
 
 ---
 
-## QA S7 — Curriculum Registry
+## QA S7 -- Curriculum Registry
 
 ### Tests
 - **S7-01 Handbook source:** correct version.
@@ -261,7 +261,7 @@ Curriculum state is versioned and source-grounded.
 
 ---
 
-## QA S8 — Proficiency Registry
+## QA S8 -- Proficiency Registry
 
 ### Tests
 - **S8-01 New proficiency:** ingested.
@@ -275,7 +275,7 @@ Future Step 2/Step 3 proficiency context can be added safely.
 
 ---
 
-## QA S9 — Learning Goals
+## QA S9 -- Learning Goals
 
 ### Tests
 - **S9-01 Direct user goal:** created.
@@ -290,7 +290,7 @@ Learning goals persist independently of chat sessions.
 
 ---
 
-## QA S10 — Goal Decomposition
+## QA S10 -- Goal Decomposition
 
 ### Tests
 - **S10-01 Mechanical ventilation goal:** maps to relevant curriculum.
@@ -304,7 +304,7 @@ Goals produce evidence-grounded target structures.
 
 ---
 
-## QA S11 — Learner-State Analysis
+## QA S11 -- Learner-State Analysis
 
 ### Tests
 - **S11-01 Strong evidence:** recognised.
@@ -318,7 +318,7 @@ Scholar never confuses interpretation with observed evidence.
 
 ---
 
-## QA S12 — Mastery Model
+## QA S12 -- Mastery Model
 
 ### Tests
 - **S12-01 Knowledge strong/application weak:** represented separately.
@@ -332,7 +332,7 @@ Mastery dimensions remain distinct and evidence-based.
 
 ---
 
-## QA S13 — Learning Gap Analysis
+## QA S13 -- Learning Gap Analysis
 
 ### Tests
 - **S13-01 Missing prerequisite:** detected.
@@ -347,7 +347,7 @@ Every gap is traceable to learner-state evidence.
 
 ---
 
-## QA S14 — Adaptive Learning Strategy
+## QA S14 -- Adaptive Learning Strategy
 
 ### Tests
 - **S14-01 Ordered items:** logical progression.
@@ -362,7 +362,7 @@ Scholar plans learning without executing it.
 
 ---
 
-## QA S15 — Rhythm Capacity Protocol
+## QA S15 -- Rhythm Capacity Protocol
 
 ### Tests
 - **S15-01 Study requirement:** valid contract.
@@ -376,7 +376,7 @@ Study strategy is capacity-aware without crossing scheduling authority.
 
 ---
 
-## QA S16 — IntenSIQ Plan Orchestration
+## QA S16 -- IntenSIQ Plan Orchestration
 
 ### Tests
 - **S16-01 Read current plan:** correct.
@@ -392,7 +392,7 @@ Scholar updates strategy safely and never manufactures learning evidence.
 
 ---
 
-## QA S17 — Feedback Analysis
+## QA S17 -- Feedback Analysis
 
 ### Tests
 - **S17-01 Meaningful poor result:** plan adapts.
@@ -406,7 +406,7 @@ Plan changes are proportional to evidence.
 
 ---
 
-## QA S18 — Proficiency Readiness
+## QA S18 -- Proficiency Readiness
 
 ### Tests
 - **S18-01 Not started:** correct.
@@ -420,7 +420,7 @@ Scholar never self-certifies clinical competence.
 
 ---
 
-## QA S19 — Literature Discovery
+## QA S19 -- Literature Discovery
 
 ### Tests
 - **S19-01 Active-goal relevance:** relevant paper surfaced.
@@ -434,7 +434,7 @@ Literature discovery follows learning goals rather than becoming generic ICU new
 
 ---
 
-## QA S20 — Evidence Appraisal
+## QA S20 -- Evidence Appraisal
 
 ### Tests
 - **S20-01 Guideline:** weighted appropriately.
@@ -449,7 +449,7 @@ Evidence quality materially influences Scholar's conclusions.
 
 ---
 
-## QA S21 — Evidence to Learning Strategy
+## QA S21 -- Evidence to Learning Strategy
 
 ### Tests
 - **S21-01 Important relevant evidence:** linked to plan.
@@ -462,7 +462,7 @@ Only justified evidence changes learning strategy.
 
 ---
 
-## QA S22 — Assessment Integrity
+## QA S22 -- Assessment Integrity
 
 ### Tests
 - **S22-01 General learning:** normal support.
@@ -477,7 +477,7 @@ Scholar never becomes an assessment-completion agent.
 
 ---
 
-## QA S23 — Project Research Intake
+## QA S23 -- Project Research Intake
 
 ### Tests
 - **S23-01 Tola research request:** created.
@@ -491,7 +491,7 @@ Project research is structurally separate from clinical learning state.
 
 ---
 
-## QA S24 — Research Question Decomposition
+## QA S24 -- Research Question Decomposition
 
 ### Tests
 - **S24-01 Broad technical question:** useful subquestions.
@@ -504,7 +504,7 @@ Complex research is decomposed before synthesis.
 
 ---
 
-## QA S25 — Evidence Synthesis
+## QA S25 -- Evidence Synthesis
 
 ### Tests
 - **S25-01 Fact:** correctly labelled.
@@ -519,7 +519,7 @@ Research output is traceable and decision-ready.
 
 ---
 
-## QA S26 — IntenSIQ Feature-Gap Detection
+## QA S26 -- IntenSIQ Feature-Gap Detection
 
 ### Tests
 - **S26-01 Genuine missing capability:** proposal generated.
@@ -533,7 +533,7 @@ Missing capabilities are proposed, not self-built.
 
 ---
 
-## QA S27 — Learning Effectiveness Review
+## QA S27 -- Learning Effectiveness Review
 
 ### Tests
 - **S27-01 High effort/low progress:** detected.
@@ -547,7 +547,7 @@ Scholar evaluates learning outcomes, not just study volume.
 
 ---
 
-## QA S28 — Proactivity
+## QA S28 -- Proactivity
 
 ### Tests
 - **S28-01 Relevant event:** Scholar reacts.
@@ -562,7 +562,7 @@ Scholar remains proactive without becoming chatty or polling-heavy.
 
 ---
 
-## QA S29 — Cross-Agent Integration
+## QA S29 -- Cross-Agent Integration
 
 ### Tests
 - **S29-01 Tola learning goal:** Scholar receives correctly.
@@ -571,7 +571,7 @@ Scholar remains proactive without becoming chatty or polling-heavy.
 - **S29-04 Plan write:** IntenSIQ updated.
 - **S29-05 Learning evidence:** Scholar interprets.
 - **S29-06 Progress/risk:** Tola receives.
-- **S29-07 Project research:** Scholar → Tola works.
+- **S29-07 Project research:** Scholar -> Tola works.
 - **S29-08 Delegation boundary:** Scholar cannot spawn another agent.
 
 ### PASS Criteria
@@ -579,7 +579,7 @@ The full workflow works with clean authority boundaries.
 
 ---
 
-## QA S30 — Controlled Pilot
+## QA S30 -- Controlled Pilot
 
 ### Monitor
 
@@ -626,17 +626,17 @@ Repeated real-world use shows useful adaptation and zero critical integrity/auth
 
 ---
 
-## QA S31 — Production Hardening
+## QA S31 -- Production Hardening
 
 ### End-to-End Tests
-- **S31-01 Goal to plan:** user/Tola goal → Scholar → IntenSIQ plan.
-- **S31-02 Plan to evidence:** user studies → IntenSIQ evidence → Scholar.
-- **S31-03 Adaptation:** evidence → revised strategy.
-- **S31-04 Rhythm:** study requirement → capacity → updated strategy.
-- **S31-05 Proficiency:** future proficiency context → mapping → readiness.
-- **S31-06 Literature:** important paper → appraisal → strategy impact.
-- **S31-07 Research:** project question → evidence synthesis → Tola.
-- **S31-08 Feature gap:** gap → Tola proposal.
+- **S31-01 Goal to plan:** user/Tola goal -> Scholar -> IntenSIQ plan.
+- **S31-02 Plan to evidence:** user studies -> IntenSIQ evidence -> Scholar.
+- **S31-03 Adaptation:** evidence -> revised strategy.
+- **S31-04 Rhythm:** study requirement -> capacity -> updated strategy.
+- **S31-05 Proficiency:** future proficiency context -> mapping -> readiness.
+- **S31-06 Literature:** important paper -> appraisal -> strategy impact.
+- **S31-07 Research:** project question -> evidence synthesis -> Tola.
+- **S31-08 Feature gap:** gap -> Tola proposal.
 - **S31-09 Recovery:** event replay + cursor recovery.
 - **S31-10 Auth:** forbidden writes denied.
 - **S31-11 Model route:** all reasoning calls are Ling.
