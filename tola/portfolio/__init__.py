@@ -1,4 +1,4 @@
-"""Tola Batch T1 -- Portfolio Data Contract public API."""
+"""Tola Batch T1+T2 -- Portfolio Data Contract + Snapshot public API."""
 
 from tola.portfolio.contracts import (
     Approval,
@@ -28,6 +28,14 @@ from tola.portfolio.sources import (
     SOURCE_OF_TRUTH,
     resolve_source,
 )
+from tola.portfolio.snapshot import (
+    PortfolioSnapshot,
+    portfolio_snapshot_build,
+    portfolio_snapshot_diff,
+    portfolio_snapshot_get,
+    portfolio_snapshot_refresh,
+    portfolio_snapshot_validate,
+)
 
 __all__ = [
     "Approval",
@@ -52,4 +60,10 @@ __all__ = [
     "reject_conversation_only",
     "require_provenance",
     "resolve_source",
+    "PortfolioSnapshot",
+    "portfolio_snapshot_build",
+    "portfolio_snapshot_refresh",
+    "portfolio_snapshot_get",
+    "portfolio_snapshot_diff",
+    "portfolio_snapshot_validate",
 ]
