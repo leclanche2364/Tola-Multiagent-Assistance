@@ -36,6 +36,22 @@ from tola.portfolio.snapshot import (
     portfolio_snapshot_refresh,
     portfolio_snapshot_validate,
 )
+from tola.portfolio.health import (
+    HealthAssessment,
+    HealthLabel,
+    HealthSignal,
+    STALLED_DAYS_WITHOUT_PROGRESS,
+    DEADLINE_RISK_DAYS,
+    BLOCKED_DURATION_DAYS,
+    MILESTONE_SLIPPAGE_DAYS,
+    EXPERIMENT_DECISION_DAYS,
+    APPROVAL_PENDING_DAYS,
+    CAPACITY_CONFLICT_TASKS,
+    METRIC_DETERIORATION_DELTA,
+    NO_NEXT_ACTION_HOURS,
+    materiality_check,
+    project_health_assess,
+)
 
 __all__ = [
     "Approval",
@@ -66,4 +82,18 @@ __all__ = [
     "portfolio_snapshot_get",
     "portfolio_snapshot_diff",
     "portfolio_snapshot_validate",
+    "HealthAssessment",
+    "HealthLabel",
+    "HealthSignal",
+    "project_health_assess",
+    "materiality_check",
+    "STALLED_DAYS_WITHOUT_PROGRESS",
+    "DEADLINE_RISK_DAYS",
+    "BLOCKED_DURATION_DAYS",
+    "MILESTONE_SLIPPAGE_DAYS",
+    "EXPERIMENT_DECISION_DAYS",
+    "APPROVAL_PENDING_DAYS",
+    "CAPACITY_CONFLICT_TASKS",
+    "METRIC_DETERIORATION_DELTA",
+    "NO_NEXT_ACTION_HOURS",
 ]
