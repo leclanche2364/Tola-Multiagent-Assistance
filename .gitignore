@@ -29,3 +29,4 @@ HEARTBEAT.md
 *.js
 !*.test.js
 packages/automations/src/*.js
+/tola/baseline/
