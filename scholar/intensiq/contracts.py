@@ -95,17 +95,21 @@ _CALENDAR_TIME_KEYWORDS = (
 
 
 def _has_calendar_time_fields(data, prefix=""):
-    """Recursively check dict for keys containing calendar-time keywords."""
-    if not isinstance(data, dict):
-        return False
-    for key in data:
-        lower = key.lower()
-        for kw in _CALENDAR_TIME_KEYWORDS:
-            if kw in lower:
-                return True
-        if isinstance(data[key], dict):
-            if _has_calendar_time_fields(data[key], prefix=key):
-                return True
+    """Recursively check dict/list for keys containing calendar-time keywords."""
+    if isinstance(data, dict):
+        for key in data:
+            lower = key.lower()
+            for kw in _CALENDAR_TIME_KEYWORDS:
+                if kw in lower:
+                    return True
+            if isinstance(data[key], (dict, list)):
+                if _has_calendar_time_fields(data[key], prefix=key):
+                    return True
+    elif isinstance(data, list):
+        for item in data:
+            if isinstance(item, (dict, list)):
+                if _has_calendar_time_fields(item):
+                    return True
     return False
 
 
