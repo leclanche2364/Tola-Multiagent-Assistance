@@ -15,7 +15,7 @@ Captured on branch `feat/autonomy-supabase-only`. Read-only diagnostics; no live
 | shiftlyx | ~/.openclaw/workspace-shiftlyx | openrouter/z-ai/glm-5.3-flash |
 | rhythm | ~/.openclaw/workspace-rhythm | openrouter/qwen/qwen3.8-27b:free |
 | growth | ~/.openclaw/workspace-growth | (qwen3.8-27b:free primary; ling-3.0-flash fallback) |
-| scholar | ~/.openclaw/workspace-scholar | (see agent dir) |
+| scholar | ~/.openclaw/workspace-scholar | openrouter/qwen/qwen3.8-27b:free |
 
 Agent dirs live under `~/.openclaw/agents/<id>/agent`.
 

@@ -1,3 +1,5 @@
+> **SUPERSEDED**: this document is a historical plan, kept as history only. The current architecture contract is [docs/CURRENT_SYSTEM.md](../../docs/CURRENT_SYSTEM.md). Do not follow its architecture or model-routing claims.
+
 # OpenClaw Scholar Agent
 ## Goal-Driven Learning Intelligence, IntenSIQ Orchestration and Project Research
 ### Batch-by-Batch Implementation Plan

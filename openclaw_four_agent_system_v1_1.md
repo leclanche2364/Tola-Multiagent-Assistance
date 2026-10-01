@@ -1,3 +1,5 @@
+> **SUPERSEDED as contract**: the single current contract is [docs/CURRENT_SYSTEM.md](docs/CURRENT_SYSTEM.md). This document remains valid implementation history.
+
 # OpenClaw Four-Agent System
 ## Architecture, Skills, Batch-by-Batch Implementation and QA Plan
 

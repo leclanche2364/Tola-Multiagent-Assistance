@@ -51,6 +51,9 @@ Autonomous delegation allowed only to ACTIVE agents.
   model, then report. Structural Dart edits and git push stay in main.
 - Sub-agent spawn requires explicit agentId; allowed: growth, rhythm,
   scholar (defaults qwen3.8-27b:free, override per spawn).
+- Model routes (current contract: docs/CURRENT_SYSTEM.md): tola/shiftlyx =
+  glm-5.3-flash; rhythm/growth = qwen3.8-27b:free with ling-3.0-flash (paid)
+  fallback; scholar = qwen3.8-27b:free.
 
 # Restore manifest (T0-05)
 

@@ -1,3 +1,5 @@
+> **SUPERSEDED**: this document is a historical plan, kept as history only. The current architecture contract is [docs/CURRENT_SYSTEM.md](../../docs/CURRENT_SYSTEM.md). Do not follow its architecture or model-routing claims.
+
 # OpenClaw Tola Agent
 ## Portfolio Executive, Delegation, Outcome Assurance, Persona Awareness and Self-Improvement
 ### Batch-by-Batch Implementation Plan

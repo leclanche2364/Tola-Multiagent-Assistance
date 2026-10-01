@@ -18,7 +18,7 @@ Freshness checks
 
 ### R1 - Ling 3.0 Flash (sole reasoning model)
 
-All Scholar reasoning uses `ling-3.0-flash` only.
+All Scholar reasoning defaults to `qwen3.8-27b:free` with per-spawn overrides (see docs/CURRENT_SYSTEM.md, the current contract).
 - learning goal decomposition
 - curriculum mapping
 - proficiency mapping
