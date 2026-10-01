@@ -204,6 +204,21 @@ alter table public.automation_occurrences enable row level security;
 alter table public.approvals               enable row level security;
 alter table public.external_operations     enable row level security;
 
+-- Supabase manages the anon/authenticated/service_role roles; on a bare
+-- Postgres instance (local disposable test DBs) they don't exist. Create
+-- them as NOLOGIN stubs if missing so the migration is self-contained.
+do $$ begin
+  if not exists (select 1 from pg_roles where rolname = 'anon') then
+    create role anon nologin;
+  end if;
+  if not exists (select 1 from pg_roles where rolname = 'authenticated') then
+    create role authenticated nologin;
+  end if;
+  if not exists (select 1 from pg_roles where rolname = 'service_role') then
+    create role service_role nologin;
+  end if;
+end $$;
+
 revoke all on public.automation_occurrences from anon, authenticated;
 revoke all on public.approvals               from anon, authenticated;
 revoke all on public.external_operations     from anon, authenticated;
