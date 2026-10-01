@@ -2,7 +2,9 @@
 -- claim_automation_occurrence shadowed the table column, making
 -- `where occurrence_id = ...` ambiguous at first execution.
 -- Redefines the RPC with qualified column references and a renamed
--- OUT column (claimed_id). Additive/replacement only.
+-- OUT column (claimed_id). The return type changes, so the old function
+-- must be dropped first (CREATE OR REPLACE alone fails with 42P13).
+drop function if exists public.claim_automation_occurrence(text, timestamptz, text, text, text);
 create or replace function public.claim_automation_occurrence(
   p_automation_key text,
   p_scheduled_for  timestamptz,
