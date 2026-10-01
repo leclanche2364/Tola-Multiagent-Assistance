@@ -27,14 +27,14 @@ select gen_random_uuid(), project_id, 'b03 fixture task', 'tola', 'tola'
   from public.projects where project_name = '__b03_fixture';
 
 insert into public.approvals
-  (approval_id, task_id, requested_by, approval_type, payload, status, payload_hash, expires_at)
+  (task_id, requested_by, approval_type, payload, status, payload_hash, expires_at)
 select t.task_id, t.task_id, 'tola', 'risk_override', '{"risk":"A2"}'::jsonb, 'approved',
        'h0', now() + interval '1 hour'
   from public.tasks t join public.projects p on p.project_id = t.project_id
  where p.project_name = '__b03_fixture';
 
 insert into public.approvals
-  (approval_id, task_id, requested_by, approval_type, payload, status, payload_hash)
+  (task_id, requested_by, approval_type, payload, status, payload_hash)
 select t.task_id, t.task_id, 'tola', 'risk_override', '{"risk":"A2"}'::jsonb, 'approved', 'h0'
   from public.tasks t join public.projects p on p.project_id = t.project_id
  where p.project_name = '__b03_fixture'
@@ -98,7 +98,7 @@ end $$;
 do $$
 declare aid uuid; r text;
 begin
-  insert into public.approvals (approval_id, task_id, requested_by, approval_type, payload, status, payload_hash)
+  insert into public.approvals (task_id, requested_by, approval_type, payload, status, payload_hash)
   select gen_random_uuid(), t.task_id, 'tola', 'risk_override', '{"risk":"A2"}'::jsonb, 'approved', 'h1'
     from public.tasks t join public.projects p on p.project_id = t.project_id
    where p.project_name = '__b03_fixture'
