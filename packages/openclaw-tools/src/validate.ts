@@ -438,6 +438,7 @@ export function validateGetTask(taskId: string): string {
 export interface AssignTaskInput {
   task_id: string;
   agent_name: "tola" | "rhythm" | "growth" | "scholar";
+  expected_version: number;
 }
 
 export function validateAssignTask(
@@ -460,9 +461,14 @@ export function validateAssignTask(
   }
   validateAgentName(p.agent_name, "agent_name");
 
+  if (typeof p.expected_version !== "number" || !Number.isInteger(p.expected_version) || p.expected_version < 1) {
+    throw new Error("[VALIDATION] assign_task: expected_version must be a positive integer");
+  }
+
   return {
     task_id: p.task_id,
     agent_name: p.agent_name as AssignTaskInput["agent_name"],
+    expected_version: p.expected_version as number,
   };
 }
 
@@ -478,6 +484,7 @@ export interface UpdateTaskStatusInput {
     | "failed"
     | "cancelled";
   acting_agent: "tola" | "rhythm" | "growth" | "scholar";
+  expected_version: number;
 }
 
 export function validateUpdateTaskStatus(
@@ -516,9 +523,14 @@ export function validateUpdateTaskStatus(
   }
   validateAgentName(p.acting_agent, "acting_agent");
 
+  if (typeof p.expected_version !== "number" || !Number.isInteger(p.expected_version) || p.expected_version < 1) {
+    throw new Error("[VALIDATION] update_task_status: expected_version must be a positive integer");
+  }
+
   return {
     task_id: p.task_id,
     new_status: p.new_status as UpdateTaskStatusInput["new_status"],
     acting_agent: p.acting_agent as UpdateTaskStatusInput["acting_agent"],
+    expected_version: p.expected_version as number,
   };
 }

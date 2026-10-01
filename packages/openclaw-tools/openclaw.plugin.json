@@ -1,0 +1,49 @@
+{
+  "id": "openclaw-tools",
+  "name": "OpenClaw Tools",
+  "description": "Tola-approved Blackboard tools bound to a Supabase repository with validation, audit, and error redaction.",
+  "version": "0.5.0",
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "required": [
+      "supabaseUrl",
+      "supabaseKey"
+    ],
+    "properties": {
+      "supabaseUrl": {
+        "type": "string",
+        "description": "Supabase REST base URL."
+      },
+      "supabaseKey": {
+        "type": "string",
+        "description": "Service key. Supply via SecretRef."
+      },
+      "timeoutMs": {
+        "type": "number",
+        "description": "Request timeout in ms."
+      }
+    },
+    "additionalProperties": false
+  },
+  "contracts": {
+    "tools": [
+      "listProjects",
+      "getProject",
+      "listGoals",
+      "getGoal",
+      "createTask",
+      "listTasks",
+      "getTask",
+      "assignTask",
+      "updateTaskStatus",
+      "recordDecision",
+      "recordEvent",
+      "requestApproval",
+      "getApproval",
+      "getTaskRun"
+    ]
+  }
+}

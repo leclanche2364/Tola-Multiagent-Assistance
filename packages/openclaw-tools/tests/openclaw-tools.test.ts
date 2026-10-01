@@ -17,7 +17,29 @@ import {
   loadEnv,
   envOptional,
 } from "../../blackboard-tools/src/index.ts";
-import { createPlugin } from "../src/plugin.ts";
+import { __testInternals } from "../src/plugin.ts";
+
+// Local adapter: the old Batch-5 surface keyed tool implementations directly.
+// Batch 04 wraps them in the native plugin; tests drive the same functions.
+function createPlugin(repo: BlackboardRepository) {
+  const t = __testInternals;
+  return {
+    listProjects: () => t.listProjectsTool(repo),
+    getProject: (p: { project_id: string }) => t.getProjectTool(repo, p as { project_id: string }),
+    listGoals: (p: { project_id?: string | null }) => t.listGoalsTool(repo, p),
+    getGoal: (p: { goal_id: string }) => t.getGoalTool(repo, p as { goal_id: string }),
+    createTask: (p: unknown) => t.createTaskTool(repo, p),
+    listTasks: () => t.listTasksTool(repo),
+    getTask: (p: { task_id: string } | string) => t.getTaskTool(repo, typeof p === "string" ? { task_id: p } : p as { task_id: string }),
+    assignTask: (p: unknown) => t.assignTaskTool(repo, p),
+    updateTaskStatus: (p: unknown) => t.updateTaskStatusTool(repo, p),
+    recordDecision: (p: unknown) => t.recordDecisionTool(repo, p),
+    recordEvent: (p: unknown) => t.recordEventTool(repo, p),
+    requestApproval: (p: unknown) => t.requestApprovalTool(repo, p),
+    getApproval: (p: { approval_id: string } | string) => t.getApprovalTool(repo, typeof p === "string" ? { approval_id: p } : p as { approval_id: string }),
+    getTaskRun: (p: { task_id: string } | string) => t.getTaskRunTool(repo, typeof p === "string" ? { task_id: p } : p as { task_id: string }),
+  };
+}
 import { redactError } from "../src/redact.ts";
 import * as pkg from "../src/index.ts";
 
@@ -322,12 +344,12 @@ test("T5.7 approval API separation: request-only, cannot self-approve", async ()
   });
 
   assert.equal(approval.status, "pending");
-  assert.equal(approval.approved_by ?? null, null, "agent must not be able to fabricate approved_by");
+  assert.equal(approval.decided_by ?? null, null, "agent must not be able to fabricate decided_by");
 
   // independent read confirms pending state
   const fetched = await plugin.getApproval(approval.approval_id);
   assert.equal(fetched.status, "pending");
-  assert.equal(fetched.approved_by ?? null, null);
+  assert.equal(fetched.decided_by ?? null, null);
 
   // no approve/grant/resolve tool exists on the plugin surface
   const keys = Object.keys(plugin);

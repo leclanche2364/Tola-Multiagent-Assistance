@@ -40,3 +40,6 @@ export type { ErrorCode } from "@tola/blackboard-tools/src/adapters/supabase.ts"
 
 export { BlackboardError } from "@tola/blackboard-tools/src/adapters/supabase.ts";
 export { redactError } from "./redact.ts";
+// Native plugin entry (Batch 04): the default export carries the
+// defineToolPlugin metadata OpenClaw reads before loading runtime code.
+export { default } from "./plugin.ts";
