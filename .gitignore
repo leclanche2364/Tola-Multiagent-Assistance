@@ -30,3 +30,6 @@ HEARTBEAT.md
 !*.test.js
 packages/automations/src/*.js
 /tola/baseline/
+
+# Graphify build output (rebuild with: graphify update .)
+graphify-out/
