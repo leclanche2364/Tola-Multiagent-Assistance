@@ -7,7 +7,7 @@ Any earlier document that contradicts this one is superseded (pointers added at 
 
 - **Supabase is the only application/Blackboard persistence.** All shared coordination state (Blackboard tables, events, task state) lives in the four-agent Supabase project (`jcqiokvbkocnoxgeitin`).
 - **OpenClaw may retain internal control-plane state** for sessions, automations/cron, approvals, run history and agent directories. This is OpenClaw's own plumbing, not application state.
-- Local SQLite files exist only as per-agent write-ahead outboxes/cache for the Blackboard client. They are never the source of truth; on divergence, Supabase wins.
+- Local SQLite outboxes have been **removed** from this repo (Batch 02): a failed Supabase write surfaces as an explicit `BlackboardError` and is retried later with the same `idempotency_key`; nothing is queued locally. Growth's product-intelligence local writer lives outside this repo and is a declared analytics cache, not shared persistence.
 
 ## 2. Agents, boundaries and model routes
 
