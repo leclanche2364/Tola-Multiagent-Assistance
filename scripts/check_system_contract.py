@@ -34,6 +34,7 @@ def md_files():
 
 def main() -> int:
     violations = []
+    corrections_header = re.compile(r"^#+ .*Historical corrections", re.M)
     for path in md_files():
         if not path.exists():
             continue
@@ -44,6 +45,12 @@ def main() -> int:
         head = text[:1200]
         if "SUPERSEDED" in head:
             continue  # historical, banner already points to the contract
+        # Skip the contract's own 'Historical corrections' section, which
+        # quotes the disproved claims verbatim. Content after the header is
+        # refutation, not reintroduction.
+        m = corrections_header.search(text)
+        if m and "CURRENT_SYSTEM.md" in rel:
+            text = text[: m.start()]
         for pat in PATTERNS:
             for match in pat.finditer(text):
                 line_no = text[: match.start()].count("\n") + 1
