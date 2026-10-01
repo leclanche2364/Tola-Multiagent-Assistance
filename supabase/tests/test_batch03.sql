@@ -147,8 +147,6 @@ do $$
 declare r1 text; r2 text;
 begin
   select outcome into r1 from public.claim_automation_occurrence('autoC', now(), 'beef01', null, 'tola');
-  select occurrence_id from public.automation_occurrences
-   where automation_key = 'autoC' limit 1;
   perform public.finish_automation_occurrence(
     (select occurrence_id from public.automation_occurrences where automation_key = 'autoC'),
     'failed', 'beef01');
