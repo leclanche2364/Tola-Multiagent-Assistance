@@ -1,0 +1,30 @@
+# Autonomy CI gate — Batch 07 (Tola-Multiagent-Assistance)
+# Runs typecheck + node:test suites per package on every push/PR to feat/autonomy-supabase-only.
+# No secrets required; offline test gate only.
+
+name: autonomy-gate
+
+on:
+  push:
+    branches: [feat/autonomy-supabase-only]
+  pull_request:
+    branches: [feat/autonomy-supabase-only]
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Typecheck + test each package
+        run: |
+          set -e
+          for pkg in packages/*/; do
+            if [ -f "$pkg/package.json" ]; then
+              echo "== $pkg"
+              (cd "$pkg" && npm run typecheck)
+              (cd "$pkg" && node --experimental-strip-types --test --test-concurrency=1 'tests/*.test.ts')
+            fi
+          done
