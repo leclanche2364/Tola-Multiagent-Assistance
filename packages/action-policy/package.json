@@ -1,0 +1,15 @@
+{
+  "name": "@tola/action-policy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Server-side action policy — Batch 05 closed catalog + consequence-based decisions",
+  "scripts": {
+    "typecheck": "npx tsc --noEmit",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/policy.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
+  }
+}
