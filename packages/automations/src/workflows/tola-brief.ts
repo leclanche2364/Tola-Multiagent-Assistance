@@ -47,7 +47,7 @@ export class TolaBriefWorkflow implements WorkflowModule {
       // 2. Delegate within allowlist only
       const delegationResults: Array<{ tool: string; ok: boolean; result?: unknown; error?: string }> = [];
       for (const tool of ALLOWED_DELEGATIONS) {
-        const decision = evaluateAction(`blackboard.${tool}`, {}, { maxPayloadBytes: 16384 });
+        const decision = evaluateAction(`blackboard.${tool}`, {}, { envelopes: [], maxPayloadBytes: 16384 });
         if (decision.decision === "ALLOW") {
           const res = await this.delegate("tola", `brief-delegate:${tool}`, 30_000);
           delegationResults.push({ tool, ok: res.ok, result: res.result, error: res.error });

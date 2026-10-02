@@ -51,8 +51,7 @@ const adapter = new SupabaseAdapter({ url: SUPA_URL!, serviceKey: SERVICE_KEY!, 
 
 test("staging view is queryable via Supabase adapter", async () => {
   const res = await adapter.request("GET", "automation_occurrences_staging", {
-    select: "occurrence_id,automation_key,status",
-    limit: "1",
+    query: { select: "occurrence_id,automation_key,status", limit: "1" },
   });
   // The view exists and is readable (may be empty — that's fine)
   assert.ok(Array.isArray(res.rows), "Staging view must return an array");
@@ -66,19 +65,18 @@ test("ensure_occurrence is idempotent (insert-if-absent)", async () => {
   const first = await adapter.request("POST", "rpc/ensure_occurrence", {
     body: { p_automation_key: key, p_scheduled_for: scheduled, p_release_sha: "sha-1" },
   });
-  assert.ok(first.data?.[0]?.created === true, "First call should create the occurrence");
+  assert.ok((first.rows[0] as Record<string, unknown> | undefined)?.created === true, "First call should create the occurrence");
 
   // Second call: should not create (idempotent)
   const second = await adapter.request("POST", "rpc/ensure_occurrence", {
     body: { p_automation_key: key, p_scheduled_for: scheduled, p_release_sha: "sha-2" },
   });
-  assert.ok(second.data?.[0]?.created === false, "Second call should not duplicate");
+  assert.ok((second.rows[0] as Record<string, unknown> | undefined)?.created === false, "Second call should not duplicate");
 });
 
 test("staging view columns include claim tracking fields", async () => {
   const res = await adapter.request("GET", "automation_occurrences_staging", {
-    select: "occurrence_id,automation_key,scheduled_for,claimed_by,claimed_at,status",
-    limit: "1",
+    query: { select: "occurrence_id,automation_key,scheduled_for,claimed_by,claimed_at,status", limit: "1" },
   });
   assert.ok(Array.isArray(res.rows), "Staging view must return rows");
   // If rows exist, verify the claim-tracking columns are present

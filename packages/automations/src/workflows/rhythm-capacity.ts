@@ -36,7 +36,7 @@ export class RhythmCapacityWorkflow implements WorkflowModule {
 
     try {
       // 1. Read current shift patterns, recovery windows, pending tasks
-      const readDecision = evaluateAction("blackboard.listTasks", {}, { maxPayloadBytes: 16384 });
+      const readDecision = evaluateAction("blackboard.listTasks", {}, { envelopes: [], maxPayloadBytes: 16384 });
       if (readDecision.decision !== "ALLOW") {
         throw new Error(`Cannot read blackboard: ${readDecision.reason}`);
       }
@@ -52,7 +52,7 @@ export class RhythmCapacityWorkflow implements WorkflowModule {
       };
 
       // 3. Only modify pre-authorised flexible blocks
-      const modifyDecision = evaluateAction("myrhythm.createBlock", {}, { maxPayloadBytes: 16384 });
+      const modifyDecision = evaluateAction("myrhythm.createBlock", {}, { envelopes: [], maxPayloadBytes: 16384 });
       if (modifyDecision.decision === "ALLOW") {
         // Pre-authorised: create/update flexible blocks only
         const result = await this.delegate("rhythm", "refresh-capacity-forecast", 60_000);
@@ -62,7 +62,7 @@ export class RhythmCapacityWorkflow implements WorkflowModule {
       }
 
       // 4. Gate: never delete/move fixed or shared commitments without approval
-      const deleteDecision = evaluateAction("myrhythm.deleteBlock", {}, { maxPayloadBytes: 16384 });
+      const deleteDecision = evaluateAction("myrhythm.deleteBlock", {}, { envelopes: [], maxPayloadBytes: 16384 });
       if (deleteDecision.decision !== "ALLOW") {
         // Block deletion of fixed/shared commitments — requires approval
         await context.notify("telegram:5647750316", "Rhythm capacity refresh: fixed/shared commitment changes require operator approval");

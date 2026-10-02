@@ -36,19 +36,19 @@ export class TolaPortfolioWorkflow implements WorkflowModule {
 
     try {
       // 1. Assess open goals
-      const goalsRead = evaluateAction("blackboard.listGoals", {}, { maxPayloadBytes: 16384 });
+      const goalsRead = evaluateAction("blackboard.listGoals", {}, { envelopes: [], maxPayloadBytes: 16384 });
       if (goalsRead.decision !== "ALLOW") throw new Error(`Cannot read goals: ${goalsRead.reason}`);
 
       // 2. Assess task completion rates
-      const tasksRead = evaluateAction("blackboard.listTasks", {}, { maxPayloadBytes: 16384 });
+      const tasksRead = evaluateAction("blackboard.listTasks", {}, { envelopes: [], maxPayloadBytes: 16384 });
       if (tasksRead.decision !== "ALLOW") throw new Error(`Cannot read tasks: ${tasksRead.reason}`);
 
       // 3. Assess blocked items (read is allowed for all actions)
-      const blockedRead = evaluateAction("blackboard.listTasks", {}, { maxPayloadBytes: 16384 });
+      const blockedRead = evaluateAction("blackboard.listTasks", {}, { envelopes: [], maxPayloadBytes: 16384 });
       if (blockedRead.decision !== "ALLOW") throw new Error(`Cannot read blocked items: ${blockedRead.reason}`);
 
       // 4. Recommend adjustments — gate consequential commitments (C2)
-      const modifyDecision = evaluateAction("blackboard.updateTaskStatus", {}, { maxPayloadBytes: 16384 });
+      const modifyDecision = evaluateAction("blackboard.updateTaskStatus", {}, { envelopes: [], maxPayloadBytes: 16384 });
       if (modifyDecision.decision === "ALLOW") {
         // Pre-authorised internal reversible write — can proceed
         const adjustResult = await this.delegate("tola", "review-and-adjust-portfolio", 60_000);
