@@ -135,6 +135,22 @@ test("T8.6 review gate: malformed => at most ONE correction/retry, then give up"
   assert.ok(verdict.action.reason.includes("malformed") || verdict.action.reason.includes("uuid"));
 });
 
+test("retry counter persists: second malformed result for the same envelope is NOT retried again", async () => {
+  const repo = makeRepo();
+  const result = makeResult({ status: "complete" }); // no evidence ref
+  const envelope = makeEnvelope();
+  const { review } = await import("../src/review.ts");
+  const first = review(result, envelope, repo);
+  assert.strictEqual(first.status, "malformed");
+  assert.strictEqual(first.action.type, "retry_once");
+  // Same envelope retried with still-malformed result: the persisted counter
+  // must force give_up — "retry once" cannot repeat forever.
+  const second = review(result, envelope, repo);
+  assert.strictEqual(second.status, "malformed");
+  assert.strictEqual(second.action.type, "give_up");
+  assert.match(second.action.reason, /already retried once/);
+});
+
 // ---------- T8.7 ----------
 
 test("T8.7 review gate: reconciliation — if complete claims no evidence, reject before retry", async () => {

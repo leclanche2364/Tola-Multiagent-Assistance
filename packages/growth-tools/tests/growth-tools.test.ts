@@ -249,7 +249,7 @@ test("T11.9 Trigger precision — unrelated prompts do not invoke incorrect mark
       `Skill ${skill.name} must have scoped filesystem access`
     );
     // No skill should have write access
-    const hasWrite = skill.capabilities.filesystem.some(f => f.includes("write") || f.includes("modify"));
+    const hasWrite = skill.capabilities.filesystem.some((f: string) => f.includes("write") || f.includes("modify"));
     assert.ok(!hasWrite, `Skill ${skill.name} must not have write filesystem access`);
   }
 });

@@ -119,10 +119,10 @@ export class InMemoryIntenSIQTransport implements IntenSIQTransport {
   private profiles: Map<string, LearningProfile> = new Map();
   private progressMap: Map<string, LearningProgress> = new Map();
   private weakTopicsMap: Map<string, WeakTopic[]> = new Map();
-  private plans: StudyPlan[] = [];
-  private sessions: StudySession[] = [];
-  private materials: LearningMaterial[] = [];
-  private quizzes: Quiz[] = [];
+  private _plans: StudyPlan[] = [];
+  private _sessions: StudySession[] = [];
+  private _materials: LearningMaterial[] = [];
+  private _quizzes: Quiz[] = [];
 
   constructor(opts?: {
     profiles?: LearningProfile[];
@@ -167,7 +167,7 @@ export class InMemoryIntenSIQTransport implements IntenSIQTransport {
     const planId = crypto.randomUUID();
     const createdAt = new Date().toISOString();
     const full: StudyPlan = { ...plan, planId, createdAt, sessionIds: [] };
-    this.plans.push(full);
+    this._plans.push(full);
     const coordination: CoordinationResult = {
       id: planId,
       status: "created",
@@ -179,9 +179,9 @@ export class InMemoryIntenSIQTransport implements IntenSIQTransport {
   async createStudySession(session: Omit<StudySession, "sessionId" | "startedAt" | "endedAt">): Promise<{ session: StudySession; coordination: CoordinationResult }> {
     const sessionId = crypto.randomUUID();
     const full: StudySession = { ...session, sessionId, startedAt: null, endedAt: null };
-    this.sessions.push(full);
+    this._sessions.push(full);
     // Link to plan
-    const plan = this.plans.find(p => p.planId === session.planId);
+    const plan = this._plans.find(p => p.planId === session.planId);
     if (plan) plan.sessionIds.push(sessionId);
     const coordination: CoordinationResult = {
       id: sessionId,
@@ -195,7 +195,7 @@ export class InMemoryIntenSIQTransport implements IntenSIQTransport {
     const materialId = crypto.randomUUID();
     const createdAt = new Date().toISOString();
     const full: LearningMaterial = { ...material, materialId, createdAt };
-    this.materials.push(full);
+    this._materials.push(full);
     const coordination: CoordinationResult = {
       id: materialId,
       status: "pending",
@@ -208,7 +208,7 @@ export class InMemoryIntenSIQTransport implements IntenSIQTransport {
     const quizId = crypto.randomUUID();
     const createdAt = new Date().toISOString();
     const full: Quiz = { ...quiz, quizId, createdAt };
-    this.quizzes.push(full);
+    this._quizzes.push(full);
     const coordination: CoordinationResult = {
       id: quizId,
       status: "draft",
@@ -218,10 +218,10 @@ export class InMemoryIntenSIQTransport implements IntenSIQTransport {
   }
 
   // Accessors for tests
-  get plans(): readonly StudyPlan[] { return this.plans; }
-  get sessions(): readonly StudySession[] { return this.sessions; }
-  get materials(): readonly LearningMaterial[] { return this.materials; }
-  get quizzes(): readonly Quiz[] { return this.quizzes; }
+  get plans(): readonly StudyPlan[] { return this._plans; }
+  get sessions(): readonly StudySession[] { return this._sessions; }
+  get materials(): readonly LearningMaterial[] { return this._materials; }
+  get quizzes(): readonly Quiz[] { return this._quizzes; }
 }
 
 // ======================== deterministic helpers ========================

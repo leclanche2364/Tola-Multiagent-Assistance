@@ -29,6 +29,7 @@ import {
   type StudySession,
   type LearningMaterial,
   type Quiz,
+  type QuizResult,
 } from "../src/index.ts";
 
 // ==================== helpers ====================
@@ -43,7 +44,7 @@ function makeProfile(overrides: Partial<LearningProfile> = {}): LearningProfile 
     weakTopics: ["networking", "databases"],
     lastActiveAt: "2026-09-27T10:00:00.000Z",
     totalStudyHours: 42,
-    ...overrides,
+    ...(overrides as WeakTopic[]),
   };
 }
 
@@ -55,7 +56,7 @@ function makeProgress(overrides: Partial<LearningProgress> = {}): LearningProgre
     currentModuleId: "mod-004",
     progressPercent: 30,
     lastSessionAt: "2026-09-26T15:00:00.000Z",
-    ...overrides,
+    ...(overrides as WeakTopic[]),
   };
 }
 
@@ -64,7 +65,7 @@ function makeWeakTopics(overrides: Partial<WeakTopic>[] = []): WeakTopic[] {
     { learnerId: LEARNER_ID, topicId: "t1", topicName: "TCP/IP", domain: "networking", weaknessScore: 85, lastAssessedAt: "2026-09-20T00:00:00.000Z", practiceSessions: 2 },
     { learnerId: LEARNER_ID, topicId: "t2", topicName: "Normalization", domain: "databases", weaknessScore: 72, lastAssessedAt: "2026-09-21T00:00:00.000Z", practiceSessions: 1 },
     { learnerId: LEARNER_ID, topicId: "t3", topicName: "React Hooks", domain: "frontend", weaknessScore: 45, lastAssessedAt: "2026-09-22T00:00:00.000Z", practiceSessions: 5 },
-    ...overrides,
+    ...(overrides as WeakTopic[]),
   ];
 }
 

@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Batch 12 — Scholar Tools: deterministic helper functions for weak-topic ranking and session scheduling metadata",
   "scripts": {
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/scholar-tools.test.ts"
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/scholar-tools.test.ts",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit"
   },
   "dependencies": {
     "@tola/intensiq": "file:../intensiq",

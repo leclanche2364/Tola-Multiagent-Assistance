@@ -1,5 +1,5 @@
 /**
- * Action Policy — Batch 05 (§Server-side action policy).
+ * Action Policy — Batch 05 (§Server-side action policy) + Batch 07 scope enforcement.
  *
  * Closed action catalog + consequence-based policy evaluation.
  * Policy is derived from action kind and the *validated* payload, never

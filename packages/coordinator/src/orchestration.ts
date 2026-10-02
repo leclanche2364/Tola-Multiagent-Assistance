@@ -209,16 +209,16 @@ export class Orchestrator {
     });
 
     // Only Rhythm's planning blocks are collected
-    this.planningBlocks = this.rhythmFake.getWrites();
+    this.planningBlocks = [...this.rhythmFake.getWrites()];
     this.completed.push(this.running.get(scholarRunId)!);
     this.completed.push(this.running.get(rhythmRunId)!);
 
     // Tola synthesises
     const synthesis: Record<string, unknown> = {
       goal,
-      learningPriority: scholarResult.output.learningPriority,
-      feasiblePlacement: rhythmResult.output.feasiblePlacement,
-      constraints: rhythmResult.output.constraints,
+      learningPriority: (scholarResult.output as { learningPriority: string }).learningPriority,
+      feasiblePlacement: (rhythmResult.output as { feasiblePlacement: boolean }).feasiblePlacement,
+      constraints: (rhythmResult.output as { constraints: string[] }).constraints,
       synthesisedBy: "tola",
       planningBlockCount: this.planningBlocks.length,
     };
@@ -245,15 +245,15 @@ export class Orchestrator {
     const rhythmResult = this.rhythmFake.rhythmPlace(growthGoal, rhythmRunId, false); // no planning block here
 
     // Growth evidence priority vs Rhythm capacity
-    const rhythmCapacity = rhythmResult.output.daySlots.length * availableProjectTime;
-    const growthEvidence = growthResult.output.highestValueWork;
+    const rhythmCapacity = (rhythmResult.output as { daySlots: unknown[] }).daySlots.length * availableProjectTime;
+    const growthEvidence = (growthResult.output as { highestValueWork: string }).highestValueWork;
 
     // Tola records the trade-off decision
     const tradeOff: TradeOffRecord = {
       taskId,
       growthEvidence,
       rhythmCapacity,
-      decision: rhythmCapacity >= growthResult.output.priority === "critical" ? "accept" : "defer",
+      decision: ((growthResult.output as { priority: string }).priority === "critical" && rhythmCapacity >= 1) ? "accept" : "defer",
       madeBy: "tola",
       timestamp: Date.now(),
     };

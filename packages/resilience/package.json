@@ -1,1 +1,15 @@
-{"name": "@tola/resilience", "version": "0.1.0", "private": true, "type": "module", "description": "Batch 15 — Resilience, Recovery, Security and Skill Tamper Drill", "scripts": {"test": "node --experimental-strip-types --test --test-concurrency=1 tests/resilience.test.ts"}, "dependencies": {"@tola/skill-governance": "file:../skill-governance", "@tola/blackboard-tools": "file:../blackboard-tools"}}
+{
+  "name": "@tola/resilience",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch 15 — Resilience, Recovery, Security and Skill Tamper Drill",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/resilience.test.ts",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit"
+  },
+  "dependencies": {
+    "@tola/skill-governance": "file:../skill-governance",
+    "@tola/blackboard-tools": "file:../blackboard-tools"
+  }
+}

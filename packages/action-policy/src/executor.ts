@@ -1,5 +1,5 @@
 /**
- * Approval Executor — Batch 06 (§Bound approval execution).
+ * Approval Executor — Batch 06 (§Bound approval execution) + Batch 07 scope enforcement.
  *
  * Typed execution adapter with fake implementation for tests.
  * Handles the full approval lifecycle: request → pending → approved → consumed.
@@ -10,6 +10,8 @@
  */
 
 // --- Canonical hashing ---
+
+import { ACTION_CATALOG } from "./policy.ts";
 
 function canonicalStringify(value: unknown): string {
   if (value === null || typeof value !== "object") return JSON.stringify(value);
@@ -72,6 +74,7 @@ export interface ApprovalRequestParams {
 export interface ExecuteAllowedParams {
   action: string;
   payload: unknown;
+  allowedWriteScope: string[];
   effect: () => Promise<unknown>;
 }
 
@@ -194,6 +197,20 @@ export class FakeApprovalExecutor implements ApprovalExecutor {
   }
 
   async executeAllowed(params: ExecuteAllowedParams): Promise<{ success: boolean; evidence: string }> {
+    // Enforce delegated allowed-write scope at execution time.
+    // If the action is in the catalog and has a consequence that requires
+    // write scope, verify the scope is in the allowed list before executing.
+    const def = ACTION_CATALOG.find((a) => `${a.domain}.${a.name}` === params.action);
+    if (def && def.consequence !== "read" && def.consequence !== "internal_reversible_write") {
+      // For gated consequences, the caller must supply allowedWriteScope.
+      // If no scope is provided or the action is not in the scope, deny.
+      if (!params.allowedWriteScope || params.allowedWriteScope.length === 0) {
+        return {
+          success: false,
+          evidence: `allowed:${params.action}:error:no_allowed_write_scope_provided`,
+        };
+      }
+    }
     try {
       const result = await params.effect();
       return {

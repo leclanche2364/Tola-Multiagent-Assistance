@@ -1,5 +1,5 @@
 /**
- * Tola-side review logic — Batch 8 (§11.3).
+ * Tola-side review logic — Batch 8 (§11.3) + Batch 07 fixes.
  *
  * Gate rules mapped to status → action:
  *   (a) partial       => do NOT mark task complete; record partial evidence.
@@ -13,6 +13,7 @@
 import { type Result, type Envelope } from "./index.ts";
 import { isUuid } from "../../blackboard-tools/src/repository/blackboard.ts";
 import { BlackboardRepository } from "../../blackboard-tools/src/index.ts";
+import { canRetry, incrementRetryCount } from "./retry-counter.ts";
 
 /** Validate that a "complete" result has an evidence ref when external writes occurred. */
 function validateComplete(result: Result): result is Result & { evidence: string } {
@@ -35,15 +36,18 @@ export function review(result: Result, envelope: Envelope, repo: BlackboardRepos
     | { type: "give_up"; reason: string };
 } {
   // ---------- (d) malformed: structural validation ----------
+  // At most ONE correction/retry; after that, give up permanently.
+  // Persisted retry counter prevents "retry once" from repeating forever.
   if (
     result.status === "malformed" ||
     !isUuid(envelope.taskRef) ||
     !isUuid(envelope.runId) ||
     !isUuid(envelope.idempotencyKey)
   ) {
+    // Structurally invalid envelope/result: no retry is safe. Give up immediately.
     return {
       status: "malformed",
-      action: { type: "give_up", reason: "malformed envelope or result: missing/invalid uuids" },
+      action: { type: "give_up", reason: "malformed envelope or result: not retryable" },
     };
   }
 
@@ -51,7 +55,7 @@ export function review(result: Result, envelope: Envelope, repo: BlackboardRepos
   if (result.status === "partial") {
     return {
       status: "partial",
-      action: { type: "mark_complete", evidence: undefined },
+      action: { type: "record_blocker", message: "partial result: task not complete; evidence收集中" },
     };
   }
 
@@ -89,7 +93,16 @@ export function review(result: Result, envelope: Envelope, repo: BlackboardRepos
     // ---------- (e) reconciliation: verify evidence ref exists before retry ----------
     if (!validateComplete(result)) {
       // No evidence ref present despite claiming complete — this is a malformed state.
-      // At most ONE correction/retry is allowed; after that, give up.
+      // At most ONE correction/retry is allowed; after that, give up permanently.
+      // Persisted retry counter prevents "retry once" from repeating forever.
+      const alreadyRetried = !canRetry(envelope.idempotencyKey);
+      if (alreadyRetried) {
+        return {
+          status: "malformed",
+          action: { type: "give_up", reason: "missing evidence ref: already retried once, giving up permanently" },
+        };
+      }
+      incrementRetryCount(envelope.idempotencyKey);
       return {
         status: "malformed",
         action: { type: "retry_once", correction: "missing evidence ref for complete result; add evidence uri before retry" },

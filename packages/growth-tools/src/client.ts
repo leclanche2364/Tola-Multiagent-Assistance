@@ -92,52 +92,52 @@ export interface UTMTransport {
 // ======================== in-memory mock transports ========================
 
 export class InMemorySearchConsoleTransport implements SearchConsoleTransport {
-  private rows: SearchConsoleRow[] = [];
+  private _rows: SearchConsoleRow[] = [];
 
   constructor(opts?: { rows?: SearchConsoleRow[] }) {
-    this.rows = opts?.rows ?? [];
+    this._rows = opts?.rows ?? [];
   }
 
   async getSearchConsoleData(startDate: string, endDate: string): Promise<SearchConsoleRow[]> {
-    return this.rows.map(r => ({ ...r })).filter(r => r.date >= startDate && r.date <= endDate);
+    return this._rows.map(r => ({ ...r })).filter(r => r.date >= startDate && r.date <= endDate);
   }
 
   get rows(): readonly SearchConsoleRow[] {
-    return this.rows;
+    return this._rows;
   }
 }
 
 export class InMemoryGA4Transport implements GA4Transport {
-  private events: GA4Event[] = [];
-  private metrics: GA4Metric[] = [];
+  private _events: GA4Event[] = [];
+  private _metrics: GA4Metric[] = [];
 
   constructor(opts?: { events?: GA4Event[]; metrics?: GA4Metric[] }) {
-    this.events = opts?.events ?? [];
-    this.metrics = opts?.metrics ?? [];
+    this._events = opts?.events ?? [];
+    this._metrics = opts?.metrics ?? [];
   }
 
   async getGA4Events(startDate: string, endDate: string): Promise<GA4Event[]> {
-    return this.events.map(e => ({ ...e })).filter(e => e.date >= startDate && e.date <= endDate);
+    return this._events.map(e => ({ ...e })).filter(e => e.date >= startDate && e.date <= endDate);
   }
 
   async getGA4Metrics(startDate: string, endDate: string): Promise<GA4Metric[]> {
-    return this.metrics.map(m => ({ ...m })).filter(m => m.date >= startDate && m.date <= endDate);
+    return this._metrics.map(m => ({ ...m })).filter(m => m.date >= startDate && m.date <= endDate);
   }
 
-  get events(): readonly GA4Event[] { return this.events; }
-  get metrics(): readonly GA4Metric[] { return this.metrics; }
+  get events(): readonly GA4Event[] { return this._events; }
+  get metrics(): readonly GA4Metric[] { return this._metrics; }
 }
 
 export class InMemoryUTMTransport implements UTMTransport {
-  private attributions: UTMAttribution[] = [];
+  private _attributions: UTMAttribution[] = [];
 
   constructor(opts?: { attributions?: UTMAttribution[] }) {
-    this.attributions = opts?.attributions ?? [];
+    this._attributions = opts?.attributions ?? [];
   }
 
   async getUTMAttribution(startDate: string, endDate: string): Promise<UTMAttribution[]> {
-    return this.attributions;
+    return this._attributions;
   }
 
-  get attributions(): readonly UTMAttribution[] { return this.attributions; }
+  get attributions(): readonly UTMAttribution[] { return this._attributions; }
 }

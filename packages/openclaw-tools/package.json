@@ -5,8 +5,8 @@
   "type": "module",
   "description": "OpenClaw Tool Plugin — Batch 5 typed tools delegating to BlackboardRepository",
   "scripts": {
-    "typecheck": "npx tsc --noEmit",
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/openclaw-tools.test.ts",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/openclaw-tools.live.test.ts",
     "plugin:build": "npm run build && openclaw plugins build --entry ./dist/index.js",
     "plugin:validate": "openclaw plugins validate --entry ./dist/index.js",
     "build": "esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/index.js --external:openclaw"

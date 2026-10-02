@@ -1,0 +1,20 @@
+{
+  "name": "@tola/autonomy-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Tola Multiagent Assistance — autonomy programme workspace (Batch 07 reproducible gate)",
+  "scripts": {
+    "install:all": "bash scripts/install-all.sh",
+    "typecheck:all": "bash scripts/typecheck-all.sh",
+    "test:offline": "bash scripts/test-offline.sh",
+    "test:python": "python3 -m unittest discover -s scholar/tests -t scholar/tests && python3 -m unittest discover -s tola/tests -t tola/tests",
+    "lint:migrations": "node scripts/migration-lint.mjs",
+    "plugin:validate": "cd packages/openclaw-tools && npm run build && npm run plugin:validate",
+    "gate": "bash scripts/gate.sh"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
+  }
+}

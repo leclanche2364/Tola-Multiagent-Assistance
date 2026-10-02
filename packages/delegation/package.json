@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Batch 8 — Delegation Protocol: envelope, result, and review logic",
   "scripts": {
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/delegation.test.ts"
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/delegation.test.ts",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit"
   },
   "dependencies": {
     "@tola/blackboard-tools": "file:../blackboard-tools"

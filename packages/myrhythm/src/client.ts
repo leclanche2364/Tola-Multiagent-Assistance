@@ -116,23 +116,23 @@ export function durationMinutes(start: string, end: string): number {
 // ---------- in-memory mock transport ----------
 
 export class InMemoryMyRhythmTransport implements MyRhythmTransport {
-  private blocks: FlexibleBlock[] = [];
+  private _blocks: FlexibleBlock[] = [];
   private workDates: WorkDate[] = [];
   private plan: CurrentPlan = { planDate: "", entries: [] };
-  private auditLog: AuditRecord[] = [];
+  private _auditLog: AuditRecord[] = [];
 
   constructor(opts?: { workDates?: WorkDate[]; plan?: CurrentPlan; blocks?: FlexibleBlock[] }) {
     this.workDates = opts?.workDates ?? [];
     this.plan = opts?.plan ?? { planDate: "", entries: [] };
-    this.blocks = opts?.blocks ?? [];
+    this._blocks = opts?.blocks ?? [];
   }
 
   get auditLog(): readonly AuditRecord[] {
-    return this.auditLog;
+    return this._auditLog;
   }
 
   get blocks(): readonly FlexibleBlock[] {
-    return this.blocks;
+    return this._blocks;
   }
 
   async getWorkDates(): Promise<WorkDate[]> {
@@ -170,29 +170,29 @@ export class InMemoryMyRhythmTransport implements MyRhythmTransport {
     const id = crypto.randomUUID();
     const createdAt = new Date().toISOString();
     const full: FlexibleBlock = { ...block, id, createdAt };
-    this.blocks.push(full);
+    this._blocks.push(full);
     const audit: AuditRecord = { action: "create", targetId: id, timestamp: createdAt, reversible: true };
-    this.auditLog.push(audit);
+    this._auditLog.push(audit);
     return { block: full, audit };
   }
 
   async updateFlexibleBlock(id: string, patch: Partial<FlexibleBlock>): Promise<{ block: FlexibleBlock; audit: AuditRecord }> {
-    const idx = this.blocks.findIndex(b => b.id === id);
+    const idx = this._blocks.findIndex(b => b.id === id);
     if (idx === -1) throw new Error(`block ${id} not found`);
-    this.blocks[idx] = { ...this.blocks[idx], ...patch };
+    this._blocks[idx] = { ...this._blocks[idx], ...patch };
     const timestamp = new Date().toISOString();
     const audit: AuditRecord = { action: "update", targetId: id, timestamp, reversible: true };
-    this.auditLog.push(audit);
-    return { block: this.blocks[idx], audit };
+    this._auditLog.push(audit);
+    return { block: this._blocks[idx], audit };
   }
 
   async removeFlexibleBlock(id: string): Promise<{ removed: boolean; audit: AuditRecord }> {
-    const idx = this.blocks.findIndex(b => b.id === id);
+    const idx = this._blocks.findIndex(b => b.id === id);
     if (idx === -1) throw new Error(`block ${id} not found`);
-    const removed = this.blocks.splice(idx, 1).length === 1;
+    const removed = this._blocks.splice(idx, 1).length === 1;
     const timestamp = new Date().toISOString();
     const audit: AuditRecord = { action: "remove", targetId: id, timestamp, reversible: true };
-    this.auditLog.push(audit);
+    this._auditLog.push(audit);
     return { removed, audit };
   }
 }

@@ -23,7 +23,8 @@ export function makeEnvelope(
   const base: Envelope = {
     taskRef: "00000000-0000-0000-0000-000000000000",
     runId: "00000000-0000-0000-0000-000000000000",
-    idempotencyKey: "00000000-0000-0000-0000-000000000000",
+    // Fresh idempotency key per envelope — callers override for dedupe.
+    idempotencyKey: crypto.randomUUID(),
     route: "R1",
     modelId: "nvidia/nemotron-3.5-lightning",
     allowedWriteScope: ["create:task"],

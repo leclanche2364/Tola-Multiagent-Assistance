@@ -11,7 +11,7 @@
  *   - Pinned upstream commits
  */
 
-import type { SkillManifest } from "../src/index.ts";
+import type { SkillManifest } from "../../skill-governance/src/manifest.ts";
 
 const makeManifest = (overrides: Partial<SkillManifest>): SkillManifest => ({
   id: "00000000-0000-0000-0000-000000000000",

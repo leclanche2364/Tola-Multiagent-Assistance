@@ -5,6 +5,7 @@
   "type": "module",
   "description": "BlackboardRepository (Supabase direct) — V1 four-agent system, Batch 4",
   "scripts": {
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/blackboard.test.ts"
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/blackboard.live.test.ts",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit"
   }
 }

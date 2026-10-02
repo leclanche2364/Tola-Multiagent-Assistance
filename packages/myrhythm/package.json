@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Batch 10 — My Rhythm: typed client, pluggable transport, and shift-aware planner",
   "scripts": {
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/myrhythm.test.ts"
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/myrhythm.test.ts",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit"
   },
   "dependencies": {
     "@tola/blackboard-tools": "file:../blackboard-tools"

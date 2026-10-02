@@ -44,14 +44,14 @@ export interface PlannerInput {
 }
 
 export interface PlannerResult {
-  proposals: PlannerProposal[];
+  proposals: PlannerSlotProposal[];
   conflicts: string[];
   overloadDetected: boolean;
   infeasible: boolean;
   infeasibleReason?: string;
 }
 
-export interface PlannerProposal {
+export interface PlannerSlotProposal {
   date: string;
   startsAt: string;
   endsAt: string;
@@ -92,7 +92,7 @@ function isInRecoveryWindow(dt: string, recovery: { startsAt: string; endsAt: st
  * - Infeasible deadlines are REPORTED, never silently resolved by changing project priority.
  */
 export function planTask(input: PlannerInput): PlannerResult {
-  const proposals: PlannerProposal[] = [];
+  const proposals: PlannerSlotProposal[] = [];
   const conflicts: string[] = [];
   const { taskTitle, taskDurationMinutes, isHighCognitive, deadline, days, shiftSchedule, explicitOverrideRecovery } = input;
 

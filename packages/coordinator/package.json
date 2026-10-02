@@ -3,5 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Batch 7 — Chief-of-Staff spawn policy (allowlist, explicit agentId, depth/children caps)"
+  "description": "Batch 7 — Chief-of-Staff spawn policy (allowlist, explicit agentId, depth/children caps)",
+  "scripts": {
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/coordinator.live.test.ts",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit"
+  }
 }

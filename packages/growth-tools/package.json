@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Batch 11 — Growth Agent: typed read-only adapters, deterministic aggregation, and quarantined skill manifests",
   "scripts": {
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/growth-tools.test.ts"
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/growth-tools.test.ts",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit"
   },
   "dependencies": {
     "@tola/blackboard-tools": "file:../blackboard-tools"
