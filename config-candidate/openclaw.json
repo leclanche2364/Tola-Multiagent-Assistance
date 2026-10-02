@@ -1,0 +1,264 @@
+{
+  "_comment": "OpenClaw 2026.x hardened candidate config — Batch 08. DO NOT commit secret values; use ${secrets.*} placeholders.",
+  "agents": {
+    "defaults": {
+      "timeoutSeconds": 900,
+      "subagents": {
+        "maxSpawnDepth": 1,
+        "maxChildrenPerAgent": 3,
+        "maxConcurrent": 3
+      },
+      "sandbox": {
+        "sessionToolsVisibility": "own"
+      }
+    },
+    "list": [
+      {
+        "_agent": "tola",
+        "id": "tola",
+        "name": "Tola",
+        "workspace": "/Users/habeebodubunmi/.openclaw/workspace",
+        "description": "Chief of Staff — coordinator, git ops, approval gates. Only general delegator in V1.",
+        "model": {
+          "primary": "openrouter/z-ai/glm-5.3-flash"
+        },
+        "skills": {
+          "allow": ["notion", "github", "supabase", "self-improving-agent"]
+        },
+        "tools": {
+          "allow": ["listProjects", "getProject", "listGoals", "getGoal", "createTask", "listTasks", "getTask", "assignTask", "updateTaskStatus", "recordDecision", "recordEvent", "requestApproval", "getApproval", "getTaskRun", "webSearch"]
+        },
+        "session": {
+          "visibility": "all"
+        },
+        "subagents": {
+          "allowAgents": ["rhythm", "growth", "scholar"],
+          "requireAgentId": true,
+          "maxSpawnDepth": 1,
+          "maxChildrenPerAgent": 3,
+          "maxConcurrent": 3
+        }
+      },
+      {
+        "_agent": "rhythm",
+        "id": "rhythm",
+        "name": "Rhythm",
+        "description": "Shift & recovery planner. Planner only, no project management. Rhythm Blackboard + My Rhythm typed tools only.",
+        "workspace": "/Users/habeebodubunmi/.openclaw/workspace-rhythm",
+        "model": {
+          "primary": "openrouter/qwen/qwen3.8-27b:free",
+          "fallbacks": ["openrouter/inclusionai/ling-3.0-flash"]
+        },
+        "skills": {
+          "allow": ["rhythm"]
+        },
+        "tools": {
+          "allow": ["listProjects", "getProject", "listGoals", "getGoal", "createTask", "listTasks", "getTask", "assignTask", "updateTaskStatus", "recordDecision", "recordEvent", "requestApproval", "getApproval", "getTaskRun"]
+        },
+        "session": {
+          "visibility": "own"
+        },
+        "subagents": {
+          "maxSpawnDepth": 1,
+          "maxChildrenPerAgent": 3,
+          "maxConcurrent": 3
+        }
+      },
+      {
+        "_agent": "growth",
+        "id": "growth",
+        "name": "Growth",
+        "description": "Growth & product-intelligence specialist. Read-only Metricool; no write tools.",
+        "workspace": "/Users/habeebodubunmi/.openclaw/workspace-growth",
+        "model": {
+          "primary": "openrouter/qwen/qwen3.8-27b:free",
+          "fallbacks": ["openrouter/inclusionai/ling-3.0-flash", "openrouter/nvidia/nemotron-3.5-lightning:free"]
+        },
+        "skills": {
+          "allow": ["product-intelligence", "marketing-psychology"]
+        },
+        "tools": {
+          "allow": ["listProjects", "getProject", "listGoals", "getGoal", "createTask", "listTasks", "getTask", "assignTask", "updateTaskStatus", "recordDecision", "recordEvent", "requestApproval", "getApproval", "getTaskRun"]
+        },
+        "session": {
+          "visibility": "own"
+        },
+        "subagents": {
+          "maxSpawnDepth": 1,
+          "maxChildrenPerAgent": 3,
+          "maxConcurrent": 3
+        }
+      },
+      {
+        "_agent": "scholar",
+        "id": "scholar",
+        "name": "Scholar",
+        "description": "Learning/research/evidence specialist. No delegation, no exec/SQL.",
+        "workspace": "/Users/habeebodubunmi/.openclaw/workspace-scholar",
+        "model": {
+          "primary": "openrouter/qwen/qwen3.8-27b:free",
+          "fallbacks": ["openrouter/inclusionai/ling-3.0-flash"]
+        },
+        "skills": {
+          "allow": ["scholar"]
+        },
+        "tools": {
+          "allow": ["listProjects", "getProject", "listGoals", "getGoal", "createTask", "listTasks", "getTask", "assignTask", "updateTaskStatus", "recordDecision", "recordEvent", "requestApproval", "getApproval", "getTaskRun"]
+        },
+        "session": {
+          "visibility": "own"
+        },
+        "subagents": {
+          "maxSpawnDepth": 1,
+          "maxChildrenPerAgent": 3,
+          "maxConcurrent": 3
+        }
+      }
+    ]
+  },
+  "session": {
+    "dmScope": "main",
+    "visibility": "own"
+  },
+  "tools": {
+    "sessions": {
+      "visibility": "own"
+    },
+    "agentToAgent": {
+      "enabled": false,
+      "allow": ["rhythm", "growth", "scholar", "shiftlyx", "tola"]
+    },
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "brave",
+        "maxResults": 6,
+        "timeoutSeconds": 30
+      }
+    }
+  },
+  "workshop": {
+    "autonomousMode": "propose",
+    "approvalPolicy": "pending"
+  },
+  "bindings": [
+    {
+      "agentId": "shiftlyx",
+      "match": {
+        "channel": "telegram",
+        "peer": {
+          "kind": "channel",
+          "id": "-1003696352981"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "shiftlyx",
+      "match": {
+        "channel": "telegram",
+        "accountId": "8747566929"
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "tola",
+      "match": {
+        "channel": "telegram",
+        "accountId": "8760143165"
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "tola",
+      "comment": "Batch 7 T7.1: #command-center -> Tola Chief-of-Staff",
+      "match": {
+        "channel": "discord",
+        "guildId": "1553045805194158080",
+        "peer": {
+          "kind": "channel",
+          "id": "1553077643807563847"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "rhythm",
+      "comment": "Batch 7 stub binding: #rhythm -> Rhythm (B10)",
+      "match": {
+        "channel": "discord",
+        "guildId": "1553045805194158080",
+        "peer": {
+          "kind": "channel",
+          "id": "1553744781572702228"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "growth",
+      "comment": "Batch 7 stub binding: #growth-agent -> Growth (B11)",
+      "match": {
+        "channel": "discord",
+        "guildId": "1553045805194158080",
+        "peer": {
+          "kind": "channel",
+          "id": "1553744538877698058"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "scholar",
+      "comment": "Batch 7 stub binding: #scholars -> Scholar (B12)",
+      "match": {
+        "channel": "discord",
+        "guildId": "1553045805194158080",
+        "peer": {
+          "kind": "channel",
+          "id": "1553744664295776398"
+        }
+      }
+    }
+  ],
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "accounts": {
+        "8760143165": {
+          "enabled": true,
+          "botToken": "${secrets.telegram_bot_token_tola}"
+        },
+        "8747566929": {
+          "enabled": true,
+          "botToken": "${secrets.telegram_bot_token_shiftlyx}"
+        }
+      }
+    },
+    "discord": {
+      "enabled": true,
+      "token": "${secrets.discord_bot_token}",
+      "guilds": {
+        "1553045805194158080": {
+          "channels": {
+            "1553077643807563847": {},
+            "1553744781572702228": {},
+            "1553744538877698058": {},
+            "1553744664295776398": {}
+          }
+        }
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "openclaw-tools": {
+        "enabled": true,
+        "config": {
+          "supabaseUrl": "${secrets.supabase_url}",
+          "supabaseKey": "${secrets.supabase_service_key}"
+        }
+      }
+    }
+  }
+}
