@@ -35,6 +35,6 @@ try {
 
   process.exit(result.success ? 0 : 1);
 } catch (err) {
-  console.error(`DEPLOY ERROR: ${(err as Error).message}`);
+  console.error(`DEPLOY ERROR: ${err.message}`);
   process.exit(1);
 }
