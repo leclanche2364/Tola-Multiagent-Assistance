@@ -1,0 +1,15 @@
+{
+  "name": "@tola/deploy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Atomic OpenClaw release deployment tool — Batch 11",
+  "scripts": {
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/deploy.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
+  }
+}
