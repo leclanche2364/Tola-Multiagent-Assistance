@@ -6,7 +6,7 @@
   "description": "Native OpenClaw automation manifest and reconciler — Batch 09",
   "scripts": {
     "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit",
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/reconciler.test.ts"
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/reconciler.test.ts tests/workflows.test.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",
