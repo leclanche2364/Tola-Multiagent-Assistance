@@ -30,6 +30,86 @@ export function hashAction(action: string, payload: unknown): string {
 
 export type ApprovalState = "pending" | "approved" | "consumed" | "rejected" | "expired";
 
+// --- Two-tier state machine ---
+
+/** Tier 1: editorial/schedule approval of the exact canonical payload.
+ *  Tier 2: distinct final release approval bound to the identical payload hash.
+ *  Both tiers must be unexpired and unused before any scheduling write.
+ *  Content/asset/destination/time change invalidates both tiers. */
+export type Tier = 1 | 2;
+
+export interface TierRecord {
+  tier: Tier;
+  approvalId: string;
+  action: string;
+  actionHash: string;
+  status: ApprovalState;
+  used: boolean;
+  decidedBy: string | null;
+  decidedAt: string | null;
+  expiry: string;
+  requester: string;
+  releaseSha: string;
+  taskId: string | null;
+}
+
+export interface TwoTierState {
+  /** Tier 1 record — editorial/schedule approval. */
+  tier1: TierRecord | null;
+  /** Tier 2 record — final release approval (bound to same payload hash). */
+  tier2: TierRecord | null;
+  /** Payload hash both tiers must share. */
+  payloadHash: string;
+  /** Whether both tiers are satisfied and the action may execute. */
+  get isReady(): boolean;
+}
+
+export function createTwoTierState(
+  action: string,
+  payload: unknown,
+  payloadHash: string,
+  requester: string,
+  releaseSha: string,
+  taskId: string | null,
+  expirySeconds: number,
+): TwoTierState {
+  const expiry = new Date(Date.now() + expirySeconds * 1000).toISOString();
+  return {
+    payloadHash,
+    tier1: null,
+    tier2: null,
+    get isReady(): boolean {
+      return (
+        this.tier1 !== null &&
+        this.tier1.status === "approved" &&
+        !this.tier1.used &&
+        new Date(this.tier1.expiry) > new Date() &&
+        this.tier2 !== null &&
+        this.tier2.status === "approved" &&
+        !this.tier2.used &&
+        new Date(this.tier2.expiry) > new Date() &&
+        this.tier1.actionHash === this.tier2.actionHash &&
+        this.tier1.actionHash === payloadHash
+      );
+    },
+  };
+}
+
+/** Validate that both tiers exist, are approved, unexpired, unused, and share the same hash. */
+export function validateTwoTier(state: TwoTierState): { valid: boolean; reason: string } {
+  if (!state.tier1) return { valid: false, reason: "missing_tier1" };
+  if (!state.tier2) return { valid: false, reason: "missing_tier2" };
+  if (state.tier1.status !== "approved") return { valid: false, reason: `tier1_not_approved:${state.tier1.status}` };
+  if (state.tier2.status !== "approved") return { valid: false, reason: `tier2_not_approved:${state.tier2.status}` };
+  if (state.tier1.used) return { valid: false, reason: "tier1_already_used" };
+  if (state.tier2.used) return { valid: false, reason: "tier2_already_used" };
+  if (new Date(state.tier1.expiry) <= new Date()) return { valid: false, reason: "tier1_expired" };
+  if (new Date(state.tier2.expiry) <= new Date()) return { valid: false, reason: "tier2_expired" };
+  if (state.tier1.actionHash !== state.payloadHash) return { valid: false, reason: "tier1_hash_mismatch" };
+  if (state.tier2.actionHash !== state.payloadHash) return { valid: false, reason: "tier2_hash_mismatch" };
+  return { valid: true, reason: "both_tiers_satisfied" };
+}
+
 // --- Approval record ---
 
 export interface ApprovalRecord {

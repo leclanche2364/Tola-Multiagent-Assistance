@@ -27,4 +27,10 @@ export {
   type ExecuteAllowedParams,
   type ExecuteApprovedParams,
   redactApprovalScope,
+  // Two-tier state machine (Growth G01)
+  type Tier,
+  type TierRecord,
+  type TwoTierState,
+  createTwoTierState,
+  validateTwoTier,
 } from "./executor.ts";

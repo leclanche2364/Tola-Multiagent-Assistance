@@ -12,12 +12,22 @@ import {
   hashAction,
   redactApprovalScope,
   type ApprovalRequestParams,
+  evaluateAction,
 } from "../src/index.ts";
 
 const RELEASE_SHA = "abc123def456";
 const REQUESTER = "tola";
 const TASK_ID = "00000000-0000-0000-0000-000000000001";
 const APPROVAL_TYPE = "bound_action";
+const FROZEN_NOW = "2026-10-02T12:00:00.000Z";
+
+function cfg(over: Partial<{ envelopes: unknown[]; maxPayloadBytes: number }> = {}): { envelopes: unknown[]; maxPayloadBytes: number; now: () => string } {
+  return {
+    envelopes: over.envelopes ?? [],
+    maxPayloadBytes: over.maxPayloadBytes ?? 16 * 1024,
+    now: () => FROZEN_NOW,
+  };
+}
 
 function makeParams(over: Partial<ApprovalRequestParams> = {}): ApprovalRequestParams {
   return {
@@ -372,4 +382,236 @@ test("T6.13 approve and reject change status correctly", async () => {
   const rejected = await exec2.rejectApproval(approval2.approval_id, "operator");
   assert.equal(rejected.status, "rejected");
   assert.equal(rejected.decidedBy, "operator");
+});
+// --- Metricool Growth G01 two-tier tests ---
+
+import {
+  createTwoTierState,
+  validateTwoTier,
+  type TwoTierState,
+} from "../src/index.ts";
+
+test("G01.1 Metricool read tools are auto-allowed", () => {
+  for (const action of [
+    "metricool.getAnalyticsDataByMetrics",
+    "metricool.getBestTimeToPostByNetwork",
+    "metricool.getBrandSettings",
+    "metricool.getScheduledPosts",
+  ]) {
+    const r = evaluateAction(action, {}, cfg());
+    assert.equal(r.decision, "ALLOW", action);
+    assert.match(r.reason, /^auto:/, action);
+  }
+});
+
+test("G01.2 Metricool createScheduledPostForReview is auto-allowed (internal draft)", () => {
+  const r = evaluateAction("metricool.createScheduledPostForReview", { text: "draft" }, cfg());
+  assert.equal(r.decision, "ALLOW");
+  assert.match(r.reason, /^auto:internal_reversible_write/);
+});
+
+test("G01.3 Metricool scheduling writes require approval (gated public_communication)", () => {
+  for (const action of [
+    "metricool.createScheduledPost",
+    "metricool.sendScheduledPostForReview",
+    "metricool.updateScheduledPost",
+  ]) {
+    const r = evaluateAction(action, { text: "hi" }, cfg());
+    assert.equal(r.decision, "REQUIRE_APPROVAL", action);
+    assert.match(r.reason, /^gated:public_communication/);
+  }
+});
+
+test("G01.4 Metricool denied actions (ads/spend, DMs/replies, live edit/delete)", () => {
+  for (const action of [
+    "metricool.createAd",
+    "metricool.sendDM",
+    "metricool.editLivePost",
+    "metricool.deleteLivePost",
+  ]) {
+    const r = evaluateAction(action, {}, cfg());
+    assert.equal(r.decision, "DENY", action);
+    assert.match(r.reason, /^permanent_deny:/, action);
+  }
+});
+
+test("G01.5 two-tier state machine — both tiers required, unexpired, unused", () => {
+  const payload = { text: "hello", platform: "instagram" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState(
+    "metricool.createScheduledPost",
+    payload,
+    hash,
+    "operator",
+    "abc123",
+    null,
+    300,
+  );
+  assert.equal(state.isReady, false);
+  assert.equal(state.payloadHash, hash);
+  assert.equal(state.tier1, null);
+  assert.equal(state.tier2, null);
+});
+
+test("G01.6 two-tier validation — missing tiers are invalid", () => {
+  const payload = { text: "hello" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState("metricool.createScheduledPost", payload, hash, "op", "sha", null, 300);
+  assert.equal(validateTwoTier(state).valid, false);
+  assert.equal(validateTwoTier(state).reason, "missing_tier1");
+});
+
+test("G01.7 two-tier validation — both tiers approved and matching hash is valid", () => {
+  const payload = { text: "hello", platform: "instagram" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState("metricool.createScheduledPost", payload, hash, "op", "sha", null, 300);
+  state.tier1 = {
+    tier: 1,
+    approvalId: "app_1",
+    action: "metricool.createScheduledPost",
+    actionHash: hash,
+    status: "approved",
+    used: false,
+    decidedBy: "editor",
+    decidedAt: "2026-10-02T12:00:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z",
+    requester: "op",
+    releaseSha: "sha",
+    taskId: null,
+  };
+  state.tier2 = {
+    tier: 2,
+    approvalId: "app_2",
+    action: "metricool.createScheduledPost",
+    actionHash: hash,
+    status: "approved",
+    used: false,
+    decidedBy: "release_mgr",
+    decidedAt: "2026-10-02T12:01:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z",
+    requester: "op",
+    releaseSha: "sha",
+    taskId: null,
+  };
+  const v = validateTwoTier(state);
+  assert.equal(v.valid, true, v.reason);
+  assert.equal(state.isReady, true);
+});
+
+test("G01.8 two-tier validation — different approvers for tier1 and tier2 is valid", () => {
+  const payload = { text: "hello" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState("metricool.createScheduledPost", payload, hash, "op", "sha", null, 300);
+  state.tier1 = {
+    tier: 1, approvalId: "app_1", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: false, decidedBy: "editor", decidedAt: "2026-10-02T12:00:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  state.tier2 = {
+    tier: 2, approvalId: "app_2", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: false, decidedBy: "release_mgr", decidedAt: "2026-10-02T12:01:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  assert.equal(validateTwoTier(state).valid, true);
+});
+
+test("G01.9 two-tier validation — expired tier invalidates both", () => {
+  const payload = { text: "hello" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState("metricool.createScheduledPost", payload, hash, "op", "sha", null, 300);
+  state.tier1 = {
+    tier: 1, approvalId: "app_1", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: false, decidedBy: "editor", decidedAt: "2026-10-02T12:00:00.000Z",
+    expiry: "2026-10-01T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  state.tier2 = {
+    tier: 2, approvalId: "app_2", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: false, decidedBy: "release_mgr", decidedAt: "2026-10-02T12:01:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  const v = validateTwoTier(state);
+  assert.equal(v.valid, false);
+  assert.ok(v.reason.includes("expired"));
+});
+
+test("G01.10 two-tier validation — used tier invalidates both", () => {
+  const payload = { text: "hello" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState("metricool.createScheduledPost", payload, hash, "op", "sha", null, 300);
+  state.tier1 = {
+    tier: 1, approvalId: "app_1", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: true, decidedBy: "editor", decidedAt: "2026-10-02T12:00:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  state.tier2 = {
+    tier: 2, approvalId: "app_2", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: false, decidedBy: "release_mgr", decidedAt: "2026-10-02T12:01:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  assert.equal(validateTwoTier(state).valid, false);
+  assert.equal(validateTwoTier(state).reason, "tier1_already_used");
+});
+
+test("G01.11 two-tier validation — payload hash mismatch invalidates both", () => {
+  const payload = { text: "hello" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState("metricool.createScheduledPost", payload, hash, "op", "sha", null, 300);
+  state.tier1 = {
+    tier: 1, approvalId: "app_1", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: false, decidedBy: "editor", decidedAt: "2026-10-02T12:00:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  state.tier2 = {
+    tier: 2, approvalId: "app_2", action: "metricool.createScheduledPost", actionHash: "different-hash",
+    status: "approved", used: false, decidedBy: "release_mgr", decidedAt: "2026-10-02T12:01:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  const v = validateTwoTier(state);
+  assert.equal(v.valid, false);
+  assert.ok(v.reason.includes("hash_mismatch"));
+});
+
+test("G01.12 two-tier validation — missing tier2 is invalid", () => {
+  const payload = { text: "hello" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState("metricool.createScheduledPost", payload, hash, "op", "sha", null, 300);
+  state.tier1 = {
+    tier: 1, approvalId: "app_1", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: false, decidedBy: "editor", decidedAt: "2026-10-02T12:00:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  assert.equal(validateTwoTier(state).valid, false);
+  assert.equal(validateTwoTier(state).reason, "missing_tier2");
+});
+
+test("G01.13 two-tier validation — tier in pending status is invalid", () => {
+  const payload = { text: "hello" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState("metricool.createScheduledPost", payload, hash, "op", "sha", null, 300);
+  state.tier1 = {
+    tier: 1, approvalId: "app_1", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "pending", used: false, decidedBy: null, decidedAt: null,
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  state.tier2 = {
+    tier: 2, approvalId: "app_2", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: false, decidedBy: "release_mgr", decidedAt: "2026-10-02T12:01:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  assert.equal(validateTwoTier(state).valid, false);
+  assert.equal(validateTwoTier(state).reason, "tier1_not_approved:pending");
+});
+
+test("G01.14 out-of-order tiers — tier2 before tier1 is invalid (missing tier1)", () => {
+  const payload = { text: "hello" };
+  const hash = hashAction("metricool.createScheduledPost", payload);
+  const state = createTwoTierState("metricool.createScheduledPost", payload, hash, "op", "sha", null, 300);
+  state.tier1 = null;
+  state.tier2 = {
+    tier: 2, approvalId: "app_2", action: "metricool.createScheduledPost", actionHash: hash,
+    status: "approved", used: false, decidedBy: "release_mgr", decidedAt: "2026-10-02T12:01:00.000Z",
+    expiry: "2026-10-04T00:00:00.000Z", requester: "op", releaseSha: "sha", taskId: null,
+  };
+  assert.equal(validateTwoTier(state).valid, false);
+  assert.equal(validateTwoTier(state).reason, "missing_tier1");
 });

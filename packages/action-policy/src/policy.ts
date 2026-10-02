@@ -23,7 +23,8 @@ export type ActionDomain =
   | "configuration"
   | "plugins"
   | "skills"
-  | "automations";
+  | "automations"
+  | "metricool";
 
 /** How the action affects the outside world or durable state. */
 export type Consequence =
@@ -131,6 +132,24 @@ export const ACTION_CATALOG: readonly ActionDef[] = Object.freeze([
   { domain: "automations", name: "createAutomation", consequence: "production_capability" },
   { domain: "automations", name: "modifyAutomation", consequence: "production_capability" },
   { domain: "automations", name: "runAutomation", consequence: "fixed_external_commitment" },
+
+  // --- Metricool (Growth G01) ---
+  // Read/analysis tools — automatic (no approval needed).
+  { domain: "metricool", name: "getAnalyticsDataByMetrics", consequence: "read" },
+  { domain: "metricool", name: "getBestTimeToPostByNetwork", consequence: "read" },
+  { domain: "metricool", name: "getBrandSettings", consequence: "read" },
+  { domain: "metricool", name: "getScheduledPosts", consequence: "read" },
+  // Internal draft creation — automatic (non-publishing held draft).
+  { domain: "metricool", name: "createScheduledPostForReview", consequence: "internal_reversible_write" },
+  // Scheduling/publishing write tools — two-tier approval required.
+  { domain: "metricool", name: "createScheduledPost", consequence: "public_communication" },
+  { domain: "metricool", name: "sendScheduledPostForReview", consequence: "public_communication" },
+  { domain: "metricool", name: "updateScheduledPost", consequence: "public_communication" },
+  // Denied: ads/spend, DMs/replies, live-post edit/delete.
+  { domain: "metricool", name: "createAd", consequence: "permanent_deny" },
+  { domain: "metricool", name: "sendDM", consequence: "permanent_deny" },
+  { domain: "metricool", name: "editLivePost", consequence: "permanent_deny" },
+  { domain: "metricool", name: "deleteLivePost", consequence: "permanent_deny" },
 ] as const);
 
 const INDEX: ReadonlyMap<string, ActionDef> = new Map(
