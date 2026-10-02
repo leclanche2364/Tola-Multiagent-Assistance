@@ -6,7 +6,7 @@
   "description": "Server-side action policy — Batch 05 closed catalog + consequence-based decisions",
   "scripts": {
     "typecheck": "npx tsc --noEmit",
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/policy.test.ts"
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/policy.test.ts tests/executor.test.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",

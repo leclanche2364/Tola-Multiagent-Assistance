@@ -15,3 +15,16 @@ export type {
   PreAuthorisation,
   PolicyConfig,
 } from "./policy.ts";
+
+export {
+  hashAction,
+  FakeApprovalExecutor,
+  type ApprovalExecutor,
+  type ApprovalRecord,
+  type ApprovalState,
+  type ExecutionOutcome,
+  type ApprovalRequestParams,
+  type ExecuteAllowedParams,
+  type ExecuteApprovedParams,
+  redactApprovalScope,
+} from "./executor.ts";
