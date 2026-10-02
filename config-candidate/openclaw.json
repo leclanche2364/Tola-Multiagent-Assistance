@@ -1,5 +1,5 @@
 {
-  "_comment": "OpenClaw 2026.x hardened candidate config — Batch 08. DO NOT commit secret values; use ${secrets.*} placeholders.",
+  "_comment": "OpenClaw 2026.x hardened candidate config \u2014 Batch 08. DO NOT commit secret values; use ${secrets.*} placeholders.",
   "agents": {
     "defaults": {
       "timeoutSeconds": 900,
@@ -18,21 +18,24 @@
         "id": "tola",
         "name": "Tola",
         "workspace": "/Users/habeebodubunmi/.openclaw/workspace",
-        "description": "Chief of Staff — coordinator, git ops, approval gates. Only general delegator in V1.",
+        "description": "Chief of Staff \u2014 coordinator, git ops, approval gates. Only general delegator in V1.",
         "model": {
           "primary": "openrouter/z-ai/glm-5.3-flash"
         },
         "skills": {
-          "allow": ["notion", "github", "supabase", "self-improving-agent"]
-        },
-        "tools": {
-          "allow": ["listProjects", "getProject", "listGoals", "getGoal", "createTask", "listTasks", "getTask", "assignTask", "updateTaskStatus", "recordDecision", "recordEvent", "requestApproval", "getApproval", "getTaskRun", "webSearch"]
-        },
-        "session": {
-          "visibility": "all"
+          "allow": [
+            "notion",
+            "github",
+            "supabase",
+            "self-improving-agent"
+          ]
         },
         "subagents": {
-          "allowAgents": ["rhythm", "growth", "scholar"],
+          "allowAgents": [
+            "rhythm",
+            "growth",
+            "scholar"
+          ],
           "requireAgentId": true,
           "maxSpawnDepth": 1,
           "maxChildrenPerAgent": 3,
@@ -47,16 +50,14 @@
         "workspace": "/Users/habeebodubunmi/.openclaw/workspace-rhythm",
         "model": {
           "primary": "openrouter/qwen/qwen3.8-27b:free",
-          "fallbacks": ["openrouter/inclusionai/ling-3.0-flash"]
+          "fallbacks": [
+            "openrouter/inclusionai/ling-3.0-flash"
+          ]
         },
         "skills": {
-          "allow": ["rhythm"]
-        },
-        "tools": {
-          "allow": ["listProjects", "getProject", "listGoals", "getGoal", "createTask", "listTasks", "getTask", "assignTask", "updateTaskStatus", "recordDecision", "recordEvent", "requestApproval", "getApproval", "getTaskRun"]
-        },
-        "session": {
-          "visibility": "own"
+          "allow": [
+            "rhythm"
+          ]
         },
         "subagents": {
           "maxSpawnDepth": 1,
@@ -72,16 +73,16 @@
         "workspace": "/Users/habeebodubunmi/.openclaw/workspace-growth",
         "model": {
           "primary": "openrouter/qwen/qwen3.8-27b:free",
-          "fallbacks": ["openrouter/inclusionai/ling-3.0-flash", "openrouter/nvidia/nemotron-3.5-lightning:free"]
+          "fallbacks": [
+            "openrouter/inclusionai/ling-3.0-flash",
+            "openrouter/nvidia/nemotron-3.5-lightning:free"
+          ]
         },
         "skills": {
-          "allow": ["product-intelligence", "marketing-psychology"]
-        },
-        "tools": {
-          "allow": ["listProjects", "getProject", "listGoals", "getGoal", "createTask", "listTasks", "getTask", "assignTask", "updateTaskStatus", "recordDecision", "recordEvent", "requestApproval", "getApproval", "getTaskRun"]
-        },
-        "session": {
-          "visibility": "own"
+          "allow": [
+            "product-intelligence",
+            "marketing-psychology"
+          ]
         },
         "subagents": {
           "maxSpawnDepth": 1,
@@ -97,16 +98,14 @@
         "workspace": "/Users/habeebodubunmi/.openclaw/workspace-scholar",
         "model": {
           "primary": "openrouter/qwen/qwen3.8-27b:free",
-          "fallbacks": ["openrouter/inclusionai/ling-3.0-flash"]
+          "fallbacks": [
+            "openrouter/inclusionai/ling-3.0-flash"
+          ]
         },
         "skills": {
-          "allow": ["scholar"]
-        },
-        "tools": {
-          "allow": ["listProjects", "getProject", "listGoals", "getGoal", "createTask", "listTasks", "getTask", "assignTask", "updateTaskStatus", "recordDecision", "recordEvent", "requestApproval", "getApproval", "getTaskRun"]
-        },
-        "session": {
-          "visibility": "own"
+          "allow": [
+            "scholar"
+          ]
         },
         "subagents": {
           "maxSpawnDepth": 1,
@@ -126,7 +125,13 @@
     },
     "agentToAgent": {
       "enabled": false,
-      "allow": ["rhythm", "growth", "scholar", "shiftlyx", "tola"]
+      "allow": [
+        "rhythm",
+        "growth",
+        "scholar",
+        "shiftlyx",
+        "tola"
+      ]
     },
     "web": {
       "search": {
