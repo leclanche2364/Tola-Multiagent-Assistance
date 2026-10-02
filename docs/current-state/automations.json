@@ -1,110 +1,201 @@
 {
   "$schema": "https://openclaw.ai/schemas/automations/v1",
   "version": "1.0.0",
-  "updatedAt": "2026-10-02T07:07:00+01:00",
+  "updatedAt": "2026-10-02T20:32:00+01:00",
   "timezone": "Europe/London",
   "automations": [
     {
       "stableName": "blackboard-reconciler",
       "owner": "tola",
-      "schedule": { "kind": "cron", "expr": "0 6 * * *", "tz": "Europe/London" },
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 6 * * *",
+        "tz": "Europe/London"
+      },
       "mode": "isolated",
       "prompt": "Reconcile blackboard entries against the OpenClaw job manifest. Detect add/edit/remove operations by stable name. Produce a dry-run report of proposed changes. Do not create, edit, or remove any live jobs without operator approval.",
       "timeoutMs": 120000,
-      "tools": ["blackboard-read", "blackboard-write", "memory-search"],
+      "tools": [
+        "blackboard-read",
+        "blackboard-write",
+        "memory-search"
+      ],
       "riskCeiling": "C2",
-      "delivery": { "mode": "announce", "channel": "telegram", "to": "telegram:5647750316" },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1553077643807563847"
+      },
       "quietPolicy": "notify-on-change",
       "failureDestination": "telegram:5647750316"
     },
     {
       "stableName": "tola-morning-brief",
       "owner": "tola",
-      "schedule": { "kind": "cron", "expr": "30 7 * * *", "tz": "Europe/London" },
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 7 * * *",
+        "tz": "Europe/London"
+      },
       "mode": "isolated",
-      "prompt": "Produce a morning briefing for Tola: review today's schedule, any pending approvals, open blackboard items, and recovery windows. Deliver as a concise Telegram message.",
+      "prompt": "Produce a morning briefing for Tola: review today's schedule, any pending approvals, open blackboard items, and recovery windows. Deliver as a concise message to the Discord command-centre channel.",
       "timeoutMs": 60000,
-      "tools": ["blackboard-read", "memory-search", "sessions_yield"],
+      "tools": [
+        "blackboard-read",
+        "memory-search",
+        "sessions_yield"
+      ],
       "riskCeiling": "C1",
-      "delivery": { "mode": "announce", "channel": "telegram", "to": "telegram:5647750316" },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1553077643807563847"
+      },
       "quietPolicy": "always",
       "failureDestination": "telegram:5647750316"
     },
     {
       "stableName": "growth-daily-anomaly",
       "owner": "growth",
-      "schedule": { "kind": "cron", "expr": "0 8 * * *", "tz": "Europe/London" },
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Europe/London"
+      },
       "mode": "isolated",
       "prompt": "Run a lightweight daily anomaly check on growth metrics. Compare today's figures against the 7-day baseline. If any metric deviates by more than 2 standard deviations, flag it. Otherwise report no-change.",
       "timeoutMs": 120000,
-      "tools": ["blackboard-read", "metricool__getAnalyticsDataByMetrics"],
+      "tools": [
+        "blackboard-read",
+        "metricool__getAnalyticsDataByMetrics"
+      ],
       "riskCeiling": "C1",
-      "delivery": { "mode": "announce", "channel": "telegram", "to": "telegram:5647750316" },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1553077643807563847"
+      },
       "quietPolicy": "notify-on-change",
       "failureDestination": "telegram:5647750316"
     },
     {
       "stableName": "rhythm-capacity-refresh",
       "owner": "rhythm",
-      "schedule": { "kind": "cron", "expr": "0 5 * * *", "tz": "Europe/London" },
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 5 * * *",
+        "tz": "Europe/London"
+      },
       "mode": "isolated",
       "prompt": "Refresh Rhythm's capacity view: read current shift patterns, recovery windows, and pending tasks from the blackboard. Update the capacity forecast for the next 7 days. Do not schedule new tasks without operator approval.",
       "timeoutMs": 120000,
-      "tools": ["blackboard-read", "blackboard-write", "memory-search"],
+      "tools": [
+        "blackboard-read",
+        "blackboard-write",
+        "memory-search"
+      ],
       "riskCeiling": "C2",
-      "delivery": { "mode": "announce", "channel": "telegram", "to": "telegram:5647750316" },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1553077643807563847"
+      },
       "quietPolicy": "notify-on-change",
       "failureDestination": "telegram:5647750316"
     },
     {
       "stableName": "scholar-weekly-progress",
       "owner": "scholar",
-      "schedule": { "kind": "cron", "expr": "0 9 * * 1", "tz": "Europe/London" },
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1",
+        "tz": "Europe/London"
+      },
       "mode": "isolated",
       "prompt": "Produce a weekly progress report for Scholar: review learning objectives, evidence gathered, and open research questions. Summarise progress against the weekly goal. Report no-change if all objectives are on track.",
       "timeoutMs": 180000,
-      "tools": ["blackboard-read", "memory-search"],
+      "tools": [
+        "blackboard-read",
+        "memory-search"
+      ],
       "riskCeiling": "C1",
-      "delivery": { "mode": "announce", "channel": "telegram", "to": "telegram:5647750316" },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1553077643807563847"
+      },
       "quietPolicy": "notify-on-change",
       "failureDestination": "telegram:5647750316"
     },
     {
       "stableName": "tola-weekly-portfolio-review",
       "owner": "tola",
-      "schedule": { "kind": "cron", "expr": "0 10 * * 1", "tz": "Europe/London" },
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * 1",
+        "tz": "Europe/London"
+      },
       "mode": "isolated",
       "prompt": "Run a weekly portfolio review for Tola: assess open goals, task completion rates, and any blocked items. Recommend adjustments to the week ahead. Do not modify goals without operator approval.",
       "timeoutMs": 180000,
-      "tools": ["blackboard-read", "memory-search", "get_goal"],
+      "tools": [
+        "blackboard-read",
+        "memory-search",
+        "get_goal"
+      ],
       "riskCeiling": "C2",
-      "delivery": { "mode": "announce", "channel": "telegram", "to": "telegram:5647750316" },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1553077643807563847"
+      },
       "quietPolicy": "notify-on-change",
       "failureDestination": "telegram:5647750316"
     },
     {
       "stableName": "nightly-integrity-cost-check",
       "owner": "tola",
-      "schedule": { "kind": "cron", "expr": "0 23 * * *", "tz": "Europe/London" },
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * *",
+        "tz": "Europe/London"
+      },
       "mode": "isolated",
       "prompt": "Run a nightly integrity and cost check: verify Supabase connection health, check for any failed webhook deliveries in the last 24h, and report the total cost incurred today. Report no-change if all checks pass.",
       "timeoutMs": 120000,
-      "tools": ["blackboard-read"],
+      "tools": [
+        "blackboard-read"
+      ],
       "riskCeiling": "C1",
-      "delivery": { "mode": "announce", "channel": "telegram", "to": "telegram:5647750316" },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1553077643807563847"
+      },
       "quietPolicy": "notify-on-failure",
       "failureDestination": "telegram:5647750316"
     },
     {
       "stableName": "weekly-readonly-ops-check",
       "owner": "tola",
-      "schedule": { "kind": "cron", "expr": "0 8 * * 0", "tz": "Europe/London" },
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * 0",
+        "tz": "Europe/London"
+      },
       "mode": "isolated",
       "prompt": "Run a weekly readonly-ops check: verify that no scheduled jobs have been created or modified outside the approved manifest. Compare current OpenClaw jobs against the manifest and report any drift. Do not auto-remediate drift.",
       "timeoutMs": 120000,
-      "tools": ["blackboard-read", "memory-search"],
+      "tools": [
+        "blackboard-read",
+        "memory-search"
+      ],
       "riskCeiling": "C1",
-      "delivery": { "mode": "announce", "channel": "telegram", "to": "telegram:5647750316" },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1553077643807563847"
+      },
       "quietPolicy": "notify-on-drift",
       "failureDestination": "telegram:5647750316"
     }
