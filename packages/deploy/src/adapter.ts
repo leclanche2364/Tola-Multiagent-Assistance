@@ -66,7 +66,7 @@ export function fakeAdapter(overrides: {
   runCanaries?: () => Promise<CanaryResult>;
   reconcileJobs?: (dryRun: boolean) => Promise<ReconcileResult>;
   failOn?: string[];
-}): DeployAdapter {
+}): DeployAdapter & { _calls: () => FakeAdapterCall[] } {
   const calls: FakeAdapterCall[] = [];
   const failOn = overrides.failOn ?? [];
 
