@@ -4,12 +4,10 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "strict": true,
-    "esModuleInterop": true,
+    "noEmit": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "rewriteRelativeImportExtensions": true,
-    "outDir": "./.build/",
-    "rootDir": ".",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
     "types": ["node"]
   },
   "include": ["src/**/*.ts", "tests/**/*.ts"]

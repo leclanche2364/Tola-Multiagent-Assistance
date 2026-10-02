@@ -1,0 +1,15 @@
+{
+  "name": "@tola/automations",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Native OpenClaw automation manifest and reconciler — Batch 09",
+  "scripts": {
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/reconciler.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
+  }
+}
