@@ -69,8 +69,8 @@ export function buildDeployPlan(sha: string, tag: string): DeployPlan {
     { name: "build-plugin", command: `cd ${stagingDir}/packages/openclaw-tools && npm run plugin:build`, dryRunOnly: true },
     { name: "validate-plugin", command: `cd ${stagingDir}/packages/openclaw-tools && npx openclaw plugins validate --entry ./dist/index.js`, dryRunOnly: true },
     { name: "validate-config", command: `bash ${stagingDir}/config-candidate/validate.sh`, dryRunOnly: true },
-    { name: "show-migration-plan", command: `node ${stagingDir}/scripts/show-migration-plan.mjs`, dryRunOnly: true },
-    { name: "reconcile-automations", command: `node ${stagingDir}/packages/automations/reconcile-cli.mjs --dry-run`, dryRunOnly: true },
+    { name: "show-migration-plan", command: `node ${stagingDir}/packages/deploy/src/show-migration-plan.mjs`, dryRunOnly: true },
+    { name: "reconcile-automations", command: `node ${stagingDir}/packages/deploy/src/reconcile-cli.mjs --dry-run`, dryRunOnly: true },
   ];
 
   return { sha, tag, stagingDir, steps };
