@@ -68,7 +68,8 @@ test("T5P.3 reads and internal reversible writes auto-allow", () => {
   assert.equal(evaluateAction("blackboard.listProjects", {}, cfg()).decision, "ALLOW");
   assert.equal(evaluateAction("blackboard.createTask", { title: "x" }, cfg()).decision, "ALLOW");
   assert.equal(evaluateAction("myrhythm.createBlock", { start: "09:00" }, cfg()).decision, "ALLOW");
-  assert.equal(evaluateAction("delegation.spawnSpecialist", { agent: "rhythm" }, cfg()).decision, "ALLOW");
+  assert.equal(evaluateAction("delegation.spawnSpecialist", { agent: "rhythm" }, cfg()).decision, "DENY");
+  assert.equal(evaluateAction("delegation.sendToSpecialist", { agent: "rhythm" }, cfg()).decision, "DENY");
 });
 
 test("T5P.4 gated consequences require approval", () => {

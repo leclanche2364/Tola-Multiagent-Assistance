@@ -145,8 +145,11 @@ export function redactApprovalScope(scope: string): string {
   let result = scope.replace(/\b\d{10,}\b/g, "[REDACTED]");
   // Redact base64-like tokens
   result = result.replace(/\b[A-Za-z0-9+/]{20,}={0,2}\b/g, "[REDACTED]");
-  // Redact secret-bearing keywords and their values
-  result = result.replace(/\b(?:secret|token|key|password|apikey|bearer|sk|pk)\b/gi, "[REDACTED]");
+  // Redact secret-bearing keywords and their values (including sk_/pk_ prefixed tokens)
+  result = result.replace(/\b(?:secret|token|key|password|apikey|bearer)\b/gi, "[REDACTED]");
+  result = result.replace(/\b(?:sk|pk)_[A-Za-z0-9_]+/g, "[REDACTED]");
+  // Redact values after key= assignments that look secret
+  result = result.replace(/key=[^;]*/gi, "key=[REDACTED]");
   return result;
 }
 

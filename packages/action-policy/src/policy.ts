@@ -71,9 +71,9 @@ export const ACTION_CATALOG: readonly ActionDef[] = Object.freeze([
   { domain: "blackboard", name: "recordEvent", consequence: "internal_reversible_write" },
   { domain: "blackboard", name: "requestApproval", consequence: "internal_reversible_write" },
 
-  // --- Delegation (spawn specialists) ---
-  { domain: "delegation", name: "spawnSpecialist", consequence: "internal_reversible_write" },
-  { domain: "delegation", name: "sendToSpecialist", consequence: "internal_reversible_write" },
+  // --- Delegation (spawn specialists) — specialists cannot spawn or delegate (isolation) ---
+  { domain: "delegation", name: "spawnSpecialist", consequence: "permanent_deny" },
+  { domain: "delegation", name: "sendToSpecialist", consequence: "permanent_deny" },
   { domain: "delegation", name: "endSpecialist", consequence: "internal_reversible_write" },
 
   // --- My Rhythm (scheduling, personal) ---
