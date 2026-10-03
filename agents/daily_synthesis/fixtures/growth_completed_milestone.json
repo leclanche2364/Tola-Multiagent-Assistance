@@ -1,0 +1,32 @@
+{
+  "latest_metrics": {
+    "revenue": 130000.0,
+    "mrr": 44000.0,
+    "active_users": 3600,
+    "conversion_rate": 0.045,
+    "churn_rate": 0.015,
+    "last_updated": "2026-10-03T10:00:00+01:00"
+  },
+  "active_experiments": [
+    {
+      "name": "onboarding_flow_v3",
+      "status": "active",
+      "variant": "B",
+      "start_date": "2026-09-15",
+      "end_date": "2026-10-15",
+      "metric_impact": 0.08
+    }
+  ],
+  "awaiting_analysis": [],
+  "execution_tasks": [],
+  "blockers": [],
+  "deadlines": [],
+  "next_actions": [
+    {
+      "action": "Begin next experiment: pricing_page_v2",
+      "estimated_effort_minutes": 90,
+      "freshness_status": "fresh",
+      "last_updated": "2026-10-03T10:00:00+01:00"
+    }
+  ]
+}

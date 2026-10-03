@@ -1,0 +1,23 @@
+{
+  "latest_metrics": {
+    "revenue": 118000.0,
+    "mrr": 40500.0,
+    "active_users": 3200,
+    "conversion_rate": 0.039,
+    "churn_rate": 0.021,
+    "last_updated": "2026-09-20T08:00:00+01:00"
+  },
+  "active_experiments": [],
+  "awaiting_analysis": [],
+  "execution_tasks": [],
+  "blockers": [],
+  "deadlines": [],
+  "next_actions": [
+    {
+      "action": "Review stale metrics and update campaign",
+      "estimated_effort_minutes": 60,
+      "freshness_status": "stale",
+      "last_updated": "2026-09-20T08:00:00+01:00"
+    }
+  ]
+}

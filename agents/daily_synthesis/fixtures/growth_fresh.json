@@ -1,0 +1,75 @@
+{
+  "latest_metrics": {
+    "revenue": 125000.0,
+    "mrr": 42000.0,
+    "active_users": 3400,
+    "conversion_rate": 0.042,
+    "churn_rate": 0.018,
+    "last_updated": "2026-10-03T10:00:00+01:00"
+  },
+  "active_experiments": [
+    {
+      "name": "onboarding_flow_v3",
+      "status": "active",
+      "variant": "B",
+      "start_date": "2026-09-15",
+      "end_date": "2026-10-15",
+      "metric_impact": 0.08
+    },
+    {
+      "name": "pricing_page_test",
+      "status": "active",
+      "variant": "A",
+      "start_date": "2026-09-20",
+      "end_date": "2026-10-20",
+      "metric_impact": 0.03
+    }
+  ],
+  "awaiting_analysis": [
+    {
+      "name": "referral_program_v2",
+      "status": "awaiting_analysis",
+      "variant": "A",
+      "start_date": "2026-08-01",
+      "end_date": "2026-09-30",
+      "metric_impact": null
+    }
+  ],
+  "execution_tasks": [
+    {
+      "title": "Metricool October campaign setup",
+      "platform": "metricool",
+      "status": "pending",
+      "due_date": "2026-10-05",
+      "estimated_minutes": 60
+    },
+    {
+      "title": "Q4 budget approval workflow",
+      "platform": "campaign",
+      "status": "in_progress",
+      "due_date": "2026-10-04",
+      "estimated_minutes": 45
+    }
+  ],
+  "blockers": [
+    "Design team blocked on icon set approval from brand team"
+  ],
+  "deadlines": [
+    "2026-10-05: October campaign launch",
+    "2026-10-10: Q4 budget review"
+  ],
+  "next_actions": [
+    {
+      "action": "Finalize onboarding_flow_v3 variant B analysis",
+      "estimated_effort_minutes": 120,
+      "freshness_status": "fresh",
+      "last_updated": "2026-10-03T09:00:00+01:00"
+    },
+    {
+      "action": "Submit Q4 budget for approval",
+      "estimated_effort_minutes": 30,
+      "freshness_status": "fresh",
+      "last_updated": "2026-10-03T08:00:00+01:00"
+    }
+  ]
+}

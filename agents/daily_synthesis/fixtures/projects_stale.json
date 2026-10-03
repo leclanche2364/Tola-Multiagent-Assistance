@@ -1,0 +1,18 @@
+{
+  "Shiftlyx": {
+    "current_phase": "stalled",
+    "latest_completed_milestone": "v2.3 release",
+    "current_work_in_progress": "",
+    "next_action": "",
+    "blocker": "Waiting on vendor API deprecation decision",
+    "dependencies": ["vendor"],
+    "deadline": "2026-11-01",
+    "estimated_effort_minutes": 0,
+    "energy_required": "low",
+    "definition_of_done": "",
+    "strategic_notes": "",
+    "specialist_recommendation": "",
+    "freshness_status": "stale",
+    "last_updated": "2026-09-15T08:00:00+01:00"
+  }
+}

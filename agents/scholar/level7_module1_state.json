@@ -1,0 +1,272 @@
+{
+  "schema_version": "level7_module1_state.v1",
+  "module": "Level 7 ICU Module 1",
+  "last_updated": "2026-10-03T12:52:00+01:00",
+  "last_handoff_timestamp": "2026-10-03T12:00:00+01:00",
+  "batches": [
+    {
+      "batch_id": "batch_0",
+      "title": "Batch 0 test batch",
+      "sections": [
+        "section_0"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 0",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 0",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 0"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_1",
+      "title": "Batch 1 test batch",
+      "sections": [
+        "section_1"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 1",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 1",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 1"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_2",
+      "title": "Batch 2 test batch",
+      "sections": [
+        "section_2"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 2",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 2",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 2"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_3",
+      "title": "Batch 3 test batch",
+      "sections": [
+        "section_3"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 3",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 3",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 3"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_4",
+      "title": "Batch 4 test batch",
+      "sections": [
+        "section_4"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 4",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 4",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 4"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_5",
+      "title": "Batch 5 test batch",
+      "sections": [
+        "section_5"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 5",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 5",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 5"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_6",
+      "title": "Batch 6 test batch",
+      "sections": [
+        "section_6"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 6",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 6",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 6"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_7",
+      "title": "Batch 7 test batch",
+      "sections": [
+        "section_7"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 7",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 7",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 7"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_8",
+      "title": "Batch 8 test batch",
+      "sections": [
+        "section_8"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 8",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 8",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 8"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_9",
+      "title": "Batch 9 test batch",
+      "sections": [
+        "section_9"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 9",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 9",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 9"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_10",
+      "title": "Batch 10 test batch",
+      "sections": [
+        "section_10"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 10",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 10",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 10"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    },
+    {
+      "batch_id": "batch_11",
+      "title": "Batch 11 test batch",
+      "sections": [
+        "section_11"
+      ],
+      "articles": [
+        {
+          "title": "Article A for batch 11",
+          "status": "not_started"
+        },
+        {
+          "title": "Article B for batch 11",
+          "status": "not_started"
+        }
+      ],
+      "extraction_goals": [
+        "goal for batch 11"
+      ],
+      "word_target": "100-200",
+      "status": "not_started"
+    }
+  ]
+}

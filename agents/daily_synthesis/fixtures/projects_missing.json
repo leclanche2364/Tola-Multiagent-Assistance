@@ -1,0 +1,18 @@
+{
+  "Shiftlyx": {
+    "current_phase": "unknown",
+    "latest_completed_milestone": "",
+    "current_work_in_progress": "",
+    "next_action": "",
+    "blocker": "",
+    "dependencies": [],
+    "deadline": null,
+    "estimated_effort_minutes": 0,
+    "energy_required": "unknown",
+    "definition_of_done": "",
+    "strategic_notes": "",
+    "specialist_recommendation": "",
+    "freshness_status": "unknown",
+    "last_updated": ""
+  }
+}

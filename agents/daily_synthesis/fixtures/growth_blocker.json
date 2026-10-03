@@ -1,0 +1,20 @@
+{
+  "latest_metrics": {
+    "revenue": 125000.0,
+    "mrr": 42000.0,
+    "active_users": 3400,
+    "conversion_rate": 0.042,
+    "churn_rate": 0.018,
+    "last_updated": "2026-10-03T10:00:00+01:00"
+  },
+  "active_experiments": [],
+  "awaiting_analysis": [],
+  "execution_tasks": [],
+  "blockers": [
+    "API rate limit reached — cannot pull fresh metrics until 2026-10-04"
+  ],
+  "deadlines": [
+    "2026-10-05: October campaign launch"
+  ],
+  "next_actions": []
+}
