@@ -49,3 +49,18 @@ Prompts: `docs/current-state/automations.json`. Decision pending with Habeeb: cr
 
 ## 7-day review
 Check-back on 2026-10-09: all 8 automations running (or limitation confirmed), cost/sanity checks clean, specialist jobs created if approved.
+---
+
+## Growth Metricool Release Gates (G04 Extension)
+
+### Production Cutover — Growth-Only Additions
+
+1. **Raw writes stay hidden** — Metricool raw write calls are never exposed to Growth or any agent; all writes go through `GovernedMetricoolWrapper`.
+2. **Wrapped tools require explicit profile/platform approval** — Enabling `metricool__createScheduledPost`, `metricool__createScheduledPostForReview`, `metricool__sendScheduledPostForReview`, or `metricool__updateScheduledPost` requires explicit profile AND platform approval in the action-policy engine.
+3. **Each canary needs separate Tier 1 schedule + Tier 2 release approvals** — Canary deployments for Growth Metricool writes must pass: (a) Tier 1 schedule approval (growth agent proposes, Habeeb approves schedule), (b) Tier 2 release approval (payload hash verified, non-production profile tested, then production release approved by Habeeb).
+
+### Rollback (Growth-Only)
+
+- **Disable Metricool writes** — Set `metricool__createScheduledPost`, `metricool__createScheduledPostForReview`, `metricool__sendScheduledPostForReview`, `metricool__updateScheduledPost` to denied in the action-policy engine.
+- **Restore prior Growth config/jobs** — Revert `config-candidate/openclaw.json` and `docs/current-state/automations.json` to pre-G04 state using `openclaw.json.broken-batch08-20261002` as the rollback pattern reference.
+- **Do NOT touch other agents** — Rollback is Growth-only; tola, rhythm, and scholar agents remain unaffected.

@@ -88,6 +88,11 @@
           "maxSpawnDepth": 1,
           "maxChildrenPerAgent": 3,
           "maxConcurrent": 3
+        },
+        "delivery": {
+          "mode": "announce",
+          "channel": "discord",
+          "to": "channel:1553077643807563847"
         }
       },
       {

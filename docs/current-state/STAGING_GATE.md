@@ -22,3 +22,28 @@ All packages typecheck + tests green (see below).
 
 1. **policy.ts** — `delegation.spawnSpecialist` and `delegation.sendToSpecialist` changed from `internal_reversible_write` to `permanent_deny` (specialist isolation).
 2. **executor.ts** — `redactApprovalScope` now redacts `sk_`/`pk_` tokens and `key=` values.
+
+---
+
+## Growth Metricool Release Gates (G04 Extension)
+
+### Staging — Non-Production Metricool Profile Proofs
+
+| Gate | Tier | Proof |
+|------|------|-------|
+| G04-S1 | Tier 1 alone cannot publish | `metricool__createScheduledPost` with `autoPublish: true` on non-production profile → rejected (no publish without Tier 2 release approval) |
+| G04-S2 | Tier 2 must match immutable payload hash | `metricool__sendScheduledPostForReview` with mismatched `info` hash → rejected; matching hash → accepted |
+| G04-S3 | Held-draft fallback safe | `metricool__createScheduledPost` with `draft: true` → accepted, no publish triggered |
+| G04-S4 | Mutation/replay/duplicates fail | Replaying a consumed `sendScheduledPostForReview` → rejected (already consumed); duplicate `createScheduledPost` with identical payload → rejected (idempotency key collision) |
+
+### Production Cutover — Growth-Only Additions
+
+1. **Raw writes stay hidden** — Metricool raw write calls are never exposed to Growth or any agent; all writes go through `GovernedMetricoolWrapper`.
+2. **Wrapped tools require explicit profile/platform approval** — Enabling `metricool__createScheduledPost`, `metricool__createScheduledPostForReview`, `metricool__sendScheduledPostForReview`, or `metricool__updateScheduledPost` requires explicit profile AND platform approval in the action-policy engine.
+3. **Each canary needs separate Tier 1 schedule + Tier 2 release approvals** — Canary deployments for Growth Metricool writes must pass: (a) Tier 1 schedule approval (growth agent proposes, Habeeb approves schedule), (b) Tier 2 release approval (payload hash verified, non-production profile tested, then production release approved by Habeeb).
+
+### Rollback
+
+- **Disable Metricool writes** — Set `metricool__createScheduledPost`, `metricool__createScheduledPostForReview`, `metricool__sendScheduledPostForReview`, `metricool__updateScheduledPost` to denied in the action-policy engine.
+- **Restore prior Growth config/jobs** — Revert `config-candidate/openclaw.json` and `docs/current-state/automations.json` to pre-G04 state using `openclaw.json.broken-batch08-20261002` as the rollback pattern reference.
+- **Do NOT touch other agents** — Rollback is Growth-only; tola, rhythm, and scholar agents remain unaffected.
