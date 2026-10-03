@@ -1,0 +1,421 @@
+{
+ "generated_at": "2026-10-03T10:46:01.407248",
+ "source_repo": "/Users/habeebodubunmi/.openclaw/workspace-growth/Revalidation-Website",
+ "count": 69,
+ "assets": [
+  {
+   "file": "affiliate-apply.html",
+   "title": "Apply | Affiliate Programme \u2014 Revalidation Copilot",
+   "description": "Apply to join the Revalidation Copilot affiliate programme. Earn 30% recurring commission by referring nurses to our app.",
+   "h1": "Join the affiliate programme"
+  },
+  {
+   "file": "affiliates.html",
+   "title": "Affiliate Programme | Revalidation Copilot",
+   "description": "Earn 30% recurring commission by referring nurses to Revalidation Copilot. Join our affiliate programme for nurse creators, educators, and healthcare influencer",
+   "h1": "Earn while you help nurses"
+  },
+  {
+   "file": "contact.html",
+   "title": "Contact | Revalidation Copilot",
+   "description": "Contact Revalidation Copilot for support, partnership, or general enquiries.",
+   "h1": "Get in touch"
+  },
+  {
+   "file": "delete-account.html",
+   "title": "Delete Account | Revalidation Copilot",
+   "description": "Request deletion of your Revalidation Copilot account and associated data.",
+   "h1": "Delete your account"
+  },
+  {
+   "file": "download.html",
+   "title": "Download Revalidation Copilot: Free for UK Nurses",
+   "description": "Download Revalidation Copilot. Track CPD, log practice hours, write reflective accounts with AI, and export NMC-ready packs. Free to start.",
+   "h1": ""
+  },
+  {
+   "file": "features.html",
+   "title": "NMC Revalidation Features: CPD Tracking, Reflections & Portfolio Export",
+   "description": "Explore the features of Revalidation Copilot for CPD, feedback, reflections, reminders, and export-ready records.",
+   "h1": "Everything centred on staying organised for revalidation"
+  },
+  {
+   "file": "feedback-form.html",
+   "title": "Practice feedback request | Revalidation Copilot",
+   "description": "",
+   "h1": "This link isn't available"
+  },
+  {
+   "file": "how-it-works.html",
+   "title": "How Revalidation Copilot Works: NMC Revalidation Made Simple",
+   "description": "See how Revalidation Copilot supports the NMC revalidation workflow from CPD and feedback to reflections and export.",
+   "h1": "A clearer workflow for NMC revalidation"
+  },
+  {
+   "file": "index.html",
+   "title": "Revalidation Copilot | NMC Revalidation Support for Nurses",
+   "description": "Stop dreading revalidation. Draft an NMC-compliant reflective account from a 2-minute voice note. Track CPD, practice hours & feedback. 100+ UK nurses already u",
+   "h1": "Your next reflective account takes 10 minutes, not an afternoon"
+  },
+  {
+   "file": "invite.html",
+   "title": "Invite | Revalidation Copilot",
+   "description": "Share Revalidation Copilot with a colleague and grow usage through a simple invite flow.",
+   "h1": "Join Revalidation Copilot"
+  },
+  {
+   "file": "privacy.html",
+   "title": "Privacy Policy | Revalidation Copilot",
+   "description": "Privacy Policy for Revalidation Copilot operated by Beemal Innovation Ltd.",
+   "h1": "Privacy Policy"
+  },
+  {
+   "file": "support.html",
+   "title": "Support | Revalidation Copilot",
+   "description": "Get help with Revalidation Copilot, account access, app use, privacy, and general support questions.",
+   "h1": "Need help with Revalidation Copilot?"
+  },
+  {
+   "file": "terms.html",
+   "title": "Terms of Service | Revalidation Copilot",
+   "description": "Legal terms governing the use of Revalidation Copilot.",
+   "h1": "Terms of Service"
+  },
+  {
+   "file": "blog/5-common-nmc-revalidation-mistakes.html",
+   "title": "5 Common NMC Revalidation Mistakes: and How to Avoid Every One | Revalidation Copilot",
+   "description": "Avoid the 5 most common NMC revalidation mistakes that trip up nurses every cycle. Learn how to avoid revalidation problems with practical tips from real nursin",
+   "h1": "5 Common NMC Revalidation Mistakes: and How to Avoid Every One"
+  },
+  {
+   "file": "blog/best-app-nmc-revalidation-2026.html",
+   "title": "Best App for NMC Revalidation in 2026: CPD Tracking, Voice Reflections & Digital Portfolio | Revalidation Copilot",
+   "description": "The best app for NMC revalidation in 2026. Free CPD tracking, voice-to-reflection AI, practice hour calculator, and portfolio export. Trusted by 100+ UK nurses.",
+   "h1": "Best App for NMC Revalidation in 2026: CPD Tracking, Voice Reflections & Digital Portfolio"
+  },
+  {
+   "file": "blog/can-i-do-nmc-revalidation-online.html",
+   "title": "Can I Do My NMC Revalidation Online? A Complete Guide for Nurses | Revalidation Copilot",
+   "description": "Yes, NMC revalidation can be done online. We explain how the NMC's online portal works, what you can submit digitally, and how to manage your portfolio online f",
+   "h1": "Revalidation Copilot"
+  },
+  {
+   "file": "blog/digital-portfolio-nursing-nmc-revalidation.html",
+   "title": "Digital Portfolio for Nursing: Best Apps & Guide for NMC Revalidation 2026 | Revalidation Copilot",
+   "description": "Everything UK nurses need to know about digital portfolios for NMC revalidation: what they are, how they work, and the best free app to organise CPD, reflection",
+   "h1": "Digital Portfolio for Nursing: The Complete Guide for NMC Revalidation 2026"
+  },
+  {
+   "file": "blog/fourteenfish-vs-revalidation-copilot.html",
+   "title": "FourteenFish vs Revalidation Copilot: Which Is Best for UK Nurses in 2026?",
+   "description": "FourteenFish vs Revalidation Copilot: a head-to-head comparison of the two leading NMC revalidation apps. CPD tracking, reflective accounts, pricing, portfolio ",
+   "h1": "FourteenFish vs Revalidation Copilot: Which Is Best for UK Nurses in 2026?"
+  },
+  {
+   "file": "blog/gibbs-reflective-cycle-nmc-revalidation.html",
+   "title": "How to Use Gibbs' Reflective Cycle for NMC Revalidation (With Examples) | Revalidation Copilot",
+   "description": "Learn how to use Gibbs' Reflective Cycle for NMC revalidation. Includes a worked example of a difficult conversation with a patient's family.",
+   "h1": "How to Use Gibbs' Reflective Cycle for NMC Revalidation (With Examples)"
+  },
+  {
+   "file": "blog/how-soon-can-i-revalidate-with-nmc.html",
+   "title": "How Soon Can I Revalidate with NMC? A Guide for Nurses | Revalidation Copilot",
+   "description": "Can you revalidate with the NMC before your 3-year cycle ends? We explain the rules on early revalidation, when you can submit, and what to do if you've let you",
+   "h1": "Revalidation Copilot"
+  },
+  {
+   "file": "blog/how-to-write-reflective-accounts-nursing.html",
+   "title": "How to Write Reflective Accounts for NMC Revalidation (With Examples) | Revalidation Copilot",
+   "description": "A complete guide to writing reflective accounts for NMC revalidation. Includes examples, the NMC template, and tips to make the process easier.",
+   "h1": "How to Write Reflective Accounts for NMC Revalidation (With Examples)"
+  },
+  {
+   "file": "blog/index.html",
+   "title": "NMC Revalidation Blog \u2014 Guides, Templates & Tips for UK Nurses",
+   "description": "Guides, checklists, and practical help for NMC revalidation, CPD, and reflective accounts.",
+   "h1": "Revalidation Blog"
+  },
+  {
+   "file": "blog/nmc-code-ai-digital-technology.html",
+   "title": "AI in Nursing: What the NMC's New Code Will Say About Technology",
+   "description": "The NMC's new draft Code will include standards on AI and digital technology for the first time. Here's what is being proposed and how to use AI safely in nursi",
+   "h1": "AI in Nursing: What the NMC's New Code Will Say About Technology"
+  },
+  {
+   "file": "blog/nmc-code-conduct-nurses-themes-explained.html",
+   "title": "NMC Code of Conduct: The 4 Themes Explained Simply (With Examples) | Revalidation Copilot",
+   "description": "Understand the 4 NMC Code themes \u2014 Prioritise People, Practise Effectively, Preserve Safety and Promote Professionalism & Trust \u2014 with nursing and revalidation ",
+   "h1": "NMC Code of Conduct for Nurses: The 4 Themes Explained (Prioritise People, Practise Effectively, Preserve Safety, Promote Professionalism)"
+  },
+  {
+   "file": "blog/nmc-code-consultation-approved-july-2026.html",
+   "title": "NMC Code Consultation Approved: What Nurses Need to Know (July 2026)",
+   "description": "The NMC Council has approved a landmark public consultation on a new Code and refreshed revalidation process. Here's what's changing, what stays the same, and h",
+   "h1": "NMC Code Consultation Approved: What Nurses Need to Know"
+  },
+  {
+   "file": "blog/nmc-code-consultation-september-what-to-know.html",
+   "title": "5 Things Every Nurse Should Know About the NMC Code Consultation",
+   "description": "The NMC Code consultation runs September to December 2026. Here are five key things every nurse should know about what's proposed, the timeline, and why your vo",
+   "h1": "5 Things Every Nurse Should Know About the NMC Code Consultation"
+  },
+  {
+   "file": "blog/nmc-code-modernisation-2026-edi-social-media.html",
+   "title": "NMC Code Modernisation 2026: EDI, Social Media & Behaviour Outside Practice | Revalidation Copilot",
+   "description": "The NMC is modernising the Code with a new focus on equality, diversity, behaviour outside of practice, and social media use. Here's what the changes mean for n",
+   "h1": "The NMC Is Modernising the Code. Here Are the Three Big Changes Coming."
+  },
+  {
+   "file": "blog/nmc-code-professionalism-public-private.html",
+   "title": "Professionalism in Public and Private Life: New NMC Guidance Explained",
+   "description": "The NMC is expanding social media guidance into broader professionalism rules covering off-duty conduct and public behaviour. Here's what every nurse needs to k",
+   "h1": "Professionalism in Public and Private Life: New NMC Guidance Explained"
+  },
+  {
+   "file": "blog/nmc-code-reflective-account-guide.html",
+   "title": "How to Write a Reflective Account for NMC Revalidation (With Examples) | Revalidation Copilot",
+   "description": "A step-by-step guide to writing an NMC reflective account, with worked examples that link to the Code. Templates for medication errors and common scenarios.",
+   "h1": "How to Write a Reflective Account That Links to the NMC Code: Theme-by-Theme Guide"
+  },
+  {
+   "file": "blog/nmc-communication-breakdown-reflection-example.html",
+   "title": "NMC Communication Breakdown Reflection Example: Worked Template | Revalidation Copilot",
+   "description": "A worked reflective account example on a communication breakdown for NMC revalidation, with a fill-in template. Link it to Prioritise People and Practise Effect",
+   "h1": "NMC Communication Breakdown Reflection Example: Worked Template"
+  },
+  {
+   "file": "blog/nmc-council-july-2026-code-revalidation-ai.html",
+   "title": "The NMC Is Taking AI to Council on 21 July. Here's What's at Stake.",
+   "description": "The NMC presents Code and revalidation changes to its Council on 21 July, with AI confirmed as an official discussion theme. Here's what's at stake and how to p",
+   "h1": "The NMC Is Taking AI to Council on 21 July. Here's What's at Stake."
+  },
+  {
+   "file": "blog/nmc-cpd-edi-equality-revalidation.html",
+   "title": "CPD That Challenges Racism: How the New NMC Code Changes What Counts",
+   "description": "The new NMC Code will require EDI competence. Here's what that means for your CPD choices, including anti-racism training, cultural competence, and reflective a",
+   "h1": "CPD That Challenges Racism: How the New Code Changes What Counts"
+  },
+  {
+   "file": "blog/nmc-cpd-ideas-examples.html",
+   "title": "20 CPD Ideas for NMC Revalidation: Examples That Actually Count | Revalidation Copilot",
+   "description": "20 genuine CPD ideas for NMC revalidation. 10 participatory and 10 non-participatory examples that count towards your 35-hour requirement. Verified against NMC ",
+   "h1": "20 CPD Ideas for NMC Revalidation: Examples That Actually Count"
+  },
+  {
+   "file": "blog/nmc-medication-error-reflection-example.html",
+   "title": "NMC Medication Error Reflection Example: Worked Template | Revalidation Copilot",
+   "description": "A real medication error reflective account example for NMC revalidation, with a fill-in template. See how to write up a drug error and link it to Preserve Safet",
+   "h1": "NMC Medication Error Reflection Example: Worked Template"
+  },
+  {
+   "file": "blog/nmc-reflective-account-examples.html",
+   "title": "NMC Reflective Account Examples (2026): 8 Real Examples You Can Adapt | Revalidation Copilot",
+   "description": "8 real NMC reflective account examples covering CPD, practice experiences, feedback, and all 4 Code themes. Downloadable templates included. Adapt them for your",
+   "h1": "NMC Reflective Account Examples (2026): 8 Real Examples You Can Adapt"
+  },
+  {
+   "file": "blog/nmc-registration-fee-2026.html",
+   "title": "NMC Registration Fee 2026: When the \u00a3143 Fee Starts & What You Pay | Revalidation Copilot",
+   "description": "The NMC fee is currently \u00a3120. A rise to \u00a3143 is planned from 1 October 2026, subject to Parliamentary approval. Check the latest status, payment options and wh",
+   "h1": "NMC Registration Fee 2026: The \u00a3143 Increase Explained"
+  },
+  {
+   "file": "blog/nmc-revalidation-12-week-extension.html",
+   "title": "NMC Revalidation 12-Week Extension: Who Qualifies and How to Apply",
+   "description": "The NMC is increasing the revalidation extension cap from 8 to 12 weeks. Here's who qualifies, what counts as a valid need, and how to apply.",
+   "h1": "The NMC's New 12-Week Revalidation Extension"
+  },
+  {
+   "file": "blog/nmc-revalidation-advanced-practitioners.html",
+   "title": "Advanced Practitioners: Your Complete NMC Revalidation Guide",
+   "description": "Advanced practitioners have unique revalidation needs. This guide covers practice hours, CPD, reflective accounts, and the new Principles for Advanced Practice.",
+   "h1": "Advanced Practitioners: Your Complete NMC Revalidation Guide"
+  },
+  {
+   "file": "blog/nmc-revalidation-app-free-nurses.html",
+   "title": "NMC Revalidation App Free: Best Free Tools for UK Nurses 2026 | Revalidation Copilot",
+   "description": "Looking for a free NMC revalidation app? Compare the best free tools for UK nurses: CPD tracking, reflective accounts, practice hours, and portfolio management ",
+   "h1": "NMC Revalidation App Free: Best Free Tools for UK Nurses in 2026"
+  },
+  {
+   "file": "blog/nmc-revalidation-changes-2026.html",
+   "title": "NMC Revalidation Changes 2026: What We Know So Far | Revalidation Copilot",
+   "description": "The NMC is modernising revalidation. Here's what's been announced: practice learning, Code updates, anti-racist principles: and what's still under consultation.",
+   "h1": "NMC Revalidation Changes 2026: What We Know So Far and What It Means for You"
+  },
+  {
+   "file": "blog/nmc-revalidation-checklist-2026.html",
+   "title": "NMC Revalidation Checklist 2026: The 10-Step Deadlines Tracker | Revalidation Copilot",
+   "description": "The NMC revalidation checklist for 2026 with month-by-month deadlines. Practice hours, CPD, feedback, reflective accounts and confirmer, all in one place.",
+   "h1": "NMC Revalidation Checklist 2026: Everything You Need to Submit"
+  },
+  {
+   "file": "blog/nmc-revalidation-confirmer-conversation.html",
+   "title": "What Your NMC Confirmer Conversation Actually Looks Like | Revalidation Copilot",
+   "description": "What actually happens in your NMC confirmer conversation: the questions they ask, how to prepare without over-preparing, and how to make it stress-free.",
+   "h1": "What Your NMC Confirmer Conversation Actually Looks Like"
+  },
+  {
+   "file": "blog/nmc-revalidation-confirmer-employer-guide.html",
+   "title": "The Confirmer's Guide to the New Revalidation: What Employers Need to Know",
+   "description": "Line managers and employers: a practical guide to the new mandatory feedback form, confirmation discussion, and what to prepare for the 2028 revalidation change",
+   "h1": "The Confirmer's Guide to the New Revalidation"
+  },
+  {
+   "file": "blog/nmc-revalidation-confirmer-guide.html",
+   "title": "What Does an NMC Revalidation Confirmer Do? Full Guide 2026 | Revalidation Copilot",
+   "description": "Find out who can be your NMC revalidation confirmer, what they check, and how to book the confirmer conversation. Complete guide for UK nurses with template.",
+   "h1": "What Does an NMC Revalidation Confirmer Do? A Complete Guide"
+  },
+  {
+   "file": "blog/nmc-revalidation-confirmer-new-rules.html",
+   "title": "Your Confirmer Just Changed: What the NMC's New Rules Mean for Nurses",
+   "description": "The NMC is formalising the expectation that your line manager is usually your revalidation confirmer, with a tick-box route for exceptions. Here's what that mea",
+   "h1": "Your Confirmer Just Changed: What the NMC's New Rules Mean"
+  },
+  {
+   "file": "blog/nmc-revalidation-employer-roundtable-proposals.html",
+   "title": "NMC Revalidation Employer Roundtable Proposals: What Nurses Need to Know | Revalidation Copilot",
+   "description": "The NMC's employer roundtable proposals could change revalidation for every UK nurse. We break down the four key proposals: from stronger confirmers to AI princ",
+   "h1": "NMC Revalidation Changes 2026: Employer Roundtable Proposals Explained"
+  },
+  {
+   "file": "blog/nmc-revalidation-feedback-form-mandatory.html",
+   "title": "Your NMC Revalidation Feedback Form Is Now Mandatory: What Changes",
+   "description": "The NMC is making the optional feedback template into a mandatory form focused on learning and improvement. Here's what the new form looks like and how to prepa",
+   "h1": "Your NMC Revalidation Feedback Form Is Now Mandatory"
+  },
+  {
+   "file": "blog/nmc-revalidation-forms-2026.html",
+   "title": "NMC Revalidation Forms 2026: Download, Fill & Submit (With Examples) | Revalidation Copilot",
+   "description": "Download every NMC revalidation form template for 2026: CPD log (Form 2), practice hours (Form 3), reflective accounts (Form 4), and confirmation form (Form 6).",
+   "h1": "NMC Revalidation Forms 2026: Download, Fill & Submit (With Examples)"
+  },
+  {
+   "file": "blog/nmc-revalidation-ien-internationally-educated-nurses.html",
+   "title": "IENs and NMC Revalidation: A Complete Guide for Internationally Educated Nurses | Revalidation Copilot",
+   "description": "Complete guide to NMC revalidation for internationally educated nurses: registration, Test of Competence, OSCE, English language requirements, CPD tracking, and",
+   "h1": "IENs and NMC Revalidation: What Internationally Educated Nurses Need to Know"
+  },
+  {
+   "file": "blog/nmc-revalidation-midwives-complete-guide.html",
+   "title": "NMC Revalidation for Midwives: Complete Guide 2026 | Revalidation Copilot",
+   "description": "Everything midwives need to know about NMC revalidation: 450 practice hours, CPD, reflective accounts with real midwifery examples, and what changes when you're",
+   "h1": "NMC Revalidation for Midwives: Complete Guide 2026"
+  },
+  {
+   "file": "blog/nmc-revalidation-newly-qualified-nurses.html",
+   "title": "NMC Revalidation for Newly Qualified Nurses: Complete Guide 2026 | Revalidation Copilot",
+   "description": "First-time NMC revalidation explained for newly qualified nurses. When it starts, what you need, and how to prepare without the stress. Includes a step-by-step ",
+   "h1": "NMC Revalidation for Newly Qualified Nurses: Your First-Time Guide"
+  },
+  {
+   "file": "blog/nmc-revalidation-nursing-associates-complete-guide.html",
+   "title": "NMC Revalidation for Nursing Associates: Complete Guide 2026 | Revalidation Copilot",
+   "description": "Complete 2026 guide to NMC revalidation for nursing associates. CPD hours, reflective accounts, practice hours, confirmer arrangements, and everything NAs need ",
+   "h1": "NMC Revalidation for Nursing Associates: Complete Guide 2026"
+  },
+  {
+   "file": "blog/nmc-revalidation-parental-leave-extension.html",
+   "title": "Revalidation After Maternity Leave or Career Break: New 2026 Rules",
+   "description": "Returning to nursing after maternity leave or a career break? The new NMC 12-week extension gives you extra time. Here's how to plan your revalidation around a ",
+   "h1": "Revalidation After Maternity Leave or Career Break: New 2026 Rules"
+  },
+  {
+   "file": "blog/nmc-revalidation-portfolio-organise.html",
+   "title": "How to Organise Your NMC Revalidation Portfolio | Revalidation Copilot",
+   "description": "Stop scrambling before your deadline. Here's exactly how to organise your NMC revalidation portfolio: CPD, reflections, practice hours, and feedback in one plac",
+   "h1": "How to Organise Your NMC Revalidation Portfolio (the Easy Way)"
+  },
+  {
+   "file": "blog/nmc-revalidation-practice-hours.html",
+   "title": "450 Practice Hours: Do You Really Need to Track Every Single One? | Revalidation Copilot",
+   "description": "Confused about NMC revalidation practice hours? Find out whether you really need to track every hour, what counts towards your 450, and who actually needs to wo",
+   "h1": "450 Practice Hours: Do You Really Need to Track Every Single One?"
+  },
+  {
+   "file": "blog/nmc-revalidation-reflective-discussion.html",
+   "title": "NMC Revalidation Reflective Discussion: Complete Guide for Nurses | Revalidation Copilot",
+   "description": "Everything UK nurses need to know about the NMC revalidation reflective discussion. Who to choose, what to talk about, what questions they ask, and how to prepa",
+   "h1": "NMC Revalidation Reflective Discussion: Complete Guide"
+  },
+  {
+   "file": "blog/nmc-revalidation-requirements-2026.html",
+   "title": "NMC Revalidation Requirements 2026: The 6 Things You Must Complete | Revalidation Copilot",
+   "description": "The complete NMC revalidation requirements for 2026, with deadlines. The six things you must complete, the October 2026 fee rise, and a timeline to stay on trac",
+   "h1": "NMC Revalidation Requirements 2026: The 6 Things You Must Complete"
+  },
+  {
+   "file": "blog/nmc-revalidation-return-to-practice.html",
+   "title": "Return to Practice: How to Rejoin the NMC Register After a Career Break | Revalidation Copilot",
+   "description": "Complete guide to returning to nursing practice in the UK: readmission requirements, practice hours, return to practice courses, Test of Competence, and what re",
+   "h1": "Return to Practice: How to Rejoin the NMC Register After a Career Break"
+  },
+  {
+   "file": "blog/nmc-revalidation-review-2026-new-challenges.html",
+   "title": "NMC Revalidation Review 2026: 'New and Emerging Challenges' Driving Change | Revalidation Copilot",
+   "description": "The NMC is reviewing revalidation for the first time in a decade, citing new and emerging challenges including AI, EDI, high-profile inquiries, and evolving rol",
+   "h1": "'New and Emerging Challenges': Why the NMC Is Reviewing Revalidation in 2026"
+  },
+  {
+   "file": "blog/nmc-revalidation-step-by-step-guide.html",
+   "title": "NMC Revalidation: A Complete Step-by-Step Guide for Nurses | Revalidation Copilot",
+   "description": "Everything you need for NMC revalidation in one guide. Includes CPD, reflective accounts, practice hours, feedback, and the reflective discussion: with deadline",
+   "h1": "NMC Revalidation: A Complete Step-by-Step Guide for Nurses"
+  },
+  {
+   "file": "blog/nmc-revalidation-templates-2026.html",
+   "title": "NMC Revalidation Templates 2026: What You Actually Need to Track | Revalidation Copilot",
+   "description": "NMC revalidation templates for 2026, explained simply. The six requirements, what a template can't do for you, and a faster way to track practice hours, CPD, an",
+   "h1": "NMC Revalidation Templates 2026: What You Actually Need to Track"
+  },
+  {
+   "file": "blog/revalidation-ai-copilot-guide.html",
+   "title": "Revalidation Copilot: How It Helps UK Nurses with NMC Revalidation | Revalidation Copilot",
+   "description": "Revalidation Copilot helps UK nurses draft reflective accounts, track CPD, log practice hours, and organise their portfolio: all in one app. Free to start.",
+   "h1": "Revalidation Copilot: A Complete Guide for UK Nurses"
+  },
+  {
+   "file": "blog/revalidation-copilot-app-review.html",
+   "title": "Revalidation Copilot App Review 2026: The App That Writes Your Reflective Accounts",
+   "description": "Hands-on review of Revalidation Copilot: the free app that tracks CPD, logs practice hours, and uses AI to write your NMC reflective accounts from voice notes. ",
+   "h1": "Revalidation Copilot App Review 2026: The App That Writes Your Reflective Accounts From Voice Notes"
+  },
+  {
+   "file": "blog/template.html",
+   "title": "NMC Code Consultation Approved: What Nurses Need to Know (July 2026)",
+   "description": "The NMC Council has approved a landmark public consultation on a new Code and refreshed revalidation process. Here's what's changing, what stays the same, and h",
+   "h1": "NMC Code Consultation Approved: What Nurses Need to Know"
+  },
+  {
+   "file": "blog/what-counts-as-cpd-for-nmc-revalidation.html",
+   "title": "What Counts as CPD for NMC Revalidation? (35 Hours Explained) | Revalidation Copilot",
+   "description": "Everything you need to know about CPD hours for NMC revalidation. What counts, what doesn't, the 35-hour rule, and how to track yours without the stress.",
+   "h1": "What Counts as CPD for NMC Revalidation? (35 Hours Explained)"
+  },
+  {
+   "file": "blog/what-happens-nmc-revalidation-audit.html",
+   "title": "What Happens in an NMC Revalidation Audit? | Revalidation Copilot",
+   "description": "The NMC audited 70,000 nurses in 2025. Here's what they check, how the process works, and how to make sure you're ready long before the email arrives.",
+   "h1": "What Happens in an NMC Revalidation Audit? (And How to Prepare)"
+  },
+  {
+   "file": "blog/what-is-nmc-ai-revalidation.html",
+   "title": "What is NMC AI? How AI Helps UK Nurses with Revalidation | Revalidation Copilot",
+   "description": "NMC AI refers to AI tools designed to help UK nurses with NMC revalidation. Learn how they work for reflective accounts, CPD tracking, and practice hours: and w",
+   "h1": "What is NMC AI? How AI Helps UK Nurses with Revalidation"
+  },
+  {
+   "file": "blog/what-is-nmc-revalidation.html",
+   "title": "What is NMC Revalidation? A Complete Guide for Nurses | Revalidation Copilot",
+   "description": "NMC revalidation explained for UK nurses: the 6 requirements, 3-year timeline, how it replaced prep, and how to avoid the last-minute panic. Updated for 2026.",
+   "h1": "What is NMC Revalidation? A Complete Guide for Nurses"
+  },
+  {
+   "file": "blog/why-do-nurses-revalidate-every-3-years.html",
+   "title": "Why Do Nurses Revalidate Every 3 Years? The Complete Guide | Revalidation Copilot",
+   "description": "Find out why NMC revalidation happens every 3 years, how the cycle was designed, what the evidence shows about the current system, and why there's talk of chang",
+   "h1": "Revalidation Copilot"
+  }
+ ]
+}

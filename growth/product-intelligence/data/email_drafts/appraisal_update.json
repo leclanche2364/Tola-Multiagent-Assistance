@@ -1,0 +1,38 @@
+{
+  "batch1": {
+    "name": "Revalidation Copilot - Appraisal Update Batch 1",
+    "subject": "Your appraisal paperwork just got easier",
+    "previewText": "Import your appraisal form and get AI suggestions",
+    "type": "classic",
+    "sender": {
+      "email": "hello@revalidationaicopilot.co.uk",
+      "name": "Revalidation Copilot"
+    },
+    "replyTo": "hello@revalidationaicopilot.co.uk",
+    "recipients": {
+      "listIds": [6],
+      "exclusionListIds": [],
+      "segmentIds": [],
+      "excludedSegmentIds": []
+    },
+    "htmlContent": "<!doctype html>\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"x-apple-disable-message-reformatting\">\n  <meta name=\"format-detection\" content=\"telephone=no,address=no,email=no,date=no,url=no\">\n  <meta name=\"color-scheme\" content=\"light\">\n  <meta name=\"supported-color-schemes\" content=\"light\">\n  <title>Your appraisal paperwork just got easier</title>\n  <!--[if mso]>\n  <xml>\n    <o:OfficeDocumentSettings xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n      <o:PixelsPerInch>96</o:PixelsPerInch>\n    </o:OfficeDocumentSettings>\n  </xml>\n  <![endif]-->\n  <style>\n    body { font-family: Arial, Helvetica, sans-serif; color: #111827; margin: 0; padding: 0; }\n    a { color: #1d4ed8; text-decoration: underline; }\n    .container { max-width: 600px; margin: 0 auto; padding: 20px; }\n    .cta { background: #1d4ed8; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; display: inline-block; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <p>Hi,</p>\n    <p>Appraisal season can mean searching through notes, emails and evidence while trying to complete a form that was never designed for your phone.</p>\n    <p>Revalidation Copilot now lets you import your employer's appraisal form, tap and fill the boxes directly, and get helpful AI suggestions from your logged CPD, feedback, reflections and shifts.</p>\n    <p>You stay in control: review, edit and approve every suggestion before saving. Managers can also add feedback, which can be imported back into your revalidation records for review and, where appropriate, used as practice-related feedback.</p>\n    <p>You can keep evidence linked and export your completed form when you're ready.</p>\n    <p>It's designed to support the growing connection between workplace appraisal and NMC revalidation, helping you keep your professional development in one place.</p>\n    <p><a href=\"https://revalidationaicopilot.co.uk/download\" class=\"cta\">Try the new appraisal features today</a></p>\n    <p>The Revalidation Copilot team</p>\n    <hr>\n    <p style=\"font-size: 0.85rem; color: #6b7280;\">Revalidation Copilot is an independent product and is not affiliated with, endorsed by, or approved by the Nursing and Midwifery Council.</p>\n    <p style=\"font-size: 0.85rem; color: #6b7280;\">To make sure you do not miss Revalidation Copilot updates, you can add this sender to your contacts or move this email to your Primary tab.</p>\n    <p style=\"font-size: 0.85rem; color: #6b7280;\">This email was sent to {{ contact.EMAIL|default:\"your email address\" }} in the context of your Revalidation Copilot account associated with Beemal Innovation Ltd. Questions? Email support@revalidationaicopilot.co.uk. <a href=\"#\">Update preferences</a> | <a href=\"#\">Unsubscribe</a> | <a href=\"#\">Privacy Policy</a></p>\n  </div>\n</body>\n</html>"
+  },
+  "batch2": {
+    "name": "Revalidation Copilot - Appraisal Update Batch 2",
+    "subject": "Your appraisal paperwork just got easier",
+    "previewText": "Import your appraisal form and get AI suggestions",
+    "type": "classic",
+    "sender": {
+      "email": "hello@revalidationaicopilot.co.uk",
+      "name": "Revalidation Copilot"
+    },
+    "replyTo": "hello@revalidationaicopilot.co.uk",
+    "recipients": {
+      "listIds": [7],
+      "exclusionListIds": [],
+      "segmentIds": [],
+      "excludedSegmentIds": []
+    },
+    "htmlContent": "<!doctype html>\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"x-apple-disable-message-reformatting\">\n  <meta name=\"format-detection\" content=\"telephone=no,address=no,email=no,date=no,url=no\">\n  <meta name=\"color-scheme\" content=\"light\">\n  <meta name=\"supported-color-schemes\" content=\"light\">\n  <title>Your appraisal paperwork just got easier</title>\n  <!--[if mso]>\n  <xml>\n    <o:OfficeDocumentSettings xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n      <o:PixelsPerInch>96</o:PixelsPerInch>\n    </o:OfficeDocumentSettings>\n  </xml>\n  <![endif]-->\n  <style>\n    body { font-family: Arial, Helvetica, sans-serif; color: #111827; margin: 0; padding: 0; }\n    a { color: #1d4ed8; text-decoration: underline; }\n    .container { max-width: 600px; margin: 0 auto; padding: 20px; }\n    .cta { background: #1d4ed8; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; display: inline-block; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <p>Hi,</p>\n    <p>Appraisal season can mean searching through notes, emails and evidence while trying to complete a form that was never designed for your phone.</p>\n    <p>Revalidation Copilot now lets you import your employer's appraisal form, tap and fill the boxes directly, and get helpful AI suggestions from your logged CPD, feedback, reflections and shifts.</p>\n    <p>You stay in control: review, edit and approve every suggestion before saving. Managers can also add feedback, which can be imported back into your revalidation records for review and, where appropriate, used as practice-related feedback.</p>\n    <p>You can keep evidence linked and export your completed form when you're ready.</p>\n    <p>It's designed to support the growing connection between workplace appraisal and NMC revalidation, helping you keep your professional development in one place.</p>\n    <p><a href=\"https://revalidationaicopilot.co.uk/download\" class=\"cta\">Try the new appraisal features today</a></p>\n    <p>The Revalidation Copilot team</p>\n    <hr>\n    <p style=\"font-size: 0.85rem; color: #6b7280;\">Revalidation Copilot is an independent product and is not affiliated with, endorsed by, or approved by the Nursing and Midwifery Council.</p>\n    <p style=\"font-size: 0.85rem; color: #6b7280;\">To make sure you do not miss Revalidation Copilot updates, you can add this sender to your contacts or move this email to your Primary tab.</p>\n    <p style=\"font-size: 0.85rem; color: #6b7280;\">This email was sent to {{ contact.EMAIL|default:\"your email address\" }} in the context of your Revalidation Copilot account associated with Beemal Innovation Ltd. Questions? Email support@revalidationaicopilot.co.uk. <a href=\"#\">Update preferences</a> | <a href=\"#\">Unsubscribe</a> | <a href=\"#\">Privacy Policy</a></p>\n  </div>\n</body>\n</html>"
+  }
+}

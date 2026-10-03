@@ -1,0 +1,57 @@
+{
+  "run_id": "20260930-193256",
+  "timestamp": "2026-09-30T19:33:42.971448+00:00",
+  "products": [
+    "shiftlyx",
+    "revalidation_copilot"
+  ],
+  "sources": {
+    "posthog_shiftlyx": "error (403 auth)",
+    "posthog_revalidation_copilot": "error (403 auth)",
+    "ga4_shiftlyx": "ok (31 rows)",
+    "ga4_revalidation_copilot": "ok (31 rows)",
+    "gsc_shiftlyx": "ok (6 rows)",
+    "gsc_revalidation_copilot": "error (403 permission)",
+    "brevo": "ok (10 campaigns)",
+    "appstore": "ok (2 apps, 3 subs)",
+    "website_events": "ok (146 rows)"
+  },
+  "quality_gates": {
+    "shiftlyx": "FAIL",
+    "revalidation_copilot": "FAIL"
+  },
+  "pipeline_status": {
+    "shiftlyx": "blocked (data_quality_fail)",
+    "revalidation_copilot": "blocked (data_quality_fail)"
+  },
+  "reports_generated": [
+    "growth_report_shiftlyx_growth.json",
+    "shiftlyx_tola.md",
+    "growth_report_revalidation_copilot_growth.json",
+    "revalidation_copilot_tola.md"
+  ],
+  "discord_delivery": {
+    "growth_agent_channel": "1553744538877698058",
+    "command_center_channel": "1553077643807563847",
+    "messages_sent": 4,
+    "shiftlyx_growth_msg_id": "1554939259906171044",
+    "revalidation_growth_msg_id": "1554939289358573632",
+    "shiftlyx_tola_msg_id": "1554939285411467405",
+    "revalidation_tola_msg_id": "1554939286032490661"
+  },
+  "alerts": {
+    "data_quality_fails": [
+      "shiftlyx",
+      "revalidation_copilot"
+    ],
+    "threshold_breaches": [],
+    "source_errors": [
+      "PostHog auth (both products)",
+      "GSC permission (revalidation_copilot)"
+    ]
+  },
+  "blackboard_packages": {
+    "shiftlyx": "7f432d37074de45d",
+    "revalidation_copilot": "5d3e24f5f2a97b79"
+  }
+}

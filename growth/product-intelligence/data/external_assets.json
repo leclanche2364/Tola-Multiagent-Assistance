@@ -1,0 +1,4 @@
+[
+  {"file": "external:tiktok", "title": "TikTok video — reflective account guide", "description": "Add handle/URL and update whenever a new video is posted"},
+  {"file": "external:blog-drafts", "title": "In-progress drafts in Revalidation-Website/blog-drafts (not yet published)", "description": "Drafts are excluded from the auto scan; list any draft worth gating on"}
+]

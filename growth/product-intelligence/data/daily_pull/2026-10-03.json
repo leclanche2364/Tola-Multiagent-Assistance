@@ -1,0 +1,43 @@
+{
+ "pulled_at": "2026-10-03T10:00:38.654940",
+ "reports": [
+  {
+   "product": "revalidation_copilot",
+   "window": [
+    "2026-09-27",
+    "2026-10-03"
+   ],
+   "sources": {
+    "ga4": {
+     "activeUsers": 236,
+     "sessions": 281,
+     "status": "OK"
+    },
+    "posthog": {
+     "status": "OK",
+     "id": 286988,
+     "name": "Default project"
+    }
+   }
+  },
+  {
+   "product": "shiftlyx",
+   "window": [
+    "2026-09-27",
+    "2026-10-03"
+   ],
+   "sources": {
+    "ga4": {
+     "activeUsers": 57,
+     "sessions": 80,
+     "status": "OK"
+    },
+    "posthog": {
+     "status": "OK",
+     "id": 168377,
+     "name": "Shiftlyx"
+    }
+   }
+  }
+ ]
+}

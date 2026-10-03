@@ -1,0 +1,375 @@
+{
+ "generated_at": "2026-10-03T10:46:01.457663",
+ "source_repo": "/Users/habeebodubunmi/.openclaw/workspace-shiftlyx/shiftlyx-website",
+ "framework": "nextjs",
+ "count": 62,
+ "assets": [
+  {
+   "file": "route:/",
+   "url": "https://www.shiftlyx.com",
+   "title": "AI Schedule Generation",
+   "description": ""
+  },
+  {
+   "file": "route:/about",
+   "url": "https://www.shiftlyx.com/about",
+   "title": "About",
+   "description": "Shiftlyx was built by shift workers who understand the toll \u2014 an AI shift planner for healthcare shift workers"
+  },
+  {
+   "file": "route:/blog",
+   "url": "https://www.shiftlyx.com/blog",
+   "title": "Blog",
+   "description": "Practical advice for NHS shift workers on fatigue management"
+  },
+  {
+   "file": "route:/blog/6-consecutive-shifts-dangerous",
+   "url": "https://www.shiftlyx.com/blog/6-consecutive-shifts-dangerous",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/annual-leave-hack-2026-nhs",
+   "url": "https://www.shiftlyx.com/blog/annual-leave-hack-2026-nhs",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/caffeine-strategy-for-night-shifts",
+   "url": "https://www.shiftlyx.com/blog/caffeine-strategy-for-night-shifts",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/circadian-rhythm-hacks-for-night-workers",
+   "url": "https://www.shiftlyx.com/blog/circadian-rhythm-hacks-for-night-workers",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/dealing-with-shift-work-guilt",
+   "url": "https://www.shiftlyx.com/blog/dealing-with-shift-work-guilt",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/double-shifts-cortisol-inversion",
+   "url": "https://www.shiftlyx.com/blog/double-shifts-cortisol-inversion",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/fatigue-score-explained",
+   "url": "https://www.shiftlyx.com/blog/fatigue-score-explained",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/fatigue-warning-signs-shift-workers",
+   "url": "https://www.shiftlyx.com/blog/fatigue-warning-signs-shift-workers",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/five-strategies-for-shift-planning",
+   "url": "https://www.shiftlyx.com/blog/five-strategies-for-shift-planning",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/hidden-cost-short-turnaround-shifts",
+   "url": "https://www.shiftlyx.com/blog/hidden-cost-short-turnaround-shifts",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/how-to-build-strong-habit-with-shiftlyx",
+   "url": "https://www.shiftlyx.com/blog/how-to-build-strong-habit-with-shiftlyx",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/how-to-explain-shift-work-fatigue-to-your-family",
+   "url": "https://www.shiftlyx.com/blog/how-to-explain-shift-work-fatigue-to-your-family",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/how-to-read-your-nhs-rota-for-fatigue-risks",
+   "url": "https://www.shiftlyx.com/blog/how-to-read-your-nhs-rota-for-fatigue-risks",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/how-voice-planning-works",
+   "url": "https://www.shiftlyx.com/blog/how-voice-planning-works",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/hse-fatigue-guide-2026",
+   "url": "https://www.shiftlyx.com/blog/hse-fatigue-guide-2026",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/import-allocate-loop-rota-to-shiftlyx-guide",
+   "url": "https://www.shiftlyx.com/blog/import-allocate-loop-rota-to-shiftlyx-guide",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/long-term-health-effects-shift-work",
+   "url": "https://www.shiftlyx.com/blog/long-term-health-effects-shift-work",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/maximise-annual-leave-shift-workers-2026",
+   "url": "https://www.shiftlyx.com/blog/maximise-annual-leave-shift-workers-2026",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/my-first-month-using-shiftlyx",
+   "url": "https://www.shiftlyx.com/blog/my-first-month-using-shiftlyx",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/nhs-bank-shifts-fatigue-mistakes",
+   "url": "https://www.shiftlyx.com/blog/nhs-bank-shifts-fatigue-mistakes",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/nhs-long-weekend-rota-trick",
+   "url": "https://www.shiftlyx.com/blog/nhs-long-weekend-rota-trick",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/nhs-roster-vs-shiftlyx",
+   "url": "https://www.shiftlyx.com/blog/nhs-roster-vs-shiftlyx",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/night-shift-survival-guide",
+   "url": "https://www.shiftlyx.com/blog/night-shift-survival-guide",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/night-work-and-your-body-clock",
+   "url": "https://www.shiftlyx.com/blog/night-work-and-your-body-clock",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/nurse-commute-time-fatigue-impact",
+   "url": "https://www.shiftlyx.com/blog/nurse-commute-time-fatigue-impact",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/paramedic-vs-nurse-shift-patterns",
+   "url": "https://www.shiftlyx.com/blog/paramedic-vs-nurse-shift-patterns",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/partner-nurse-shift-sync-guide",
+   "url": "https://www.shiftlyx.com/blog/partner-nurse-shift-sync-guide",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/partner-sync-guide",
+   "url": "https://www.shiftlyx.com/blog/partner-sync-guide",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/permanent-circadian-misalignment",
+   "url": "https://www.shiftlyx.com/blog/permanent-circadian-misalignment",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/preference-learning-how-shiftlyx-knows-you",
+   "url": "https://www.shiftlyx.com/blog/preference-learning-how-shiftlyx-knows-you",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/real-cost-of-shift-work",
+   "url": "https://www.shiftlyx.com/blog/real-cost-of-shift-work",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/recovery-beyond-the-coffee",
+   "url": "https://www.shiftlyx.com/blog/recovery-beyond-the-coffee",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/recovery-coach-vs-health-apps",
+   "url": "https://www.shiftlyx.com/blog/recovery-coach-vs-health-apps",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/shift-stacking-how-nurses-get-more-days-off",
+   "url": "https://www.shiftlyx.com/blog/shift-stacking-how-nurses-get-more-days-off",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/shift-work-as-a-couple-nhs",
+   "url": "https://www.shiftlyx.com/blog/shift-work-as-a-couple-nhs",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/shift-worker-budget-guide-nhs-2026",
+   "url": "https://www.shiftlyx.com/blog/shift-worker-budget-guide-nhs-2026",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/shiftlyx-30-day-retrospective",
+   "url": "https://www.shiftlyx.com/blog/shiftlyx-30-day-retrospective",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/shiftlyx-florence-voice-planner-review",
+   "url": "https://www.shiftlyx.com/blog/shiftlyx-florence-voice-planner-review",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/shiftlyx-privacy-data-security-nhs",
+   "url": "https://www.shiftlyx.com/blog/shiftlyx-privacy-data-security-nhs",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/short-turnaround-shifts-safety-risks",
+   "url": "https://www.shiftlyx.com/blog/short-turnaround-shifts-safety-risks",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/this-is-bigger-than-burnout",
+   "url": "https://www.shiftlyx.com/blog/this-is-bigger-than-burnout",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/three-recovery-tools-work-for-shift-workers",
+   "url": "https://www.shiftlyx.com/blog/three-recovery-tools-work-for-shift-workers",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/what-happens-to-your-brain-after-3-night-shifts",
+   "url": "https://www.shiftlyx.com/blog/what-happens-to-your-brain-after-3-night-shifts",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/what-is-a-good-fatigue-score",
+   "url": "https://www.shiftlyx.com/blog/what-is-a-good-fatigue-score",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/why-fatigue-is-worse-than-burnout-for-nurses",
+   "url": "https://www.shiftlyx.com/blog/why-fatigue-is-worse-than-burnout-for-nurses",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/why-shift-scheduling-tools-ignore-fatigue",
+   "url": "https://www.shiftlyx.com/blog/why-shift-scheduling-tools-ignore-fatigue",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/blog/working-while-sick-nhs-culture",
+   "url": "https://www.shiftlyx.com/blog/working-while-sick-nhs-culture",
+   "title": "",
+   "description": ""
+  },
+  {
+   "file": "route:/download",
+   "url": "https://www.shiftlyx.com/download",
+   "title": "Download",
+   "description": "Download Shiftlyx free on iOS and Android \u2014 AI voice shift planner"
+  },
+  {
+   "file": "route:/features",
+   "url": "https://www.shiftlyx.com/features",
+   "title": "Features",
+   "description": "Shiftlyx features \u2014 AI Voice Planner"
+  },
+  {
+   "file": "route:/join",
+   "url": "https://www.shiftlyx.com/join",
+   "title": "Join your crew",
+   "description": "You"
+  },
+  {
+   "file": "route:/privacy",
+   "url": "https://www.shiftlyx.com/privacy",
+   "title": "Privacy Policy",
+   "description": "Shiftlyx privacy policy \u2014 how we collect"
+  },
+  {
+   "file": "route:/terms",
+   "url": "https://www.shiftlyx.com/terms",
+   "title": "Terms of Service",
+   "description": "Shiftlyx terms of service \u2014 rules and conditions for using the Shiftlyx app and website."
+  },
+  {
+   "file": "route:/tools",
+   "url": "https://www.shiftlyx.com/tools",
+   "title": "Free Tools for Shift Workers",
+   "description": "Free tools for NHS shift workers \u2014 Fatigue Score Validator to analyse your rota"
+  },
+  {
+   "file": "route:/tools/fatigue-score-validator",
+   "url": "https://www.shiftlyx.com/tools/fatigue-score-validator",
+   "title": "Fatigue Score \u2014 Shiftlyx",
+   "description": "Understand your shift fatigue in numbers. Four measurable dimensions \u2014 consecutive days"
+  },
+  {
+   "file": "route:/blog/[slug]",
+   "title": "Article Not Found",
+   "description": "The article you"
+  },
+  {
+   "file": "route:/delete-account",
+   "title": "Delete Account",
+   "description": "How to delete your Shiftlyx account and associated data \u2014 step-by-step guide."
+  },
+  {
+   "file": "route:/join/[token]",
+   "title": "Join your crew",
+   "description": "You"
+  },
+  {
+   "file": "route:/partner-invite/[token]",
+   "title": "Partner Sync invite",
+   "description": "You"
+  },
+  {
+   "file": "route:/partner-invite",
+   "title": "Partner Sync",
+   "description": "Sync your shift schedules with your partner. QR code or tap-to-connect. See combined rotas"
+  }
+ ]
+}

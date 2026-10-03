@@ -1,0 +1,209 @@
+{
+  "report": "growth_deep_dive",
+  "product": "shiftlyx",
+  "period": {
+    "start": "2026-08-31",
+    "end": "2026-09-30"
+  },
+  "acquisition": {
+    "active_users": 259,
+    "dau": null
+  },
+  "engagement": {
+    "avg_sessions_per_user": 1.2,
+    "conversions": 80,
+    "sessions": 341,
+    "total_users": 283
+  },
+  "revenue": {},
+  "campaigns": [
+    {
+      "id": "24",
+      "subject": "Getting Feedback For Revalidation Just Got Easier",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "23",
+      "subject": "Meet Crew: Enhance your app experience today",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "22",
+      "subject": "Try Crew: Our new app feature",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "20",
+      "subject": "",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "19",
+      "subject": "",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "17",
+      "subject": "A Revalidation Copilot update",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "14",
+      "subject": "Can you help us with one small favour?",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "12",
+      "subject": "Before you go \u2014 what would make you recommend Shiftlyx to a colleague?",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "11",
+      "subject": "Recovery Coach \u2014 is it actually useful or just noise?",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "10",
+      "subject": "Do you work with a partner who also does shifts?",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    }
+  ],
+  "features": {},
+  "retention": {},
+  "feedback": {},
+  "experiments": [
+    {
+      "experiment_id": "EXP-0001",
+      "plan": "Publish 4 SEO-optimized blog articles targeting top GSC queries for shiftlyx; run organic search campaign",
+      "metric": "active_users",
+      "window": "30d",
+      "hypothesis_id": "HYP-0001"
+    },
+    {
+      "experiment_id": "EXP-0002",
+      "plan": "Add prominent download CTAs on blog pages and optimize landing page conversion for shiftlyx",
+      "metric": "download_clicks",
+      "window": "30d",
+      "hypothesis_id": "HYP-0002"
+    }
+  ],
+  "insights": [
+    {
+      "insight_id": "INS-0001",
+      "statement": "shiftlyx: 259 active users, 341 sessions, 80 conversions in 30d",
+      "materiality": "material",
+      "evidence": [
+        {
+          "ref": "ga4",
+          "product": "shiftlyx",
+          "metric": "activeUsers"
+        }
+      ]
+    },
+    {
+      "insight_id": "INS-0004",
+      "statement": "website_events: 51 pageviews, 5 download clicks in 30d",
+      "materiality": "material",
+      "evidence": [
+        {
+          "ref": "website_events",
+          "product": "shiftlyx",
+          "rows": 56
+        }
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "rank": 1,
+      "plan": "Publish 4 SEO-optimized blog articles targeting top GSC queries for shiftlyx; run organic search campaign",
+      "metric": "active_users",
+      "window": "30d"
+    },
+    {
+      "rank": 2,
+      "plan": "Add prominent download CTAs on blog pages and optimize landing page conversion for shiftlyx",
+      "metric": "download_clicks",
+      "window": "30d"
+    }
+  ],
+  "evidence": [
+    {
+      "source": "ga4",
+      "product": "shiftlyx",
+      "property": "531724352",
+      "period": "2026-08-31 to 2026-09-30"
+    },
+    {
+      "source": "ga4",
+      "product": "revalidation_copilot",
+      "property": "530239772",
+      "period": "2026-08-31 to 2026-09-30"
+    },
+    {
+      "source": "gsc",
+      "product": "shiftlyx",
+      "site": "shiftlyx.com",
+      "period": "2026-08-31 to 2026-09-30"
+    },
+    {
+      "source": "gsc",
+      "product": "revalidation_copilot",
+      "site": "revalidationaicopilot.co.uk",
+      "period": "2026-08-31 to 2026-09-30"
+    },
+    {
+      "source": "brevo",
+      "product": "both",
+      "period": "2026-08-31 to 2026-09-30"
+    },
+    {
+      "source": "app_store_connect",
+      "product": "shiftlyx",
+      "period": "2026-08-31 to 2026-09-30"
+    },
+    {
+      "source": "website_events",
+      "product": "both",
+      "period": "2026-08-31 to 2026-09-30",
+      "rows": 56
+    }
+  ],
+  "quality": {
+    "status": "FAIL",
+    "warnings": [
+      "10/10 Brevo campaigns have zero opens/clicks",
+      "App Store subscriptions show APPROVED state but no revenue data available"
+    ]
+  }
+}

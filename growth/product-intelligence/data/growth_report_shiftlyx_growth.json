@@ -1,0 +1,158 @@
+{
+  "report": "growth_deep_dive",
+  "product": "shiftlyx",
+  "period": {
+    "start": "2026-08-31",
+    "end": "2026-09-30"
+  },
+  "acquisition": {
+    "active_users": 264,
+    "dau": null
+  },
+  "engagement": {
+    "avg_sessions_per_user": 1.33,
+    "conversions": 87,
+    "gsc_clicks": 0,
+    "gsc_ctr": 0.0,
+    "gsc_impressions": 6,
+    "gsc_position": 15.0,
+    "sessions": 350,
+    "website_download_clicks": 6,
+    "website_pageviews": 140
+  },
+  "revenue": {},
+  "campaigns": [
+    {
+      "id": "26",
+      "subject": "Your appraisal paperwork just got easier",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "25",
+      "subject": "Your appraisal paperwork just got easier",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "24",
+      "subject": "Getting Feedback For Revalidation Just Got Easier",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "23",
+      "subject": "Meet Crew: Enhance your app experience today",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "22",
+      "subject": "Try Crew: Our new app feature",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "20",
+      "subject": "",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "19",
+      "subject": "",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "17",
+      "subject": "A Revalidation Copilot update",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "14",
+      "subject": "Can you help us with one small favour?",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    },
+    {
+      "id": "12",
+      "subject": "Before you go \u2014 what would make you recommend Shiftlyx to a colleague?",
+      "recipients": 0,
+      "opens": 0,
+      "clicks": 0,
+      "open_rate": 0.0
+    }
+  ],
+  "features": {},
+  "retention": {
+    "cohorts": {},
+    "periods": 0,
+    "retention": []
+  },
+  "feedback": {},
+  "experiments": [],
+  "insights": [],
+  "recommendations": [],
+  "evidence": [
+    {
+      "source": "posthog_shiftlyx",
+      "status": "error"
+    },
+    {
+      "source": "posthog_revalidation_copilot",
+      "status": "error"
+    },
+    {
+      "source": "ga4_shiftlyx",
+      "status": "ok"
+    },
+    {
+      "source": "ga4_revalidation_copilot",
+      "status": "ok"
+    },
+    {
+      "source": "gsc_shiftlyx",
+      "status": "ok"
+    },
+    {
+      "source": "gsc_revalidation_copilot",
+      "status": "error"
+    },
+    {
+      "source": "brevo",
+      "status": "ok"
+    },
+    {
+      "source": "appstore",
+      "status": "ok"
+    },
+    {
+      "source": "website_events",
+      "status": "ok"
+    }
+  ],
+  "quality": {
+    "status": "FAIL",
+    "warnings": []
+  }
+}
