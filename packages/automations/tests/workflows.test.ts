@@ -17,6 +17,7 @@ import {
   NightlyIntegrityWorkflow,
   ReadonlyOpsCheckWorkflow,
   GrowthSocialWorkflow,
+  GrowthPortfolioSynthesisWorkflow,
 } from "../src/workflows/index.ts";
 import type { WorkflowContext, WorkflowResult, AnalyticsPort, DelegateStub } from "../src/workflows/types.ts";
 import { loadManifest } from "../src/manifest.ts";
@@ -281,6 +282,7 @@ describe("Workflow matrix — all 9 workflows present and runnable", () => {
     { name: "nightly-integrity-cost-check", key: "claim,record,failure-notify" },
     { name: "weekly-readonly-ops-check", key: "claim,record,no-auto-remediate" },
     { name: "growth-social-workflow", key: "claim,record,approveRequired,delegate,metricool-wrapper" },
+  { name: "growth-portfolio-synthesis", key: "claim,record,synthesis,routing,verdict" },
   ];
 
   for (const wf of workflows) {
@@ -315,6 +317,28 @@ describe("Workflow-to-manifest alignment", () => {
     }
   });
 });
+// ===========================================================================
+// Growth Portfolio Synthesis — G05
+// ===========================================================================
+
+describe("GrowthPortfolioSynthesisWorkflow", () => {
+  test("automationKey is growth-portfolio-synthesis", () => {
+    const wf = new GrowthPortfolioSynthesisWorkflow(fakeAnalytics(), fakeDelegate(true));
+    assert.equal(wf.automationKey, "growth-portfolio-synthesis");
+    assert.equal(wf.owner, "growth");
+    assert.equal(wf.riskCeiling, "C2");
+  });
+
+  test("returns no-change when claim fails", async () => {
+    const ctx = fakeContext({
+      claim: async () => ({ claimed: false, reason: "already_claimed" }),
+    });
+    const wf = new GrowthPortfolioSynthesisWorkflow(fakeAnalytics(), fakeDelegate(true));
+    const result = await wf.run(ctx, SCHEDULED, SHA, JOB_ID);
+    assert.equal(result.status, "skipped");
+  });
+});
+
 // ===========================================================================
 // Growth Social Workflow — G03
 // ===========================================================================

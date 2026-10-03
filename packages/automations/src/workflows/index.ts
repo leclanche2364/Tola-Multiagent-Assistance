@@ -10,6 +10,7 @@ export { TolaPortfolioWorkflow } from "./tola-portfolio.ts";
 export { NightlyIntegrityWorkflow } from "./nightly-integrity.ts";
 export { ReadonlyOpsCheckWorkflow } from "./readonly-ops-check.ts";
 export { GrowthSocialWorkflow } from "./growth-social-workflow.ts";
+export { GrowthPortfolioSynthesisWorkflow } from "./growth-portfolio-synthesis.ts";
 
 export type {
   WorkflowContext,
