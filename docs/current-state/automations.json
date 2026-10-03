@@ -1,7 +1,7 @@
 {
   "$schema": "https://openclaw.ai/schemas/automations/v1",
-  "version": "1.0.0",
-  "updatedAt": "2026-10-02T20:32:00+01:00",
+  "version": "1.1.0",
+  "updatedAt": "2026-10-03T12:00:00+01:00",
   "timezone": "Europe/London",
   "automations": [
     {
@@ -197,6 +197,35 @@
         "to": "channel:1553077643807563847"
       },
       "quietPolicy": "notify-on-drift",
+      "failureDestination": "telegram:5647750316"
+    },
+    {
+      "stableName": "growth-social-workflow",
+      "owner": "growth",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * *",
+        "tz": "Europe/London"
+      },
+      "mode": "isolated",
+      "prompt": "Run the Growth social operating loop: detect opportunity from analytics, select existing skill, produce evidence-backed draft, run checks, process Tier 1 and Tier 2 approvals (both in main session with Habeeb sign-off; growth proposes only), schedule via GovernedMetricoolWrapper, monitor via Metricool, record learning. No live Metricool calls. No live config changes.",
+      "timeoutMs": 180000,
+      "tools": [
+        "blackboard-read",
+        "blackboard-write",
+        "metricool__getAnalyticsDataByMetrics",
+        "metricool__getBestTimeToPostByNetwork",
+        "metricool__getBrandSettings",
+        "metricool__getScheduledPosts",
+        "memory-search"
+      ],
+      "riskCeiling": "C1",
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1553077643807563847"
+      },
+      "quietPolicy": "notify-on-change",
       "failureDestination": "telegram:5647750316"
     }
   ]

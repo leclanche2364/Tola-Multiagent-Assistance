@@ -9,6 +9,7 @@ export { ScholarProgressWorkflow } from "./scholar-progress.ts";
 export { TolaPortfolioWorkflow } from "./tola-portfolio.ts";
 export { NightlyIntegrityWorkflow } from "./nightly-integrity.ts";
 export { ReadonlyOpsCheckWorkflow } from "./readonly-ops-check.ts";
+export { GrowthSocialWorkflow } from "./growth-social-workflow.ts";
 
 export type {
   WorkflowContext,

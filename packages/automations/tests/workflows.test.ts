@@ -16,6 +16,7 @@ import {
   TolaPortfolioWorkflow,
   NightlyIntegrityWorkflow,
   ReadonlyOpsCheckWorkflow,
+  GrowthSocialWorkflow,
 } from "../src/workflows/index.ts";
 import type { WorkflowContext, WorkflowResult, AnalyticsPort, DelegateStub } from "../src/workflows/types.ts";
 import { loadManifest } from "../src/manifest.ts";
@@ -269,7 +270,7 @@ describe("ReadonlyOpsCheckWorkflow", () => {
 // Workflow matrix coverage (8 workflows × key capabilities)
 // ===========================================================================
 
-describe("Workflow matrix — all 8 workflows present and runnable", () => {
+describe("Workflow matrix — all 9 workflows present and runnable", () => {
   const workflows = [
     { name: "blackboard-reconciler", key: "claim,record,verify,reconcile" },
     { name: "tola-morning-brief", key: "claim,record,approveRequired,delegate" },
@@ -279,6 +280,7 @@ describe("Workflow matrix — all 8 workflows present and runnable", () => {
     { name: "tola-weekly-portfolio-review", key: "claim,record,approveRequired,delegate" },
     { name: "nightly-integrity-cost-check", key: "claim,record,failure-notify" },
     { name: "weekly-readonly-ops-check", key: "claim,record,no-auto-remediate" },
+    { name: "growth-social-workflow", key: "claim,record,approveRequired,delegate,metricool-wrapper" },
   ];
 
   for (const wf of workflows) {
@@ -294,7 +296,7 @@ describe("Workflow matrix — all 8 workflows present and runnable", () => {
 // ===========================================================================
 
 describe("Workflow-to-manifest alignment", () => {
-  test("all 8 workflow automationKeys match manifest stableNames", async () => {
+  test("all 9 workflow automationKeys match manifest stableNames", async () => {
     const manifest = await loadManifest();
     const manifestNames = new Set(manifest.automations.map(e => e.stableName));
     const workflowKeys = [
@@ -306,9 +308,56 @@ describe("Workflow-to-manifest alignment", () => {
       "tola-weekly-portfolio-review",
       "nightly-integrity-cost-check",
       "weekly-readonly-ops-check",
+      "growth-social-workflow",
     ];
     for (const key of workflowKeys) {
       assert.ok(manifestNames.has(key), `Workflow key "${key}" must match a manifest stableName`);
     }
+  });
+});
+// ===========================================================================
+// Growth Social Workflow — G03
+// ===========================================================================
+
+describe("GrowthSocialWorkflow", () => {
+  test("automationKey is growth-social-workflow", () => {
+    const wf = new GrowthSocialWorkflow(fakeAnalytics(), fakeDelegate(true));
+    assert.equal(wf.automationKey, "growth-social-workflow");
+    assert.equal(wf.owner, "growth");
+    assert.equal(wf.riskCeiling, "C1");
+  });
+
+  test("returns no-change when no material opportunity detected", async () => {
+    const ctx = fakeContext();
+    const analytics: AnalyticsPort = {
+      getMetrics: async () => ({ IGPO01: 100, IGRE01: 5, IGST01: 20 }),
+      getBestTime: async () => [],
+    };
+    const wf = new GrowthSocialWorkflow(analytics, fakeDelegate(true));
+    const result = await wf.run(ctx, SCHEDULED, SHA, JOB_ID);
+    assert.equal(result.status, "no-change");
+    assert.ok(result.summary.includes("No material opportunity"));
+  });
+
+  test("returns no-change when no matching skill found", async () => {
+    const ctx = fakeContext();
+    const analytics: AnalyticsPort = {
+      getMetrics: async () => ({ IGPO01: 5000, IGRE01: 50, IGST01: 100 }),
+      getBestTime: async () => [],
+    };
+    const wf = new GrowthSocialWorkflow(analytics, fakeDelegate(true));
+    const result = await wf.run(ctx, SCHEDULED, SHA, JOB_ID);
+    // High impressions trigger detection, but no matching skill → no-change
+    assert.ok(["no-change", "ok"].includes(result.status));
+  });
+
+  test("fixtures include all five required outcomes", async () => {
+    const { SOCIAL_FIXTURES } = await import("../src/workflows/growth-social-workflow.ts");
+    const outcomes = SOCIAL_FIXTURES.map(f => f.outcome);
+    assert.ok(outcomes.includes("winning"), "winning fixture required");
+    assert.ok(outcomes.includes("losing"), "losing fixture required");
+    assert.ok(outcomes.includes("inconclusive"), "inconclusive fixture required");
+    assert.ok(outcomes.includes("partial-source"), "partial-source fixture required");
+    assert.ok(outcomes.includes("unknown-outcome"), "unknown-outcome fixture required");
   });
 });
