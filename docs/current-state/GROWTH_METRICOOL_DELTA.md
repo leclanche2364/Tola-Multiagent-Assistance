@@ -49,3 +49,37 @@ None. All spec steps followed exactly: read-only audit, no live/config/schema/jo
 - `growth-data-pull-06` already exists as a cron entry (ERROR state noted in BASELINE/QA-00); do not rebuild in later batches.
 - Batch 03 Supabase safety primitives (`automation_occurrences`, `consume_approval`, `external_operations`) are applied and tested; cite `supabase/migrations/20261001180000_batch03_automation_approval_safety.sql` and `supabase/tests/test_batch03.sql`.
 - Metricool read tools are already in Growth's automation and QA-12 staging gate; no new MCP integration needed for reads.
+
+---
+
+## G04 — Existing Jobs & Release Gates (2026-10-03)
+
+### Reconciliation Results
+- All 9 stable names from `docs/current-state/automations.json` already exist in the manifest
+- No missing jobs detected; no changed schedule definitions detected
+- `growth-social-workflow` already contains the social operating loop (G00 spec item 4 satisfied)
+- `growth-daily-anomaly` reused as existing Growth weekly review slot
+- No new job created; no OpenClaw posting cron added (Metricool owns exact publish times)
+
+### growth-data-pull-06 Config Fix
+- **File:** `config-candidate/openclaw.json`
+- **Change:** Added `delivery` block to the growth agent with Discord recipient `channel:1553077643807563847`
+- **Rationale:** Reuses existing `growth-data-pull-06` cron entry (known ERROR in BASELINE/QA-00 for missing Discord recipient); fixes the config candidate instead of creating a new data-pull job
+
+### Staging Gate Extensions (G04)
+See `docs/current-state/STAGING_GATE.md` — Growth Metricool Release Gates appendix
+
+### Production Cutover Extensions (G04)
+See `docs/current-state/PRODUCTION_RELEASE.md` — Growth Metricool Release Gates appendix
+
+### Rollback (G04)
+- Disable Metricool writes in action-policy engine
+- Restore prior Growth config/jobs from `openclaw.json.broken-batch08-20261002` pattern
+- Growth-only rollback; do NOT touch other agents
+
+### Config Safety
+- Only safe keys patched (agents list entry for growth agent)
+- No channels/plugins/bindings sections modified
+- Live config file (`~/.openclaw/openclaw.json`) NOT touched
+- Config candidate changes verified against `openclaw.json.backup-20261002`
+- Broken-batch08 pattern preserved as rollback reference
